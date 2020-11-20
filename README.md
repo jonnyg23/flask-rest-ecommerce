@@ -1,2 +1,2 @@
-# Flask E-commerce Rest Api
+# Flask E-commerce REST API
 
