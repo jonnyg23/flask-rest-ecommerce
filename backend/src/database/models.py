@@ -72,7 +72,7 @@ The Product Model columns are:
 # TODO Create 'Category' model
 '''
 The Category Model columns are:
-    - *Primary Key*: CategoryID <INTEGER>
+    > *Primary Key*: CategoryID <INTEGER>
     - CategoryName <STRING>
     - Description <STRING>
     - Picture <?>
@@ -83,22 +83,20 @@ The Category Model columns are:
 # TODO Create 'Orders' model
 '''
 The Orders Model columns are:
-    - *Primary Key*: OrderID <INTEGER>
-    - *Foreign Key*: PaymentID <INTEGER?>
-    - *Foreign Key*: ShipperID <INTEGER> (optional - if using 'Shippers' Model)
-    - *Foreign Key*: CustomerID <INTEGER>
+    > *Primary Key*: OrderID <INTEGER>
+    > *Foreign Key*: PaymentID <INTEGER>
+    > *Foreign Key*: ShipperID <INTEGER> (optional - if using 'Shippers' Model)
+    > *Foreign Key*: CustomerID <INTEGER>
     - OrderNumber <INTEGER>
-    - OrderDate <DATETIME>
-    - RequiredDate <DATETIME>
-    - Freight <?> (optional)
-    - SalesTax <FLOAT>
-    - Timestamp <DATETIME>
+    - OrderDate <DATETIME> (Think about GMT time for international ordering)
+    - RequiredDate <DATETIME> (Date the items are required by customer)
+    - Freight <FLOAT> (optional - freight charges)
+    - SalesTax <FLOAT> (Sales Tax on entire order)
+    - Timestamp <STRING> [Limit 50]
     - TransactStatus <STRING> (e.g. 'succeed', 'declined', 'refunded', etc)
-    - ErrLoc <?>
-    - ErrMsg <STRING>
-    - Fulfilled <INTEGER> (binary - 1 or 0 for True or False)
-    - Deleted <INTEGER> (binary - 1 or 0 for True or False)
-    - Paid <INTEGER> (binary - 1 or 0 for True or False)
+    - Fulfilled <BOOLEAN>
+    - Deleted <BOOLEAN>
+    - Paid <FLOAT>
     - PaymentDate <DATETIME>
 '''
 
@@ -106,9 +104,9 @@ The Orders Model columns are:
 # TODO Create 'OrderDetails' model
 '''
 The OrderDetails Model columns are:
-    - *Primary Key*: OrderDetailID <INTEGER>
-    - *Foreign Key*: OrderID <INTEGER>
-    - *Foreign Key*: ProductID <INTEGER>
+    > *Primary Key*: OrderDetailID <INTEGER>
+    > *Foreign Key*: OrderID <INTEGER>
+    > *Foreign Key*: ProductID <INTEGER>
     - OrderNumber <INTEGER>
     - Price <FLOAT>
     - Quantity <INTEGER>
@@ -126,7 +124,7 @@ The OrderDetails Model columns are:
 # TODO Create 'Payment' model
 '''
 The Payment Model columns are:
-    - *Primary Key*: PaymentID <INTEGER>
+    > *Primary Key*: PaymentID <INTEGER>
     - PaymentType <STRING>
     - Allowed <INTEGER?> (binary - 1 or 0 for True or False)
 '''
@@ -135,7 +133,7 @@ The Payment Model columns are:
 # TODO Create 'Customers' model
 '''
 The Customers Model columns are:
-    - *Primary Key*: CustomerID <INTEGER>
+    > *Primary Key*: CustomerID <INTEGER>
     - FirstName <STRING>
     - LastName <STRING>
     - Class <?>
