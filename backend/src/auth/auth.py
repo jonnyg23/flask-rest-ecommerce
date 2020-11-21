@@ -102,6 +102,17 @@ def check_permissions(permission, payload):
         }, 401)
     return True
 
+# verify_decode_jwt() method should do/verify the following:
+# 1. The input token should be an Auth0 token with key id (kid)
+# 2. The method should verify the token using Auth0 /.well-known/jwks.json
+# 3. The method should decode the payload from the token.
+# 4. The method should validate the claims.
+# 5. Finally, it should return the decoded payload
+
+# !!NOTE urlopen has a common certificate error described here:
+# https://stackoverflow.com/questions/50236117/
+# scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org
+
 
 def verify_decode_jwt(token):
     """
