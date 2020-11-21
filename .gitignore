@@ -3,6 +3,7 @@ venv/
 .vscode/
 __pycache__/
 test.db
+setup.sh
 
 # OS generated files #
 ######################
