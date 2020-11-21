@@ -30,6 +30,7 @@ class AuthError(Exception):
 #       i. If header is malformed - raise AuthError
 # 3. Return the token part of the header
 
+
 def get_token_auth_header():
     """
     Obtains the Access Token from the Authorization Header.
@@ -68,6 +69,14 @@ def get_token_auth_header():
     token = parts[1]
     return token
 
+# check_permissions() method should do the following:
+# 1. Raise AuthError if permissions not in the payload.
+# !!NOTE Review RBAC settings in Auth0
+# 2. Raise an AuthError if the permission string is not in the payload
+#    permission array.
+#       i. If the permission string is in the payload - return True
+
+
 def check_permissions(permission, payload):
     """
     Checks if permissions are included in the payload.
@@ -84,11 +93,10 @@ def check_permissions(permission, payload):
             'code': 'invalid_claims',
             'description': 'Permissions not included in JWT.'
         }, 400)
-   
+
     if permission not in payload['permissions']:
         raise AuthError({
             'code': 'unauthorized',
             'description': 'Permission not found.'
         }, 401)
     return True
-
