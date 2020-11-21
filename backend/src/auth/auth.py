@@ -179,6 +179,14 @@ def verify_decode_jwt(token):
     }, 400)
 
 
+# requires_auth() method should do the following:
+# 1. It should use the get_token_auth_header method to get the token.
+# 2. It should use the verify_decode_jwt method to decode the jwt.
+# 3. It should use the check_permissions method to validate claims and
+#      check the requested permission
+# 4. The method must return the decorator which passes the decoded payload
+#      to the decorated method
+
 def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)
