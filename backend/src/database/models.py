@@ -40,11 +40,12 @@ def db_drop_and_create_all():
 The Product Model columns are:
     - *Primary key*: ProductID <INTEGER>
     - SKU Stock Keeping Unit <STRING> (optional)
+    - IDSKU <STRING> (optional)
     - VendorProductID <INTEGER> (optional)
     - ProductName <STRING>
     - ProductDescription <STRING>
-    - SupplierID <INTEGER> *Foreign key* (optional - if using 'Supplier' Model)
-    - CategoryID <INTEGER> *Foreign Key*
+    - *Foreign key*: SupplierID <INTEGER> (optional, if using 'Supplier' Model)
+    - *Foreign Key*: CategoryID <INTEGER>
     - QuantityPerUnit <INTEGER>
     - UnitPrice <FLOAT>
     - MSRP <FLOAT>
@@ -97,9 +98,27 @@ The Orders Model columns are:
     - Deleted <INTEGER> (binary - 1 or 0 for True or False)
     - Paid <INTEGER> (binary - 1 or 0 for True or False)
     - PaymentDate <DATETIME>
+'''
+
 
 # TODO Create 'OrderDetails' model
-
+'''
+The OrderDetails Model columns are:
+    - *Primary Key*: OrderDetailID <INTEGER>
+    - *Foreign Key*: OrderID <INTEGER>
+    - *Foreign Key*: ProductID <INTEGER>
+    - OrderNumber <INTEGER>
+    - Price <FLOAT>
+    - Quantity <INTEGER>
+    - Discount <?>
+    - Total <FLOAT>
+    - IDSKU <STRING> (optional)
+    - Size <?>
+    - Color <?>
+    - Fulfilled <INTEGER> (binary - 1 or 0 for True or False)
+    - ShipDate <DATETIME>
+    - BillDate <DATETIME>
+'''
 # TODO Create 'Payment' model
 
 # TODO Create 'Customers' model
