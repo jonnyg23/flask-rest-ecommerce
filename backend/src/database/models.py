@@ -39,13 +39,13 @@ def db_drop_and_create_all():
 '''
 The Product Model columns are:
     - *Primary key*: ProductID <INTEGER>
+    - *Foreign key*: SupplierID <INTEGER> (optional, if using 'Supplier' Model)
+    - *Foreign Key*: CategoryID <INTEGER>
     - SKU Stock Keeping Unit <STRING> (optional)
     - IDSKU <STRING> (optional)
     - VendorProductID <INTEGER> (optional)
     - ProductName <STRING>
     - ProductDescription <STRING>
-    - *Foreign key*: SupplierID <INTEGER> (optional, if using 'Supplier' Model)
-    - *Foreign Key*: CategoryID <INTEGER>
     - QuantityPerUnit <INTEGER>
     - UnitPrice <FLOAT>
     - MSRP <FLOAT>
@@ -82,12 +82,12 @@ The Category Model columns are:
 '''
 The Orders Model columns are:
     - *Primary Key*: OrderID <INTEGER>
-    - CustomerID <INTEGER>
+    - *Foreign Key*: PaymentID <INTEGER?>
+    - *Foreign Key*: ShipperID <INTEGER> (optional - if using 'Shippers' Model)
+    - *Foreign Key*: CustomerID <INTEGER>
     - OrderNumber <INTEGER>
-    - PaymentID <INTEGER?>
     - OrderDate <DATETIME>
     - RequiredDate <DATETIME>
-    - ShipperID <INTEGER> (optional - if using 'Shippers' Model)
     - Freight <?> (optional)
     - SalesTax <FLOAT>
     - Timestamp <DATETIME>
@@ -119,10 +119,50 @@ The OrderDetails Model columns are:
     - ShipDate <DATETIME>
     - BillDate <DATETIME>
 '''
+
+
 # TODO Create 'Payment' model
+'''
+The Payment Model columns are:
+    - *Primary Key*: PaymentID <INTEGER>
+    - PaymentType <STRING>
+    - Allowed <INTEGER?> (binary - 1 or 0 for True or False)
+'''
+
 
 # TODO Create 'Customers' model
-
+'''
+The Customers Model columns are:
+    - *Primary Key*: CustomerID <INTEGER>
+    - FirstName <STRING>
+    - LastName <STRING>
+    - Class <?>
+    - Room <?>
+    - Building <?>
+    - Address1 <?>
+    - Address2 <?>
+    - City <STRING>
+    - State <INTEGER> (Integer if using drop-down selection, else String)
+    - PostalCode <INTEGER>
+    - Country <INTEGER> (Integer if using drop-down selection, else String)
+    - Phone <INTEGER>
+    - Email <STRING>
+    - CreditCard <INTEGER>
+    - CreditCardTypeID <INTEGER>
+    - CardExpMo <INTEGER?>
+    - CardExpYr <INTEGER?>
+    - BillingAddress <STRING>
+    - BillingCity <STRING>
+    - BillingRegion <STRING>
+    - BillingPostalCode <INTEGER>
+    - BillingCountry <INTEGER> (Integer if using drop-down selection, else Str)
+    - ShipAddress <STRING>
+    - ShipCity <STRING>
+    - ShipRegion <STRING>
+    - ShipPostalCode <INTEGER>
+    - ShipCountry <INTEGER> (Integer if using drop-down selection, else Str)
+    - DateEntered <DATETIME?>
+'''
 # ----------------------------------------------------------------------------#
 # Optional Models:
 #   [Suppliers, Shippers]
@@ -130,8 +170,35 @@ The OrderDetails Model columns are:
 
 # Suppliers Model
 '''
+The Suppliers Model columns are:
+    - *Primary Key*: SupplierID <INTEGER>
+    - CompanyName <STRING>
+    - ContactFName <STRING>
+    - ContactLName <STRING>
+    - ContactTitle <STRING>
+    - Address1 <STRING>
+    - Address2 <STRING>
+    - City <STRING>
+    - State <INTEGER> (Integer if using drop-down selection, else String)
+    - PostalCode <INTEGER>
+    - Country <INTEGER> (Integer if using drop-down selection, else Str)
+    - Phone <INTEGER>
+    - Fax <INTEGER>
+    - Email <STRING>
+    - URL <STRING>
+    - PaymentMethods <?>
+    - DiscountType <?>
+    - TypeGoods <?>
+    - Notes <STRING>
+    - DiscountAvailable <INTEGER> (binary - 1 or 0 for True or False)
+    - CurrentOrder <?>
+    - Logo <?>
 '''
 
 # Shippers Model
 '''
+The Shippers Model columns are:
+    - *Primary Key*: ShipperID <INTEGER>
+    - CompanyName <STRING>
+    - Phone <INTEGER>
 '''
