@@ -19,3 +19,72 @@ def setup_db(app, database_path=database_path):
     db.app = app
     db.init_app(app)
     db.create_all()
+
+# ----------------------------------------------------------------------------#
+# db_drop_and_create_all() method is used for the following:
+# 1. To drop the current database tables and start fresh
+#       i. This can be used to initialize a clean database
+# !!NOTE you can change the database_filename variable to have multiple
+# versions of a database
+# ----------------------------------------------------------------------------#
+
+
+'''
+def db_drop_and_create_all():
+    db.drop_all()
+    db.create_all()
+'''
+
+# TODO Create 'Products' model
+'''
+The Product Model columns are:
+    - *Primary key*: ProductID <INTEGER>
+    - SKU Stock Keeping Unit <STRING> (optional)
+    - VendorProductID <INTEGER> (optional)
+    - ProductName <STRING>
+    - ProductDescription <STRING>
+    - SupplierID <INTEGER> *Foreign key* (optional - if using 'Supplier' Model)
+    - CategoryID <INTEGER> *Foreign Key*
+    - QuantityPerUnit <INTEGER>
+    - UnitPrice <FLOAT>
+    - MSRP <FLOAT>
+    - AvailableSizes <?>
+    - AvailabeColors <?>
+    - Size <?>
+    - Color <?>
+    - Discount <?>
+    - UnitWeight <?>
+    - UnitsInStock <INTEGER>
+    - UnitsOnOrder <?>
+    - ReorderLevel <?>
+    - ProductAvailable <?>
+    - DiscountAvailable <?>
+    - CurrentOrder <?>
+    - Picture <?>
+    - Ranking <?>
+    - Note <STRING>
+'''
+
+
+# TODO Create 'Category' model
+
+# TODO Create 'Orders' model
+
+# TODO Create 'OrderDetails' model
+
+# TODO Create 'Payment' model
+
+# TODO Create 'Customers' model
+
+# ----------------------------------------------------------------------------#
+# Optional Models:
+#   [Suppliers, Shippers]
+# ----------------------------------------------------------------------------#
+
+# Suppliers Model
+'''
+'''
+
+# Shippers Model
+'''
+'''
