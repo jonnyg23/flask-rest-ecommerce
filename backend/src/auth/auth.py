@@ -23,6 +23,12 @@ class AuthError(Exception):
 # Auth Header
 # ----------------------------------------------------------------------------#
 
+# get_token_auth_header() method should do the following:
+# 1. Attempt to get the header from request.
+#       i. If header is not present - raise AuthError
+# 2. Attempt to split bearer, as well as the token.
+#       i. If header is malformed - raise AuthError
+# 3. Return the token part of the header
 
 def get_token_auth_header():
     """
@@ -61,3 +67,28 @@ def get_token_auth_header():
 
     token = parts[1]
     return token
+
+def check_permissions(permission, payload):
+    """
+    Checks if permissions are included in the payload.
+    Raises AuthError otherwise.
+    --------------------
+    Inputs <datatype>:
+        - permission <string>: (i.e. 'post:drink')
+        - payload <string>: Decoded JWT payload
+    Returns <datatype>:
+        - True <boolean> OR Raises error codes 400 or 403
+    """
+    if 'permissions' not in payload:
+        raise AuthError({
+            'code': 'invalid_claims',
+            'description': 'Permissions not included in JWT.'
+        }, 400)
+   
+    if permission not in payload['permissions']:
+        raise AuthError({
+            'code': 'unauthorized',
+            'description': 'Permission not found.'
+        }, 401)
+    return True
+
