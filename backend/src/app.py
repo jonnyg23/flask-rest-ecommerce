@@ -20,6 +20,18 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
+    # TODO Add '/' endpoint for homepage
+
+    # TODO Add '/collections' endpoint
+
+    # TODO Add '/collections/mens-apparel' endpoint
+
+    # TODO Add '/collections/womens-apparel' endpoint
+
+    # TODO Add '/collections/holiday' endpoint
+
+    # TODO Add '/collections/gadgets' endpoint
+
     return app
 
 
