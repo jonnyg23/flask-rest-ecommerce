@@ -67,7 +67,14 @@ The Product Model columns are:
 
 
 # TODO Create 'Category' model
-
+'''
+The Category Model columns are:
+    - *Primary Key*: CategoryID <INTEGER>
+    - CategoryName <STRING>
+    - Description <STRING>
+    - Picture <?>
+    - Active <?>
+'''
 # TODO Create 'Orders' model
 
 # TODO Create 'OrderDetails' model
