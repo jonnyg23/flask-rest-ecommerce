@@ -75,7 +75,28 @@ The Category Model columns are:
     - Picture <?>
     - Active <?>
 '''
+
+
 # TODO Create 'Orders' model
+'''
+The Orders Model columns are:
+    - *Primary Key*: OrderID <INTEGER>
+    - CustomerID <INTEGER>
+    - OrderNumber <INTEGER>
+    - PaymentID <INTEGER?>
+    - OrderDate <DATETIME>
+    - RequiredDate <DATETIME>
+    - ShipperID <INTEGER> (optional - if using 'Shippers' Model)
+    - Freight <?> (optional)
+    - SalesTax <FLOAT>
+    - Timestamp <DATETIME>
+    - TransactStatus <STRING> (e.g. 'succeed', 'declined', 'refunded', etc)
+    - ErrLoc <?>
+    - ErrMsg <STRING>
+    - Fulfilled <INTEGER> (binary - 1 or 0 for True or False)
+    - Deleted <INTEGER> (binary - 1 or 0 for True or False)
+    - Paid <INTEGER> (binary - 1 or 0 for True or False)
+    - PaymentDate <DATETIME>
 
 # TODO Create 'OrderDetails' model
 
