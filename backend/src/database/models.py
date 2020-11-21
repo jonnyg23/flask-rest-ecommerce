@@ -87,10 +87,9 @@ The Orders Model columns are:
     > *Foreign Key*: PaymentID <INTEGER>
     > *Foreign Key*: ShipperID <INTEGER> (optional - if using 'Shippers' Model)
     > *Foreign Key*: CustomerID <INTEGER>
-    - OrderNumber <INTEGER>
     - OrderDate <DATETIME> (Think about GMT time for international ordering)
     - RequiredDate <DATETIME> (Date the items are required by customer)
-    - Freight <FLOAT> (optional - freight charges)
+    - Freight <FLOAT> (freight charges if shipped altogether)
     - SalesTax <FLOAT> (Sales Tax on entire order)
     - Timestamp <STRING> [Limit 50]
     - TransactStatus <STRING> (e.g. 'succeed', 'declined', 'refunded', etc)
@@ -107,17 +106,21 @@ The OrderDetails Model columns are:
     > *Primary Key*: OrderDetailID <INTEGER>
     > *Foreign Key*: OrderID <INTEGER>
     > *Foreign Key*: ProductID <INTEGER>
-    - OrderNumber <INTEGER>
-    - Price <FLOAT>
-    - Quantity <INTEGER>
-    - Discount <?>
-    - Total <FLOAT>
-    - IDSKU <STRING> (optional)
-    - Size <?>
-    - Color <?>
-    - Fulfilled <INTEGER> (binary - 1 or 0 for True or False)
-    - ShipDate <DATETIME>
-    - BillDate <DATETIME>
+    - Price <FLOAT> (Price per item)
+    - Quantity <SMALLINTEGER> (Number of items ordered)
+    - Discount <FLOAT> (discount applied to the individual item)
+    - Total <FLOAT> (Calculated with Price * Quantity * Discount)
+    - Size <STRING> [Limit 50]
+    - Color <STRING> [Limit 50]
+    - Fulfilled <BOOLEAN> (This part of the order has been fulfilled)
+    - BillDate <DATETIME> (Date the bill was issued for the item)
+    - ShipDate <DATETIME> (Date the items where shipped)
+        NOTE: If not shipping all items together, you may need a ShippingDate
+              field in the OrderDetails Table to track what day each item
+              shipped.
+    > *Foreign Key*: ShipperID <INTEGER> (The shipping company used)
+    - Freight <FLOAT> (Freight charges if shipped altogether)
+    - SalesTax <FLOAT> (Sales tax on entire order)
 '''
 
 
