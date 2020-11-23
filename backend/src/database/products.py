@@ -16,7 +16,7 @@ The Product Model columns are:
     - AvailabeColors <STRING> [Limit 100]
     > *Foreign Key*: SizeID <INTEGER> (used to link to Size table)
     > *Foreign Key*: ColorID <INTEGER> (used to link to Color table)
-    - Discount <FLOAT> 
+    - Discount <FLOAT>
     - UnitWeight <FLOAT>
     - UnitsInStock <SMALLINTEGER> (between 0-65535 units)
     - UnitsOnOrder <SMALLINTEGER> (between 0-65535 units)
