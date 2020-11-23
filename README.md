@@ -6,7 +6,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
-<br />
 <p align="center">
 
   <h2 align="center">Flask E-commerce REST API</h2>
