@@ -48,8 +48,6 @@ class Products(db.Model):
     # TODO add foreign keys
 
     def __init__(self, product_name, product_description, msrp, picture):
-        # Example: self.question = question
-        #          self.answer = answer
         self.product_name = product_name
         self.product_description = product_description
         self.msrp = msrp
