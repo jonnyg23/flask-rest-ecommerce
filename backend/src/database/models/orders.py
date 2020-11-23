@@ -1,3 +1,8 @@
+from app import db
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
+    Float, create_engine
+from flask_sqlalchemy import SQLAlchemy
+
 # TODO Create 'Orders' model
 
 '''
@@ -11,9 +16,57 @@ The Orders Model columns are:
     - Freight <FLOAT> (freight charges if shipped altogether)
     - SalesTax <FLOAT> (Sales Tax on entire order)
     - Timestamp <STRING> [Limit 50]
-    - TransactStatus <STRING> (e.g. 'succeed', 'declined', 'refunded', etc)
+    - TransactStatus <STRING> [Limit 50]
+        # NOTE: (e.g. 'succeed', 'declined', 'refunded', etc)
     - Fulfilled <BOOLEAN>
     - Deleted <BOOLEAN>
     - Paid <FLOAT>
     - PaymentDate <DATETIME>
 '''
+
+
+class Orders(db.Model):
+    __tablename__ = 'orders'
+
+    id = Column(Integer, primary_key=True)
+    order_date = Column(DateTime, nullable=False)
+    sales_tax = Column(Float, nullable=False)
+    timestamp = Column(Float, nullable=False)
+    transact_status = Column(String(50), nullable=False)
+    paid = Column(Boolean, nullable=False)
+    payment_date = Column(DateTime, nullable=False)
+    fulfilled = Column(Boolean, nullable=False)
+    # TODO add foreign keys
+
+    def __init__(self, order_date, sales_tax, timestamp, transact_status,
+                 paid, payment_date, fulfilled):
+        self.order_date = order_date
+        self.sales_tax = sales_tax
+        self.timestamp = timestamp
+        self.transact_status = transact_status
+        self.paid = paid
+        self.payment_date = payment_date
+        self.fulfilled = fulfilled
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def format(self):
+        return {
+            'id': self.id,
+            'order_date': self.order_date,
+            'sales_tax': self.sales_tax,
+            'timestamp': self.timestamp,
+            'transact_status': self.transact_status,
+            'paid': self.paid,
+            'payment_date': self.payment_date,
+            'fulfilled': self.fulfilled
+        }
