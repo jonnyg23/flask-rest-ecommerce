@@ -1,5 +1,6 @@
 from app import db
-from sqlalchemy import Column, Integer, String, Float, create_engine, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, create_engine, \
+    ForeignKey, relationship
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -46,6 +47,9 @@ class Products(db.Model):
     picture = Column(String(50))
     category_id = Column(Integer, ForeignKey('Categories.id'), nullable=False)
     # supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
+    order_details = relationship('Order_Details',
+                                 backref='Products',
+                                 lazy='dynamic')
 
     def __init__(self, product_name, product_description, msrp,
                  picture, category_id):
