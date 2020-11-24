@@ -44,13 +44,16 @@ class Products(db.Model):
     product_description = Column(String(255), nullable=False)
     msrp = Column(Float, nullable=False)
     picture = Column(String(50))
-    #supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
+    category_id = Column(Integer, ForeignKey('Categories.id'), nullable=False)
+    # supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
 
-    def __init__(self, product_name, product_description, msrp, picture):
+    def __init__(self, product_name, product_description, msrp,
+                 picture, category_id):
         self.product_name = product_name
         self.product_description = product_description
         self.msrp = msrp
         self.picture = picture
+        self.category_id = category_id
 
     def insert(self):
         db.session.add(self)
@@ -69,5 +72,6 @@ class Products(db.Model):
             'product_name': self.product_name,
             'product_description': self.product_description,
             'msrp': self.msrp,
-            'picture': self.picture
+            'picture': self.picture,
+            'category_id': self.category_id
         }
