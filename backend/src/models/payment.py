@@ -17,6 +17,7 @@ class Payment(db.Model):
     id = Column(Integer, primary_key=True)
     payment_type = Column(String(60), nullable=False)
     allowed = Column(Boolean, nullable=False)
+    orders = relationship('Orders', backref='Payment', lazy='dynamic')
 
     def __init__(self, payment_type, allowed):
         self.payment_type = payment_type
