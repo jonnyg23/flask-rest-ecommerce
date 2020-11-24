@@ -1,6 +1,6 @@
 from app import db
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
-    Float, create_engine
+    Float, create_engine, relationship
 from flask_sqlalchemy import SQLAlchemy
 
 # Shippers Model (optional)
@@ -19,6 +19,7 @@ class Shippers(db.Model):
     id = Column(Integer, primary_key=True)
     company_name = Column(String(50), nullable=False)
     phone = Column(String(25), nullable=False)
+    orders = relationship('Orders', backref='Shippers', lazy='dynamic')
 
     def __init__(self, company_name, phone):
         self.company_name = company_name
