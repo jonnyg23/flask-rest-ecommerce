@@ -37,7 +37,7 @@ class Orders(db.Model):
     payment_date = Column(DateTime, nullable=False)
     fulfilled = Column(Boolean, nullable=False)
     payment_id = Column(Integer, ForeignKey('Payment.id'), nullable=False)
-    shipper_id = Column(Integer, ForeignKey('Shippers.id'), nullable=False)
+    # shipper_id = Column(Integer, ForeignKey('Shippers.id'), nullable=False)
     customer_id = Column(Integer, ForeignKey('Customers.id'), nullable=False)
     order_details = relationship('Order_Details',
                                  backref='Orders',
@@ -53,7 +53,7 @@ class Orders(db.Model):
         self.payment_date = payment_date
         self.fulfilled = fulfilled
         self.payment_id = payment_id
-        self.shipper_id = shipper_id
+        # self.shipper_id = shipper_id
 
     def insert(self):
         db.session.add(self)
@@ -76,6 +76,6 @@ class Orders(db.Model):
             'paid': self.paid,
             'payment_date': self.payment_date,
             'fulfilled': self.fulfilled,
-            'payment_id': self.payment_id,
-            'shipper_id': self.shipper_id
+            'payment_id': self.payment_id
+            # 'shipper_id': self.shipper_id
         }
