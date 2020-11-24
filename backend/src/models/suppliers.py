@@ -1,6 +1,6 @@
 from app import db
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
-    Float, create_engine
+    Float, create_engine, relationship
 from flask_sqlalchemy import SQLAlchemy
 
 # Suppliers Model (optional)
