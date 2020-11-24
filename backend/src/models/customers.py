@@ -1,6 +1,6 @@
 from app import db
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
-    Float, create_engine
+    Float, create_engine, relationship
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -67,8 +67,7 @@ class Customers(db.Model):
     shipping_country = Column(String(60))
     shipping_postalcode = Column(String(15))
     date_entered = Column(DateTime)
-
-    # TODO add foreign keys
+    orders = relationship('Orders', backref='Customers', lazy='dynamic')
 
     def __init__(self, first_name, last_name, address1, address2, city,
                  state, postalcode, country, phone, email, creditcard,
