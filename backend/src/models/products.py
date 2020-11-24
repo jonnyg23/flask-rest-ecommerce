@@ -44,7 +44,6 @@ class Products(db.Model):
     product_description = Column(String(255), nullable=False)
     msrp = Column(Float, nullable=False)
     picture = Column(String(50))
-    # TODO add foreign keys
     #supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
 
     def __init__(self, product_name, product_description, msrp, picture):
