@@ -1,5 +1,6 @@
 from app import db
-from sqlalchemy import Column, Integer, String, Boolean, create_engine
+from sqlalchemy import Column, Integer, String, Boolean, relationship, \
+    create_engine
 from flask_sqlalchemy import SQLAlchemy
 
 '''
@@ -20,6 +21,7 @@ class Categories(db.Model):
     description = Column(String(255), nullable=False)
     picture = Column(String(50))
     active = Column(Boolean)
+    products = relationship('Products', backref='Categories', lazy='dynamic')
 
     def __init__(self, category_name, description, picture, active):
         # Example: self.question = question
