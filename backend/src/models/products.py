@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy import Column, Integer, String, Float, create_engine
+from sqlalchemy import Column, Integer, String, Float, create_engine, ForeignKey
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -45,6 +45,7 @@ class Products(db.Model):
     msrp = Column(Float, nullable=False)
     picture = Column(String(50))
     # TODO add foreign keys
+    #supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
 
     def __init__(self, product_name, product_description, msrp, picture):
         self.product_name = product_name
