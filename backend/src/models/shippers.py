@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
     Float, create_engine
 from flask_sqlalchemy import SQLAlchemy
 
-# Shippers Model
+# Shippers Model (optional)
 
 '''
 The Shippers Model columns are:

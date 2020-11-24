@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
     Float, create_engine
 from flask_sqlalchemy import SQLAlchemy
 
-# Suppliers Model
+# Suppliers Model (optional)
 
 '''
 The Suppliers Model columns are:
