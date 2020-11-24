@@ -34,24 +34,3 @@ def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
 '''
-
-# TODO Add 'Products' model
-
-# TODO Add 'Categories' model
-
-# TODO Add 'Orders' model
-
-# TODO Add 'OrderDetails' model
-
-# TODO Add 'Payment' model
-
-# TODO Add 'Customers' model
-
-# ----------------------------------------------------------------------------#
-# Optional Models:
-#   [Suppliers, Shippers]
-# ----------------------------------------------------------------------------#
-
-# TODO Add 'Suppliers'' Model (optional)
-
-# TODO Add 'Shippers' Model (optional)
