@@ -53,7 +53,7 @@ class Customers(db.Model):
     phone = Column(String(25))
     email = Column(String(75))
     creditcard = Column(Integer)
-    creditcard_typeID = Column(Integer)
+    creditcard_type_id = Column(Integer)
     card_exp_month = Column(String(15))
     card_exp_year = Column(Integer)
     billing_address = Column(String(60))
@@ -72,7 +72,7 @@ class Customers(db.Model):
 
     def __init__(self, first_name, last_name, address1, address2, city,
                  state, postalcode, country, phone, email, creditcard,
-                 creditcard_typeID, card_exp_month, card_exp_year,
+                 creditcard_type_id, card_exp_month, card_exp_year,
                  billing_address, billing_city, billing_region,
                  billing_postalcode, billing_country, shipping_address,
                  shipping_city, shipping_region, shipping_postalcode,
@@ -88,7 +88,7 @@ class Customers(db.Model):
         self.phone = phone
         self.email = email
         self.creditcard = creditcard
-        self.creditcard_typeID = creditcard_typeID
+        self.creditcard_type_id = creditcard_type_id
         self.card_exp_month = card_exp_month
         self.card_exp_year = card_exp_year
         self.billing_address = billing_address
@@ -128,7 +128,7 @@ class Customers(db.Model):
             'phone': self.phone,
             'email': self.email,
             'creditcard': self.creditcard,
-            'creditcard_typeID': self.creditcard_typeID,
+            'creditcard_type_id': self.creditcard_type_id,
             'card_exp_month': self.card_exp_month,
             'card_exp_year': self.card_exp_year,
             'billing_address': self.billing_address,
