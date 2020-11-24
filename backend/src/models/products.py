@@ -2,7 +2,6 @@ from app import db
 from sqlalchemy import Column, Integer, String, Float, create_engine
 from flask_sqlalchemy import SQLAlchemy
 
-# TODO Create 'Products' model
 
 '''
 The Product Model columns are:
