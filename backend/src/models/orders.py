@@ -1,6 +1,6 @@
 from app import db
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
-    Float, create_engine
+    Float, create_engine, ForeignKey, relationship
 from flask_sqlalchemy import SQLAlchemy
 
 # TODO Create 'Orders' model
@@ -36,10 +36,15 @@ class Orders(db.Model):
     paid = Column(Boolean, nullable=False)
     payment_date = Column(DateTime, nullable=False)
     fulfilled = Column(Boolean, nullable=False)
-    # TODO add foreign keys
+    payment_id = Column(Integer, ForeignKey('Payment.id'), nullable=False)
+    shipper_id = Column(Integer, ForeignKey('Shippers.id'), nullable=False)
+    customer_id = Column(Integer, ForeignKey('Customers.id'), nullable=False)
+    order_details = relationship('Order_Details',
+                                 backref='Orders',
+                                 lazy='dynamic')
 
     def __init__(self, order_date, sales_tax, timestamp, transact_status,
-                 paid, payment_date, fulfilled):
+                 paid, payment_date, fulfilled, payment_id, shipper_id):
         self.order_date = order_date
         self.sales_tax = sales_tax
         self.timestamp = timestamp
@@ -47,6 +52,8 @@ class Orders(db.Model):
         self.paid = paid
         self.payment_date = payment_date
         self.fulfilled = fulfilled
+        self.payment_id = payment_id
+        self.shipper_id = shipper_id
 
     def insert(self):
         db.session.add(self)
@@ -68,5 +75,7 @@ class Orders(db.Model):
             'transact_status': self.transact_status,
             'paid': self.paid,
             'payment_date': self.payment_date,
-            'fulfilled': self.fulfilled
+            'fulfilled': self.fulfilled,
+            'payment_id': self.payment_id,
+            'shipper_id': self.shipper_id
         }
