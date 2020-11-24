@@ -1,6 +1,6 @@
 from app import db
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
-    Float, create_engine
+    Float, create_engine, ForeignKey
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -37,15 +37,19 @@ class Order_Details(db.Model):
     total = Column(Float, nullable=False)
     fulfilled = Column(Boolean, nullable=False)
     bill_date = Column(DateTime, nullable=False)
-    # TODO add foreign keys
+    order_id = Column(Integer, ForeignKey('Orders.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('Products.id'), nullable=False)
 
-    def __init__(self, price, quantity, discount, total, fulfilled, bill_date):
+    def __init__(self, price, quantity, discount, total, fulfilled,
+                 bill_date, order_id, product_id):
         self.price = price
         self.quantity = quantity
         self.discount = discount
         self.total = total
         self.fulfilled = fulfilled
         self.bill_date = bill_date
+        self.order_id = order_id
+        self.product_id = product_id
 
     def insert(self):
         db.session.add(self)
@@ -66,5 +70,7 @@ class Order_Details(db.Model):
             'discount': self.discount,
             'total': self.total,
             'fulfilled': self.fulfilled,
-            'bill_date': self.bill_date
+            'bill_date': self.bill_date,
+            'order_id': self.order_id,
+            'product_id': self.product_id
         }
