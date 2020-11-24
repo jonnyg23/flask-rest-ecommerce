@@ -68,6 +68,7 @@ class Suppliers(db.Model):
     logo = Column(String(75))  # link to image file
     ranking = Column(Integer)
     notes = Column(String(255))  # notes on the supplier
+    products = relationship('Products', backref='Suppliers', lazy='dynamic')
 
     def __init__(self, company_name, contact_first_name, contact_last_name,
                  address1, address2, city, tate, postalcode, country, phone,
