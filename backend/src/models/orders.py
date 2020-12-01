@@ -3,7 +3,6 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
     Float, create_engine, ForeignKey, relationship
 from flask_sqlalchemy import SQLAlchemy
 
-# TODO Create 'Orders' model
 
 '''
 The Orders Model columns are:
