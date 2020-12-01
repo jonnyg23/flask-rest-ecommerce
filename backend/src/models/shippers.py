@@ -1,6 +1,6 @@
 from app import db
-from sqlalchemy import Column, Integer, String, DateTime, \
-    Float, create_engine, relationship
+from sqlalchemy import Column, Integer, String, Float, create_engine, \
+    relationship
 from flask_sqlalchemy import SQLAlchemy
 
 # Shippers Model (optional)
