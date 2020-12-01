@@ -71,7 +71,7 @@ class Suppliers(db.Model):
     products = relationship('Products', backref='Suppliers', lazy='dynamic')
 
     def __init__(self, company_name, contact_first_name, contact_last_name,
-                 address1, address2, city, tate, postalcode, country, phone,
+                 address1, address2, city, state, postalcode, country, phone,
                  fax, email, website_url, payment_methods, discount_type,
                  type_goods, discount_available, customer_supplier_id,
                  size_url, color_url, logo, ranking, notes):
