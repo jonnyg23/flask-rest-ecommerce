@@ -38,6 +38,19 @@ def create_app(test_config=None):
 
     # TODO Add '/collections/gadgets' endpoint
 
+    # Possible endpoint additions
+
+    # TODO Add '/login' for auth
+
+    # TODO Add '/<int:customerID>/checkouts/<int:orderID>'
+
+    # When an item is clicked on, let's say in the '/collections/mens-apparel'
+    # endpoint, then there should be a tagged on '/products/<productID?variant'
+    # This can be seen below.
+    # collections/all/products/1776-stars-mens-apparel?variant=35092988559517
+    # This may be added on automatically when sending a particular query.
+    # Reference a past Udacity assignment for details.
+
 
 # ----------------------------------------------------------------------------#
 # App Error Handling
