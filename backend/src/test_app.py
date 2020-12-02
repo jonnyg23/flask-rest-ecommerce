@@ -62,3 +62,8 @@ class EcommerceTestCase(unittest.TestCase):
     # TODO Add tests for '/login' endpoint
 
     # TODO Add tests for '/<int:customerID>/checkouts/<int:orderID>' endpoint
+
+
+# Make the tests conveniently executable
+if __name__ == "__main__":
+    unittest.main()
