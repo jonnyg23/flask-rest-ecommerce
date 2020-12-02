@@ -34,3 +34,7 @@ class EcommerceTestCase(unittest.TestCase):
             self.db.init_app(self.app)
             # Create all tables
             self.db.create_all()
+
+    def tearDown(self):
+        """Executed after reach test"""
+        pass
