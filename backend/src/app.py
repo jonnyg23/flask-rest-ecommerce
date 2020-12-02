@@ -27,6 +27,16 @@ def create_app(test_config=None):
     CORS(app)
 
     # TODO Add '/' endpoint for homepage
+    @app.route('/', methods=['GET'])
+    def get_category_images():
+        """
+        GET request to retrieve default category images from database.
+        --------------------
+        Tested with:
+            - Auth0 'GET /'
+        """
+
+        return cat_default_images
 
     # TODO Add '/collections' endpoint
 
