@@ -38,3 +38,27 @@ class EcommerceTestCase(unittest.TestCase):
     def tearDown(self):
         """Executed after reach test"""
         pass
+
+# ----------------------------------------------------------------------------#
+    # Used Test-Driven-Development in the making of this API
+    # Minimum of 2 tests for each endpoint!
+
+    # Test if '/' endpoint can handle GET requests & sends
+    # 404 error for a non existing default category images
+# ----------------------------------------------------------------------------#
+
+    # TODO Add tests for '/' endpoint
+
+    # TODO Add tests for '/collections' endpoint
+
+    # TODO Add tests for '/collections/mens-apparel' endpoint
+
+    # TODO Add tests for '/collections/womens-apparel' endpoint
+
+    # TODO Add tests for '/collections/holiday' endpoint
+
+    # TODO Add tests for '/collections/gadgets' endpoint
+
+    # TODO Add tests for '/login' endpoint
+
+    # TODO Add tests for '/<int:customerID>/checkouts/<int:orderID>' endpoint
