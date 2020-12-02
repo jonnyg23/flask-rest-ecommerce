@@ -65,7 +65,6 @@
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 <!--
 [![Product Name Screen Shot][product-screenshot]](https://example.com)-->
@@ -88,8 +87,6 @@ A list of helpful resources are listed in the acknowledgements.
 * [Heroku](https://www.heroku.com/)
 * [Postman](https://www.postman.com/)
 
-
-<!-- GETTING STARTED -->
 ## Getting Started
 <!--
 This is an example of how you may give instructions on setting up your project locally.
@@ -124,7 +121,6 @@ TODO add prerequisites
 -->
 TODO add installation
 
-<!-- USAGE EXAMPLES -->
 ## Usage
 <!--
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -168,7 +164,6 @@ Below is a table of the methods allowed for each of the 3 endpoints.
 
 TODO add endpoint table of contents
 
-<!-- ROADMAP -->
 ## Roadmap
 <!--
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
@@ -176,7 +171,6 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 -->
 TODO add roadmap
 
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Any contributions you make are **greatly appreciated**.
@@ -187,19 +181,16 @@ Any contributions you make are **greatly appreciated**.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<!-- LICENSE -->
 ## License
 
 Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 
-<!-- CONTACT -->
 ## Contact
 
 Jonathan Gutierrez - jonguti23@outlook.com
 
 Project Link: [https://github.com/jonnyg23/flask-rest-ecommerce](https://github.com/jonnyg23/flask-rest-ecommerce)
 
-<!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * [E-Commerce Database Design](https://www.princeton.edu/~rcurtis/ultradev/ecommdatabase.html)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
