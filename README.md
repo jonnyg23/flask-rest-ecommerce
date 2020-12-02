@@ -61,8 +61,6 @@
   </ol>
 </details>
 
----
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <!--
@@ -86,7 +84,6 @@ A list of helpful resources are listed in the acknowledgements.
 * [Heroku](https://www.heroku.com/)
 * [Postman](https://www.postman.com/)
 
----
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -123,8 +120,6 @@ TODO add prerequisites
 -->
 TODO add installation
 
----
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 <!--
@@ -135,13 +130,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 -->
 TODO add usage
 
----
-
 ## Testing
 
 TODO add testing
-
----
 
 ## API Documentation
 
@@ -160,8 +151,6 @@ TODO add table of endpoints
 
 TODO add endpoint table of contents
 
----
-
 <!-- ROADMAP -->
 ## Roadmap
 <!--
@@ -169,8 +158,6 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 
 -->
 TODO add roadmap
-
----
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -183,14 +170,10 @@ Any contributions you make are **greatly appreciated**.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the Apache 2.0 License. See `LICENSE` for more information.
-
----
 
 <!-- CONTACT -->
 ## Contact
@@ -198,8 +181,6 @@ Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 Jonathan Gutierrez - jonguti23@outlook.com
 
 Project Link: [https://github.com/jonnyg23/flask-rest-ecommerce](https://github.com/jonnyg23/flask-rest-ecommerce)
-
----
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
