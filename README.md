@@ -149,7 +149,20 @@ TODO add error handling
 
 ### Table of Endpoints
 
-TODO add table of endpoints
+Below is a table of the methods allowed for each of the 3 endpoints.
+
+| Endpoints                     |     | Methods |       |        |
+| ----------------------------- | --- | ------- | ----- | ------ |
+|                               | GET | POST    | PATCH | DELETE |
+| /                             | X   |         |       |        |
+| /collections                  | X   |         |       |        |
+| /collections/mens-apparel     | X   |         |       |        |
+| /collections/womens-apparel   | X   |         |       |        |
+| /collections/holiday          | X   |         |       |        |
+| /collections/gadgets          | X   |         |       |        |
+| /products                     | X   | X       | X     | X      |
+| /login                        |     |         |       |        |
+| /customerID/checkouts/orderID |     |         |       |        |
 
 ### Endpoint Table of Contents
 
