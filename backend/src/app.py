@@ -26,22 +26,24 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
-    # TODO Add '/' endpoint for homepage
-    @app.route('/', methods=['GET'])
+    # TODO Add '/collections' endpoint
+    @app.route('/collections', methods=['GET'])
     def get_category_images():
         """
         GET request to retrieve default category images from database.
         --------------------
         Tested with:
-            - Auth0 'GET /'
+            Success:
+                - Auth0 'GET /collections'
+                - test_get_category_images
+            Error:
+                - test_404_non_existing_collection
 
         Returns <datatype>:
             - cat_default_images <?dtype?>
         """
 
         return cat_default_images
-
-    # TODO Add '/collections' endpoint
 
     # TODO Add '/collections/mens-apparel' endpoint
 
