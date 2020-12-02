@@ -17,8 +17,10 @@
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce"><strong>Explore the docs »</strong></a>
     <br />
     <br />
+    <!--
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce">View Demo</a>
     ·
+    -->
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce/issues">Report Bug</a>
     ·
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce/issues">Request Feature</a>
