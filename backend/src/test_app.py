@@ -47,9 +47,15 @@ class EcommerceTestCase(unittest.TestCase):
     # 404 error for a non existing default category images
 # ----------------------------------------------------------------------------#
 
-    # TODO Add tests for '/' endpoint
-
     # TODO Add tests for '/collections' endpoint
+    def test_get_category_images(self):
+        """Test for get_category_images() GET /collections"""
+        pass
+
+    def test_404_non_existing_collection(self):
+        """Test get_category_images() for non-existing collection -
+        prompt error 404"""
+        pass
 
     # TODO Add tests for '/collections/mens-apparel' endpoint
 
@@ -62,6 +68,7 @@ class EcommerceTestCase(unittest.TestCase):
     # TODO Add tests for '/login' endpoint
 
     # TODO Add tests for '/<int:customerID>/checkouts/<int:orderID>' endpoint
+
 
 
 # Make the tests conveniently executable
