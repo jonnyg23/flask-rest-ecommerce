@@ -34,6 +34,9 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             - Auth0 'GET /'
+
+        Returns <datatype>:
+            - cat_default_images <?dtype?>
         """
 
         return cat_default_images
