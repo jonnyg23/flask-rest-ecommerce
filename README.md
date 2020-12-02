@@ -14,8 +14,10 @@
   <p align="center">
     A structured E-commerce REST API built to be the foundational backbone of a production-grade web app.
     <br />
+    <!--
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce"><strong>Explore the docs »</strong></a>
     <br />
+    -->
     <br />
     <!--
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce">View Demo</a>
