@@ -65,6 +65,8 @@ class EcommerceTestCase(unittest.TestCase):
 
     # TODO Add tests for '/collections/gadgets' endpoint
 
+    # TODO Add tests for '/products' endpoint
+
     # TODO Add tests for '/login' endpoint
 
     # TODO Add tests for '/<int:customerID>/checkouts/<int:orderID>' endpoint

@@ -53,6 +53,8 @@ def create_app(test_config=None):
 
     # TODO Add '/collections/gadgets' endpoint
 
+    # TODO Add '/products' endpoint
+
     # Possible endpoint additions
 
     # TODO Add '/login' for auth
