@@ -74,7 +74,7 @@ The Product Model columns are:
 
 
 class Products(db.Model):
-    __tablename__ = 'products'
+    __tablename__ = 'Products'
 
     id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String(60), unique=True, nullable=False)
@@ -133,7 +133,7 @@ The Categories Model columns are:
 
 
 class Categories(db.Model):
-    __tablename__ = 'categories'
+    __tablename__ = 'Categories'
 
     id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(60), unique=True, nullable=False)
@@ -197,7 +197,7 @@ The Orders Model columns are:
 
 
 class Orders(db.Model):
-    __tablename__ = 'orders'
+    __tablename__ = 'Orders'
 
     id = db.Column(db.Integer, primary_key=True)
     order_date = db.Column(db.DateTime, nullable=False)
@@ -285,7 +285,7 @@ The OrderDetails Model columns are:
 
 
 class Order_Details(db.Model):
-    __tablename__ = 'order_details'
+    __tablename__ = 'Order_Details'
 
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Float, nullable=False)
@@ -374,7 +374,7 @@ The Customers Model columns are:
 
 
 class Customers(db.Model):
-    __tablename__ = 'customers'
+    __tablename__ = 'Customers'
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
@@ -492,7 +492,7 @@ The Payment Model columns are:
 
 
 class Payment(db.Model):
-    __tablename__ = 'payment'
+    __tablename__ = 'Payment'
 
     id = db.Column(db.Integer, primary_key=True)
     payment_type = db.Column(db.String(60), nullable=False)
@@ -535,7 +535,7 @@ The Shippers Model columns are:
 
 
 class Shippers(db.Model):
-    __tablename__ = 'shippers'
+    __tablename__ = 'Shippers'
 
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(50), nullable=False)
@@ -607,7 +607,7 @@ The Suppliers Model columns are:
 
 
 class Suppliers(db.Model):
-    __tablename__ = 'suppliers'
+    __tablename__ = 'Suppliers'
 
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(50), nullable=False)
