@@ -12,8 +12,8 @@ from .models.categories import Categories
 from .models.orders import Orders
 from .models.order_details import Order_Details
 from .models.payment import Payment
-from .models.shippers import shippers
-from .models.suppliers import suppliers
+# from .models.shippers import shippers
+# from .models.suppliers import suppliers
 # ----------------------------------------------------------------------------#
 # Setup Application & Create API Endpoints
 # ----------------------------------------------------------------------------#
