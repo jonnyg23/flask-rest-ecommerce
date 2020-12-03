@@ -13,9 +13,6 @@ from .models.payment import Payment
 from .models.shippers import shippers
 from .models.suppliers import suppliers
 
-database_name = os.environ['DATABASE_NAME']
-database_path = os.environ['DATABASE_URL']
-
 
 class EcommerceTestCase(unittest.TestCase):
     """This class represents the E-commerce Test Case"""
@@ -24,8 +21,9 @@ class EcommerceTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.database_name = database_name
-        self.database_path = database_path
+        self.database_name = 'flask_ecommerce_test'
+        self.database_path = "postgresql://{}:{}@{}/{}".format(
+            'THEJAGSTER', '', 'localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
 
         # Binds the app to the current context
