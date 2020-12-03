@@ -1,4 +1,4 @@
-from app import db
+from .models.models import db
 from sqlalchemy import Column, Integer, String, Boolean, create_engine, \
     relationship
 from flask_sqlalchemy import SQLAlchemy
