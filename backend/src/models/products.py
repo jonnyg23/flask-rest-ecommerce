@@ -36,6 +36,8 @@ The Product Model columns are:
     - Note <STRING> [Limit 255] (e.g. Availability between October - December)
 '''
 
+db = SQLAlchemy()
+
 
 class Products(db.Model):
     __tablename__ = 'products'

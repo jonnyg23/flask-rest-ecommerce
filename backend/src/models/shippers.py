@@ -11,6 +11,8 @@ The Shippers Model columns are:
     - Phone <STRING> [Limit 25]
 '''
 
+db = SQLAlchemy()
+
 
 class Shippers(db.Model):
     __tablename__ = 'shippers'

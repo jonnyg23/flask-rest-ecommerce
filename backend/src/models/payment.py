@@ -11,6 +11,8 @@ The Payment Model columns are:
     - Allowed <BOOLEAN>
 '''
 
+db = SQLAlchemy()
+
 
 class Payment(db.Model):
     __tablename__ = 'payment'

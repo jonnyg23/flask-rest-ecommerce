@@ -23,6 +23,8 @@ The Orders Model columns are:
     - PaymentDate <DATETIME>
 '''
 
+db = SQLAlchemy()
+
 
 class Orders(db.Model):
     __tablename__ = 'orders'

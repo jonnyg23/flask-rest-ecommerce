@@ -25,6 +25,8 @@ The OrderDetails Model columns are:
     - SalesTax <FLOAT> (Sales tax on entire order)
 '''
 
+db = SQLAlchemy()
+
 
 class Order_Details(db.Model):
     __tablename__ = 'order_details'

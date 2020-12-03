@@ -11,6 +11,8 @@ The Categories Model columns are:
     - Active <BOOLEAN> (If the category is currently being used)
 '''
 
+db = SQLAlchemy()
+
 
 class Categories(db.Model):
     __tablename__ = 'categories'

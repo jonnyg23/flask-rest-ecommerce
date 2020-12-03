@@ -37,6 +37,8 @@ The Customers Model columns are:
     - DateEntered <DATETIME>
 '''
 
+db = SQLAlchemy()
+
 
 class Customers(db.Model):
     __tablename__ = 'customers'

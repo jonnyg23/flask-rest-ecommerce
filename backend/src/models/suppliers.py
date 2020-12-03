@@ -39,6 +39,8 @@ The Suppliers Model columns are:
     - Notes <STRING> [Limit 255] (Notes on the Supplier)
 '''
 
+db = SQLAlchemy()
+
 
 class Suppliers(db.Model):
     __tablename__ = 'suppliers'
