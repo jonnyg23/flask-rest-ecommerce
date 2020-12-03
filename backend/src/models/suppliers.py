@@ -1,4 +1,4 @@
-from .models.models import db
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Boolean, create_engine, \
     relationship
 from flask_sqlalchemy import SQLAlchemy
@@ -39,6 +39,8 @@ The Suppliers Model columns are:
               of alphabet sorting
     - Notes <STRING> [Limit 255] (Notes on the Supplier)
 '''
+
+db = SQLAlchemy()
 
 
 class Suppliers(db.Model):

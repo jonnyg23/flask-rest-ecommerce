@@ -1,4 +1,4 @@
-from .models.models import db
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Float, create_engine, \
     relationship
 from flask_sqlalchemy import SQLAlchemy
@@ -11,6 +11,8 @@ The Shippers Model columns are:
     - CompanyName <STRING> [Limit 50]
     - Phone <STRING> [Limit 25]
 '''
+
+db = SQLAlchemy()
 
 
 class Shippers(db.Model):

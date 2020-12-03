@@ -1,4 +1,4 @@
-from .models.models import db
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
     Float, create_engine, ForeignKey, relationship
 from flask_sqlalchemy import SQLAlchemy
@@ -22,6 +22,8 @@ The Orders Model columns are:
     - Paid <FLOAT>
     - PaymentDate <DATETIME>
 '''
+
+db = SLQAlchemy()
 
 
 class Orders(db.Model):
