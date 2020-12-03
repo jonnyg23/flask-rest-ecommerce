@@ -1,6 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Boolean, Float, \
-    create_engine, relationship
+    create_engine
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -10,8 +10,6 @@ The Payment Model columns are:
     - PaymentType <STRING> [Limit 60]
     - Allowed <BOOLEAN>
 '''
-
-db = SQLAlchemy()
 
 
 class Payment(db.Model):

@@ -1,6 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Boolean, create_engine, \
-    relationship
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Boolean, create_engine
 from flask_sqlalchemy import SQLAlchemy
 
 # Suppliers Model (optional)
@@ -39,8 +38,6 @@ The Suppliers Model columns are:
               of alphabet sorting
     - Notes <STRING> [Limit 255] (Notes on the Supplier)
 '''
-
-db = SQLAlchemy()
 
 
 class Suppliers(db.Model):

@@ -1,6 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Float, create_engine, \
-    ForeignKey, relationship
+    ForeignKey
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -35,8 +35,6 @@ The Product Model columns are:
     > *Foreign Key*: ReviewID <INTEGER> (This Model may include Ratings)
     - Note <STRING> [Limit 255] (e.g. Availability between October - December)
 '''
-
-db = SQLAlchemy()
 
 
 class Products(db.Model):

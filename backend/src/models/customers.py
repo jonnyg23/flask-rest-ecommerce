@@ -1,6 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, \
-    Float, create_engine, relationship
+    Float, create_engine
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -36,8 +36,6 @@ The Customers Model columns are:
     - ShipCountry <STRING> [Limit 60]
     - DateEntered <DATETIME>
 '''
-
-db = SQLAlchemy()
 
 
 class Customers(db.Model):

@@ -1,6 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Float, create_engine, \
-    relationship
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Float, create_engine
 from flask_sqlalchemy import SQLAlchemy
 
 # Shippers Model (optional)
@@ -11,8 +10,6 @@ The Shippers Model columns are:
     - CompanyName <STRING> [Limit 50]
     - Phone <STRING> [Limit 25]
 '''
-
-db = SQLAlchemy()
 
 
 class Shippers(db.Model):

@@ -1,4 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Boolean, DateTime, \
     Float, create_engine, ForeignKey
 from flask_sqlalchemy import SQLAlchemy
@@ -25,8 +24,6 @@ The OrderDetails Model columns are:
     - Freight <FLOAT> (Freight charges if shipped altogether)
     - SalesTax <FLOAT> (Sales tax on entire order)
 '''
-
-db = SQLAlchemy()
 
 
 class Order_Details(db.Model):

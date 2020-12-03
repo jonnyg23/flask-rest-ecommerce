@@ -1,6 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Boolean, relationship, \
-    create_engine
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Boolean, create_engine
 from flask_sqlalchemy import SQLAlchemy
 
 '''
@@ -11,8 +10,6 @@ The Categories Model columns are:
     - Picture <STRING> [Limit 50]
     - Active <BOOLEAN> (If the category is currently being used)
 '''
-
-db = SQLAlchemy()
 
 
 class Categories(db.Model):
