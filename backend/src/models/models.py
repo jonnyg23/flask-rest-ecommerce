@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, \
-create_engine, ForeignKey
+    create_engine, ForeignKey
 import json
 import os
 
