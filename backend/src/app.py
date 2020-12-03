@@ -4,16 +4,12 @@ from sqlalchemy import exc
 import json
 from flask_cors import CORS
 
-from .models.models import db_drop_and_create_all, setup_db, db
 from .auth.auth import AuthError, requires_auth
-from .models.models import setup_db
-from .models.products import Products
-from .models.categories import Categories
-from .models.orders import Orders
-from .models.order_details import Order_Details
-from .models.payment import Payment
-# from .models.shippers import shippers
-# from .models.suppliers import suppliers
+from models import db_drop_and_create_all, setup_db, db, Products, \
+    Categories, Orders, Order_Details, Payment
+# from models import Shippers, Suppliers
+
+
 # ----------------------------------------------------------------------------#
 # Setup Application & Create API Endpoints
 # ----------------------------------------------------------------------------#
