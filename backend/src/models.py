@@ -1,4 +1,3 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, \
@@ -77,16 +76,17 @@ The Product Model columns are:
 class Products(db.Model):
     __tablename__ = 'products'
 
-    id = Column(Integer, primary_key=True)
-    product_name = Column(String(60), unique=True, nullable=False)
-    product_description = Column(String(255), nullable=False)
-    msrp = Column(Float, nullable=False)
-    picture = Column(String(50))
-    category_id = Column(Integer, ForeignKey('Categories.id'), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    product_name = db.Column(db.String(60), unique=True, nullable=False)
+    product_description = db.Column(db.String(255), nullable=False)
+    msrp = db.Column(db.Float, nullable=False)
+    picture = db.Column(db.String(50))
+    category_id = db.Column(db.Integer, db.ForeignKey(
+        'Categories.id'), nullable=False)
     # supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
-    order_details = relationship('Order_Details',
-                                 backref='Products',
-                                 lazy='dynamic')
+    order_details = db.relationship('Order_Details',
+                                    backref='Products',
+                                    lazy='dynamic')
 
     def __init__(self, product_name, product_description, msrp,
                  picture, category_id):
@@ -135,12 +135,13 @@ The Categories Model columns are:
 class Categories(db.Model):
     __tablename__ = 'categories'
 
-    id = Column(Integer, primary_key=True)
-    category_name = Column(String(60), unique=True, nullable=False)
-    description = Column(String(255), nullable=False)
-    picture = Column(String(50))
-    active = Column(Boolean)
-    products = relationship('Products', backref='Categories', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    category_name = db.Column(db.String(60), unique=True, nullable=False)
+    description = db.Column(db.String(255), nullable=False)
+    picture = db.Column(db.String(50))
+    active = db.Column(db.Boolean)
+    products = db.relationship(
+        'Products', backref='Categories', lazy='dynamic')
 
     def __init__(self, category_name, description, picture, active):
         # Example: self.question = question
@@ -198,20 +199,23 @@ The Orders Model columns are:
 class Orders(db.Model):
     __tablename__ = 'orders'
 
-    id = Column(Integer, primary_key=True)
-    order_date = Column(DateTime, nullable=False)
-    sales_tax = Column(Float, nullable=False)
-    timestamp = Column(Float, nullable=False)
-    transact_status = Column(String(50), nullable=False)
-    paid = Column(Boolean, nullable=False)
-    payment_date = Column(DateTime, nullable=False)
-    fulfilled = Column(Boolean, nullable=False)
-    payment_id = Column(Integer, ForeignKey('Payment.id'), nullable=False)
-    # shipper_id = Column(Integer, ForeignKey('Shippers.id'), nullable=False)
-    customer_id = Column(Integer, ForeignKey('Customers.id'), nullable=False)
-    order_details = relationship('Order_Details',
-                                 backref='Orders',
-                                 lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    order_date = db.Column(db.DateTime, nullable=False)
+    sales_tax = db.Column(db.Float, nullable=False)
+    timestamp = db.Column(db.Float, nullable=False)
+    transact_status = db.Column(db.String(50), nullable=False)
+    paid = db.Column(db.Boolean, nullable=False)
+    payment_date = db.Column(db.DateTime, nullable=False)
+    fulfilled = db.Column(db.Boolean, nullable=False)
+    payment_id = db.Column(db.Integer, db.ForeignKey(
+        'Payment.id'), nullable=False)
+    # shipper_id = db.Column(db.Integer, db.ForeignKey('Shippers.id'),
+    # nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey(
+        'Customers.id'), nullable=False)
+    order_details = db.relationship('Order_Details',
+                                    backref='Orders',
+                                    lazy='dynamic')
 
     def __init__(self, order_date, sales_tax, timestamp, transact_status,
                  paid, payment_date, fulfilled, payment_id, customer_id):
@@ -283,15 +287,17 @@ The OrderDetails Model columns are:
 class Order_Details(db.Model):
     __tablename__ = 'order_details'
 
-    id = Column(Integer, primary_key=True)
-    price = Column(Float, nullable=False)
-    quantity = Column(Integer, nullable=False)
-    discount = Column(Float, nullable=False)
-    total = Column(Float, nullable=False)
-    fulfilled = Column(Boolean, nullable=False)
-    bill_date = Column(DateTime, nullable=False)
-    order_id = Column(Integer, ForeignKey('Orders.id'), nullable=False)
-    product_id = Column(Integer, ForeignKey('Products.id'), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    price = db.Column(db.Float, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    discount = db.Column(db.Float, nullable=False)
+    total = db.Column(db.Float, nullable=False)
+    fulfilled = db.Column(db.Boolean, nullable=False)
+    bill_date = db.Column(db.DateTime, nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey(
+        'Orders.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey(
+        'Products.id'), nullable=False)
 
     def __init__(self, price, quantity, discount, total, fulfilled,
                  bill_date, order_id, product_id):
@@ -370,33 +376,33 @@ The Customers Model columns are:
 class Customers(db.Model):
     __tablename__ = 'customers'
 
-    id = Column(Integer, primary_key=True)
-    first_name = Column(String(50), nullable=False)
-    last_name = Column(String(50), nullable=False)
-    address1 = Column(String(60), nullable=False)
-    address2 = Column(String(60))
-    city = Column(String(30), nullable=False)
-    state = Column(String(30), nullable=False)
-    postalcode = Column(String(15), nullable=False)
-    country = Column(String(50), nullable=False)
-    phone = Column(String(25))
-    email = Column(String(75))
-    creditcard = Column(Integer)
-    creditcard_type_id = Column(Integer)
-    card_exp_month = Column(String(15))
-    card_exp_year = Column(Integer)
-    billing_address = Column(String(60))
-    billing_city = Column(String(30))
-    billing_region = Column(String(60))
-    billing_country = Column(String(60))
-    billing_postalcode = Column(String(15))
-    shipping_address = Column(String(60))
-    shipping_city = Column(String(30))
-    shipping_region = Column(String(60))
-    shipping_country = Column(String(60))
-    shipping_postalcode = Column(String(15))
-    date_entered = Column(DateTime)
-    orders = relationship('Orders', backref='Customers', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    address1 = db.Column(db.String(60), nullable=False)
+    address2 = db.Column(db.String(60))
+    city = db.Column(db.String(30), nullable=False)
+    state = db.Column(db.String(30), nullable=False)
+    postalcode = db.Column(db.String(15), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
+    phone = db.Column(db.String(25))
+    email = db.Column(db.String(75))
+    creditcard = db.Column(db.Integer)
+    creditcard_type_id = db.Column(db.Integer)
+    card_exp_month = db.Column(db.String(15))
+    card_exp_year = db.Column(db.Integer)
+    billing_address = db.Column(db.String(60))
+    billing_city = db.Column(db.String(30))
+    billing_region = db.Column(db.String(60))
+    billing_country = db.Column(db.String(60))
+    billing_postalcode = db.Column(db.String(15))
+    shipping_address = db.Column(db.String(60))
+    shipping_city = db.Column(db.String(30))
+    shipping_region = db.Column(db.String(60))
+    shipping_country = db.Column(db.String(60))
+    shipping_postalcode = db.Column(db.String(15))
+    date_entered = db.Column(db.DateTime)
+    orders = db.relationship('Orders', backref='Customers', lazy='dynamic')
 
     def __init__(self, first_name, last_name, address1, address2, city,
                  state, postalcode, country, phone, email, creditcard,
@@ -488,10 +494,10 @@ The Payment Model columns are:
 class Payment(db.Model):
     __tablename__ = 'payment'
 
-    id = Column(Integer, primary_key=True)
-    payment_type = Column(String(60), nullable=False)
-    allowed = Column(Boolean, nullable=False)
-    orders = relationship('Orders', backref='Payment', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    payment_type = db.Column(db.String(60), nullable=False)
+    allowed = db.Column(db.Boolean, nullable=False)
+    orders = db.relationship('Orders', backref='Payment', lazy='dynamic')
 
     def __init__(self, payment_type, allowed):
         self.payment_type = payment_type
@@ -531,10 +537,10 @@ The Shippers Model columns are:
 class Shippers(db.Model):
     __tablename__ = 'shippers'
 
-    id = Column(Integer, primary_key=True)
-    company_name = Column(String(50), nullable=False)
-    phone = Column(String(25), nullable=False)
-    orders = relationship('Orders', backref='Shippers', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    company_name = db.Column(db.String(50), nullable=False)
+    phone = db.Column(db.String(25), nullable=False)
+    orders = db.relationship('Orders', backref='Shippers', lazy='dynamic')
 
     def __init__(self, company_name, phone):
         self.company_name = company_name
@@ -603,31 +609,34 @@ The Suppliers Model columns are:
 class Suppliers(db.Model):
     __tablename__ = 'suppliers'
 
-    id = Column(Integer, primary_key=True)
-    company_name = Column(String(50), nullable=False)
-    contact_first_name = Column(String(50), nullable=False)
-    contact_last_name = Column(String(50), nullable=False)
-    address1 = Column(String(60), nullable=False)
-    address2 = Column(String(60))
-    city = Column(String(30), nullable=False)
-    state = Column(String(30), nullable=False)
-    postalcode = Column(String(15), nullable=False)
-    country = Column(String(50), nullable=False)
-    phone = Column(String(25), nullable=False)
-    fax = Column(String(25))
-    email = Column(String(75), nullable=False)
-    website_url = Column(String(100))
-    payment_methods = Column(String(100))  # describe how to pay supplier
-    discount_type = Column(String(100))
-    type_goods = Column(String(255))
-    discount_available = Column(Boolean)
-    customer_supplier_id = Column(String(50))  # customer ID with supplier
-    size_url = Column(String(100))  # url to supplier sizing info web page
-    color_url = Column(String(100))  # url to supplier color info web page
-    logo = Column(String(75))  # link to image file
-    ranking = Column(Integer)
-    notes = Column(String(255))  # notes on the supplier
-    products = relationship('Products', backref='Suppliers', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    company_name = db.Column(db.String(50), nullable=False)
+    contact_first_name = db.Column(db.String(50), nullable=False)
+    contact_last_name = db.Column(db.String(50), nullable=False)
+    address1 = db.Column(db.String(60), nullable=False)
+    address2 = db.Column(db.String(60))
+    city = db.Column(db.String(30), nullable=False)
+    state = db.Column(db.String(30), nullable=False)
+    postalcode = db.Column(db.String(15), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
+    phone = db.Column(db.String(25), nullable=False)
+    fax = db.Column(db.String(25))
+    email = db.Column(db.String(75), nullable=False)
+    website_url = db.Column(db.String(100))
+    payment_methods = db.Column(db.String(100))  # describe how to pay supplier
+    discount_type = db.Column(db.String(100))
+    type_goods = db.Column(db.String(255))
+    discount_available = db.Column(db.Boolean)
+    customer_supplier_id = db.Column(db.String(50))  # customer ID
+    # with supplier
+    size_url = db.Column(db.String(100))  # url to supplier sizing
+    # info web page
+    color_url = db.Column(db.String(100))  # url to supplier color
+    # info web page
+    logo = db.Column(db.String(75))  # link to image file
+    ranking = db.Column(db.Integer)
+    notes = db.Column(db.String(255))  # notes on the supplier
+    products = db.relationship('Products', backref='Suppliers', lazy='dynamic')
 
     def __init__(self, company_name, contact_first_name, contact_last_name,
                  address1, address2, city, state, postalcode, country, phone,
