@@ -107,7 +107,7 @@ class Products(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def format(self):
+    def info(self):
         return {
             'id': self.id,
             'product_name': self.product_name,
@@ -162,7 +162,7 @@ class Categories(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def format(self):
+    def info(self):
         return {
             'id': self.id,
             'category_name': self.category_name,
@@ -241,7 +241,7 @@ class Orders(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def format(self):
+    def info(self):
         return {
             'id': self.id,
             'order_date': self.order_date,
@@ -321,7 +321,7 @@ class Order_Details(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def format(self):
+    def info(self):
         return {
             'id': self.id,
             'price': self.price,
@@ -448,7 +448,7 @@ class Customers(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def format(self):
+    def info(self):
         return {
             'id': self.id,
             'first_name': self.first_name,
@@ -514,7 +514,7 @@ class Payment(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def format(self):
+    def info(self):
         return {
             'id': self.id,
             'payment_type': self.payment_type,
