@@ -4,8 +4,8 @@ from sqlalchemy import exc
 import json
 from flask_cors import CORS
 
-from auth.auth import AuthError, requires_auth
-from models import db_drop_and_create_all, setup_db, db, Products, \
+# from .auth.auth import AuthError, requires_auth
+from .models import db_drop_and_create_all, setup_db, db, Products, \
     Categories, Orders, Order_Details, Payment
 # from models import Shippers, Suppliers
 
