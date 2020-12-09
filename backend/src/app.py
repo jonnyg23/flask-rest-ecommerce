@@ -5,7 +5,7 @@ import json
 from flask_cors import CORS
 
 # from .auth.auth import AuthError, requires_auth
-from .models import db_drop_and_create_all, setup_db, db, Products, \
+from models import db_drop_and_create_all, setup_db, db, Products, \
     Categories, Orders, Order_Details, Payment
 # from models import Shippers, Suppliers
 
@@ -41,11 +41,13 @@ def create_app(test_config=None):
         try:
             # Query the database and order images by ids
             selection = Categories.query.order_by(Categories.id).all()
-            category_info = [info for info in selection.format()]
+            category_info = []
+            for cat in selection:
+                category_info.append(cat.info())
 
             return jsonify({
                 'success': True,
-                'categories': category_info
+                'category_info': category_info
             })
 
         except Exception as e:

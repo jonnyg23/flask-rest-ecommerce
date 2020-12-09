@@ -4,8 +4,9 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 
 from app import create_app
-from .models import db_drop_and_create_all, setup_db, db, Products, \
-    Categories, Orders, Order_Details, Payment, Shippers, Suppliers
+from models import db_drop_and_create_all, setup_db, db, Products, \
+    Categories, Orders, Order_Details, Payment
+# from models import Shippers, Suppliers
 
 
 class EcommerceTestCase(unittest.TestCase):
@@ -51,7 +52,8 @@ class EcommerceTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertTrue(len(data['category_images']))
+        print(data)
+        self.assertTrue(len(data['category_info']))
 
     def test_404_non_existing_collection(self):
         """Test get_category_info() for non-existing collection -
