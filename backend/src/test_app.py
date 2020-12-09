@@ -40,12 +40,12 @@ class EcommerceTestCase(unittest.TestCase):
 # ----------------------------------------------------------------------------#
 
     # TODO Add tests for '/collections' endpoint
-    def test_get_category_images(self):
-        """Test for get_category_images() GET /collections"""
+    def test_get_category_info(self):
+        """Test for get_category_info() GET /collections"""
         # Test the following:
         #   - Images can be retrieved
         #   - Response is 200
-        #   - Length of category_image data is not 0
+        #   - Length of category_info data is not 0
         res = self.client().get('/collections')
         data = json.loads(res.data)
 
@@ -54,7 +54,7 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertTrue(len(data['category_images']))
 
     def test_404_non_existing_collection(self):
-        """Test get_category_images() for non-existing collection -
+        """Test get_category_info() for non-existing collection -
         prompt error 404"""
         # Test the following:
         #   - Invalid image id results in a respone of 404
