@@ -533,7 +533,7 @@ The Shippers Model columns are:
     - Phone <STRING> [Limit 25]
 '''
 
-
+'''
 class Shippers(db.Model):
     __tablename__ = 'Shippers'
 
@@ -563,7 +563,7 @@ class Shippers(db.Model):
             'company_name': self.company_name,
             'phone': self.phone
         }
-
+'''
 
 # ----------------------------------------------------------------------------#
 # Suppliers Model (optional)
@@ -605,7 +605,7 @@ The Suppliers Model columns are:
     - Notes <STRING> [Limit 255] (Notes on the Supplier)
 '''
 
-
+'''
 class Suppliers(db.Model):
     __tablename__ = 'Suppliers'
 
@@ -705,3 +705,4 @@ class Suppliers(db.Model):
             'ranking': self.ranking,
             'notes': self.notes
         }
+'''
