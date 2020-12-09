@@ -1,6 +1,7 @@
 *.drawio
 venv/
 .vscode/
+workspace.code-workspace
 __pycache__/
 test.db
 setup.sh
