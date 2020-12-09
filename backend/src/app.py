@@ -24,22 +24,34 @@ def create_app(test_config=None):
 
     # TODO Add '/collections' endpoint
     @app.route('/collections', methods=['GET'])
-    def get_category_images():
+    def get_category_info():
         """
-        GET request to retrieve default category images from database.
+        GET request to retrieve category info and default images from database.
         --------------------
         Tested with:
             Success:
                 - Auth0 'GET /collections'
-                - test_get_category_images
+                - test_get_category_info
             Error:
                 - test_404_non_existing_collection
 
         Returns <datatype>:
-            - cat_default_images <?dtype?>
+            - category_info <list>
         """
+        try:
+            # Query the database and order images by ids
+            selection = Categories.query.order_by(Categories.id).all()
+            category_info = [info for info in selection.format()]
 
-        return cat_default_images
+            return jsonify({
+                'success': True,
+                'categories': category_info
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 500
+            print(f'Exception "{e}" in get_category_info()')
+            abort(500)
 
     # TODO Add '/collections/mens-apparel' endpoint
 
