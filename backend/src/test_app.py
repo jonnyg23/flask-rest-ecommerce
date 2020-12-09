@@ -4,8 +4,8 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 
 from app import create_app
-from models import db_drop_and_create_all, setup_db, db, Products, Categories,\
-    Orders, Order_Details, Payment, Shippers, Suppliers
+from .models import db_drop_and_create_all, setup_db, db, Products, \
+    Categories, Orders, Order_Details, Payment, Shippers, Suppliers
 
 
 class EcommerceTestCase(unittest.TestCase):
