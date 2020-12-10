@@ -177,7 +177,136 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'resource not found')
 
-    # TODO Add tests for '/products' endpoint
+# ----------------------------------------------------------------------------#
+    # Test if '/products' endpoint can handle GET, PATCH, POST, & DELETE
+    # requests & sends corresponding errors if necessary
+# ----------------------------------------------------------------------------#
+    # TODO Update all error tests below
+
+    # GET /products tests
+
+    def test_get_products(self):
+        """Test for get_products() GET /products"""
+        # Test the following:
+        #   - All misc products are retrieved
+        #   - Response is 200
+        res = self.client().get('/products')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+    def test_404_invalid_misc_products(self):
+        """Test get_products() for non-existing misc products -
+        prompt error 404"""
+        # Test the following:
+        #   - Invalid product results in a respone of 404
+        pass
+
+    # POST /products tests
+
+    def test_post_products(self):
+        """Test for post_products() POST /products"""
+        # Test the following:
+        #   - Products can be added to database
+        #   - Response is 200
+
+        # Create new product json
+        new_product = {
+            # TODO Add new product in format 'name': 'ExampleName1', etc
+        }
+        # Count total products to compare after POST
+        product_count_init = len(Products.query.all())
+
+        res = self.client().post('/products', json=new_product)
+        data = json.loads(res.data)
+
+        product_count_final = len(Products.query.all())
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(product_count_final, product_count_init + 1)
+
+    def test_400_post_products(self):
+        """Test post_products() for missing parameter -
+        prompt error 400"""
+        # Test the following:
+        #   - Incomplete post entry (possibly a missing parameter)
+
+        # Create new product with missing parameter -> 'product_name'
+        new_product = {
+            # TODO Add new product with missing 'product_name' parameter
+        }
+        res = self.client().post('/products', json=new_product)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'product_name parameter is missing.')
+
+    # PATCH /products tests
+
+    def test_patch_products(self):
+        """Test for patch_products() PATCH /products"""
+        # Test the following:
+        #   - Product in database can be edited successfully
+        #   - Response is 200
+
+        # TODO Add PATCH test self.client().patch('/products')
+        pass
+
+    def test_400_patch_products(self):
+        """Test patch_products() for missing parameter -
+        prompt error 400"""
+        # Test the following:
+        #   - Incomplete patch entry (possibly a missing parameter)
+
+        # TODO Add PATCH error test
+        pass
+
+    # DELETE /products tests
+
+    def test_delete_products(self):
+        """Test for delete_products() POST /products"""
+        # Test the following:
+        #   - Products can be deleted from the database
+        #   - Response is 200
+
+        product = Products(
+            product_name='test_product',
+            product_description='test_description',
+            msrp=35,
+            picture='static/images/products/imageID',
+            category_id=1
+        )
+        product.insert()
+        product_id = product.id
+
+        # TODO Ensure client delete line has complete inputs
+        res = self.client().delete(f'/products/{product_id}')
+        data = json.loads(res.data)
+
+        product_query = Products.query.filter(
+            Products.id == product_id).one_or_non()
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['deleted'], product_id)
+        self.assertEqual(product_query, None)
+
+    def test_404_delete_products(self):
+        """Test delete_products() for non-existing ID -
+        prompt error 404"""
+        # Test the following:
+        #   - Deleting a non-existing product id raises 404 error code
+
+        res = self.client().delete(f'/products/{123456789}')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(
+            data['message'], f'Product ID: {123456789} does not exist.')
 
     # TODO Add tests for '/login' endpoint
 
@@ -185,6 +314,7 @@ class EcommerceTestCase(unittest.TestCase):
 
 
 # Make the tests conveniently executable
+
 
 if __name__ == "__main__":
     unittest.main()
