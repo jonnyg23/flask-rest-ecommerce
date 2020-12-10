@@ -36,15 +36,14 @@ class EcommerceTestCase(unittest.TestCase):
     # Used Test-Driven-Development in the making of this API
     # Minimum of 2 tests for each endpoint!
 
-    # Test if '/' endpoint can handle GET requests & sends
-    # 404 error for a non existing default category images
+    # Test if '/collections' endpoint can handle GET requests & sends
+    # 404 error for a non-existing collection
 # ----------------------------------------------------------------------------#
 
-    # TODO Add tests for '/collections' endpoint
     def test_get_category_info(self):
         """Test for get_category_info() GET /collections"""
         # Test the following:
-        #   - Images can be retrieved
+        #   - Category info can be retrieved
         #   - Response is 200
         #   - Length of category_info data is not 0
         res = self.client().get('/collections')
@@ -52,7 +51,6 @@ class EcommerceTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        print(data)
         self.assertTrue(len(data['category_info']))
 
     def test_404_non_existing_collection(self):
@@ -67,9 +65,61 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'resource not found')
 
-    # TODO Add tests for '/collections/mens-apparel' endpoint
+# ----------------------------------------------------------------------------#
+    # Test if '/collections/mens-apparel' endpoint can handle GET requests
+    # & sends 404 error for a non existing mens-apparel products
+# ----------------------------------------------------------------------------#
 
-    # TODO Add tests for '/collections/womens-apparel' endpoint
+    def test_get_mens_apparel(self):
+        """Test for get_mens_apparel() GET /collections/mens-apparel"""
+        # Test the following:
+        #   - All mens-apparel products are retrieved
+        #   - Response is 200
+        res = self.client().get('/collections/mens-apparel')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+    def test_404_invalid_mens_product(self):
+        """Test get_mens_apparel() for non-existing mens-apparel products -
+        prompt error 404"""
+        # Test the following:
+        #   - Invalid mens-apparel results in a respone of 404
+        res = self.client().get('/collections/mens-apparel/invalid_products')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'resource not found')
+
+# ----------------------------------------------------------------------------#
+    # Test if '/collections/womens-apparel' endpoint can handle GET requests
+    # & sends 404 error for a non existing womens-apparel products
+# ----------------------------------------------------------------------------#
+
+    def test_get_womens_apparel(self):
+        """Test for get_womens_apparel() GET /collections/womens-apparel"""
+        # Test the following:
+        #   - All womens-apparel products are retrieved
+        #   - Response is 200
+        res = self.client().get('/collections/womens-apparel')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+    def test_404_invalid_womens_product(self):
+        """Test get_womens_apparel() for non-existing womens-apparel products -
+        prompt error 404"""
+        # Test the following:
+        #   - Invalid womens-apparel results in a respone of 404
+        res = self.client().get('/collections/womens-apparel/invalid_products')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'resource not found')
 
     # TODO Add tests for '/collections/holiday' endpoint
 
@@ -82,7 +132,7 @@ class EcommerceTestCase(unittest.TestCase):
     # TODO Add tests for '/<int:customerID>/checkouts/<int:orderID>' endpoint
 
 
-
 # Make the tests conveniently executable
+
 if __name__ == "__main__":
     unittest.main()
