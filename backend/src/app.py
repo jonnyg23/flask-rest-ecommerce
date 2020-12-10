@@ -54,14 +54,51 @@ def create_app(test_config=None):
             abort(500)
 
     # TODO Add '/collections/mens-apparel' endpoint
+    @app.route('/collections/mens-apparel', methods=['GET'])
+    def get_mens_apparel():
+
+        pass
 
     # TODO Add '/collections/womens-apparel' endpoint
+    @app.route('/collections/womens-apparel', methods=['GET'])
+    def get_womens_apparel():
+
+        pass
 
     # TODO Add '/collections/holiday' endpoint
+    @app.route('/collections/holiday', methods=['GET'])
+    def get_holiday_products():
+
+        pass
 
     # TODO Add '/collections/misc' endpoint
+    @app.route('/collections/misc', methods=['GET'])
+    def get_misc_products():
 
-    # TODO Add '/products' endpoint with elif conditionals for all requests
+        pass
+
+    # TODO Add '/products' endpoint GET request
+    @app.route('/products', methods=['GET'])
+    def get_products():
+        pass
+
+    # TODO Add '/products' endpoint POST request
+    @app.route('/products', methods=['POST'])
+    # @requires_auth('post:products')
+    def post_products():
+        pass
+
+    # TODO Add '/products' endpoint PATCH request
+    @app.route('/products', methods=['PATCH'])
+    # @requires_auth('patch:products')
+    def patch_products():
+        pass
+
+    # TODO Add '/products' endpoint DELETE request
+    @app.route('/products', methods=['DELETE'])
+    # @requires_auth('delete:products')
+    def delete_products():
+        pass
 
     # Possible endpoint additions
 
