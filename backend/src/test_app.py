@@ -67,7 +67,7 @@ class EcommerceTestCase(unittest.TestCase):
 
 # ----------------------------------------------------------------------------#
     # Test if '/collections/mens-apparel' endpoint can handle GET requests
-    # & sends 404 error for a non existing mens-apparel products
+    # & sends 404 error for non existing mens-apparel products
 # ----------------------------------------------------------------------------#
 
     def test_get_mens_apparel(self):
@@ -95,7 +95,7 @@ class EcommerceTestCase(unittest.TestCase):
 
 # ----------------------------------------------------------------------------#
     # Test if '/collections/womens-apparel' endpoint can handle GET requests
-    # & sends 404 error for a non existing womens-apparel products
+    # & sends 404 error for non existing womens-apparel products
 # ----------------------------------------------------------------------------#
 
     def test_get_womens_apparel(self):
@@ -121,9 +121,61 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'resource not found')
 
-    # TODO Add tests for '/collections/holiday' endpoint
+# ----------------------------------------------------------------------------#
+    # Test if '/collections/holiday' endpoint can handle GET requests
+    # & sends 404 error for non existing holiday products
+# ----------------------------------------------------------------------------#
 
-    # TODO Add tests for '/collections/gadgets' endpoint
+    def test_get_holiday_products(self):
+        """Test for get_holiday_products() GET /collections/holiday"""
+        # Test the following:
+        #   - All holiday products are retrieved
+        #   - Response is 200
+        res = self.client().get('/collections/holiday')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+    def test_404_invalid_holiday_products(self):
+        """Test get_holiday_products() for non-existing holiday products -
+        prompt error 404"""
+        # Test the following:
+        #   - Invalid holiday product results in a respone of 404
+        res = self.client().get('/collections/holiday/invalid_products')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'resource not found')
+
+# ----------------------------------------------------------------------------#
+    # Test if '/collections/misc' endpoint can handle GET requests
+    # & sends 404 error for non existing miscellaneous products
+# ----------------------------------------------------------------------------#
+
+    def test_get_misc_products(self):
+        """Test for get_misc_products() GET /collections/misc"""
+        # Test the following:
+        #   - All misc products are retrieved
+        #   - Response is 200
+        res = self.client().get('/collections/misc')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+    def test_404_invalid_misc_products(self):
+        """Test get_misc_products() for non-existing misc products -
+        prompt error 404"""
+        # Test the following:
+        #   - Invalid misc product results in a respone of 404
+        res = self.client().get('/collections/misc/invalid_products')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'resource not found')
 
     # TODO Add tests for '/products' endpoint
 
