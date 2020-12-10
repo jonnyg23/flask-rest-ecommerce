@@ -41,9 +41,7 @@ def create_app(test_config=None):
         try:
             # Query the database and order images by ids
             selection = Categories.query.order_by(Categories.id).all()
-            category_info = []
-            for cat in selection:
-                category_info.append(cat.info())
+            category_info = [cat.info() for cat in selection]
 
             return jsonify({
                 'success': True,
