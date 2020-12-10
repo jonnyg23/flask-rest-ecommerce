@@ -139,7 +139,7 @@ class Categories(db.Model):
     category_name = db.Column(db.String(60), unique=True, nullable=False)
     description = db.Column(db.String(255), nullable=False)
     picture = db.Column(db.String(50))
-    active = db.Column(db.Boolean)
+    active = db.Column(db.Boolean, nullable=False)
     products = db.relationship(
         'Products', backref='Categories', lazy='dynamic')
 
