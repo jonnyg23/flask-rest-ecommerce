@@ -61,7 +61,7 @@ def create_app(test_config=None):
 
     # TODO Add '/collections/misc' endpoint
 
-    # TODO Add '/products' endpoint
+    # TODO Add '/products' endpoint with elif conditionals for all requests
 
     # Possible endpoint additions
 
