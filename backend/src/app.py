@@ -59,7 +59,7 @@ def create_app(test_config=None):
 
     # TODO Add '/collections/holiday' endpoint
 
-    # TODO Add '/collections/gadgets' endpoint
+    # TODO Add '/collections/misc' endpoint
 
     # TODO Add '/products' endpoint
 
