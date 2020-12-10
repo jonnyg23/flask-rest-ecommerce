@@ -155,7 +155,7 @@ Below is a table of the methods allowed for each of the 3 endpoints.
 | /collections/mens-apparel     | X   |         |       |        |
 | /collections/womens-apparel   | X   |         |       |        |
 | /collections/holiday          | X   |         |       |        |
-| /collections/gadgets          | X   |         |       |        |
+| /collections/misc             | X   |         |       |        |
 | /products                     | X   | X       | X     | X      |
 | /login                        |     |         |       |        |
 | /customerID/checkouts/orderID |     |         |       |        |
