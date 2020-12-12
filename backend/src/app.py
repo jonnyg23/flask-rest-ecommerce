@@ -482,6 +482,55 @@ def create_app(test_config=None):
         if not body:
             abort(400, {'message': 'Invalid JSON body'})
 
+        new_name = body.get('product_name', None)
+        new_description = body.get('product_description', None)
+        new_msrp = body.get('msrp', None)
+        new_picture = body.get('picture', None)
+        new_category_id = body.get('category_id', None)
+
+        # Return 400 error if any paramters are missing
+        if not new_name:
+            abort(400,
+                  {'message': 'product_name parameter is missing.'})
+
+        if not new_description:
+            abort(400,
+                  {'message': 'product_description parameter is missing.'})
+
+        if not new_msrp:
+            abort(400,
+                  {'message': 'msrp parameter is missing.'})
+
+        if not new_picture:
+            abort(400,
+                  {'message': 'picture parameter is missing.'})
+
+        if not new_category_id:
+            abort(400,
+                  {'message': 'category_id parameter is missing.'})
+
+        # Attempt to add new product to database
+        try:
+            product = Products(
+                product_name=new_name,
+                product_description=new_description,
+                msrp=new_msrp,
+                picture=new_picture,
+                category_id=new_category_id
+            )
+            # Add product and commit to database
+            product.insert()
+
+            return jsonify({
+                'success': True,
+                'created': product.info(),
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 404
+            print(f'Exception "{e}" in post_products()')
+            abort(422)
+
     # TODO Add '/products' endpoint PATCH request
     @app.route('/products', methods=['PATCH'])
     # @requires_auth('patch:products')
@@ -493,6 +542,8 @@ def create_app(test_config=None):
     # @requires_auth('delete:products')
     def delete_products():
         pass
+
+    # TODO Add '/search' for searching products
 
     # Possible endpoint additions
 
