@@ -81,9 +81,8 @@ class Products(db.Model):
     product_description = db.Column(db.String(255), nullable=False)
     msrp = db.Column(db.Float, nullable=False)
     picture = db.Column(db.String(50))
-    category_id = db.Column(db.ARRAY(db.Integer), db.ForeignKey(
-        'Categories.id'), nullable=False)
-    # supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
+    category_id = db.Column(db.ARRAY(db.Integer), nullable=False)
+    # supplier_id = Column(db.Integer, ForeignKey('Supplier.id'), nullable=False)
     order_details = db.relationship('Order_Details',
                                     backref='Products',
                                     lazy='dynamic')
@@ -140,8 +139,6 @@ class Categories(db.Model):
     description = db.Column(db.String(255), nullable=False)
     picture = db.Column(db.String(50))
     active = db.Column(db.Boolean, nullable=False)
-    products = db.relationship(
-        'Products', backref='Categories', lazy='dynamic')
 
     def __init__(self, category_name, description, picture, active):
         # Example: self.question = question
