@@ -49,7 +49,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Success:
-                - Auth0 'GET /collections'
+                - Postman 'GET /collections'
                 - test_get_category_info
 
         Returns JSON:
@@ -78,7 +78,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Error:
-                - Auth0 'GET /collections/<int:id>'
+                - Postman 'GET /collections/<int:id>'
                 - test_404_non_existing_collection
 
         Returns JSON:
@@ -107,7 +107,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Success:
-                - Auth0 'GET /collections/mens-apparel'
+                - Postman 'GET /collections/mens-apparel'
                 - test_get_mens_apparel
 
         Returns JSON:
@@ -144,7 +144,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Error:
-                - Auth0 'GET /collections/mens-apparel/<int:id>'
+                - Postman 'GET /collections/mens-apparel/<int:id>'
                 - test_404_invalid_mens_product
 
         Returns JSON:
@@ -180,7 +180,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Success:
-                - Auth0 'GET /collections/womens-apparel'
+                - Postman 'GET /collections/womens-apparel'
                 - test_get_womens_apparel
 
         Returns JSON:
@@ -219,7 +219,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Error:
-                - Auth0 'GET /collections/womens-apparel/<int:id>'
+                - Postman 'GET /collections/womens-apparel/<int:id>'
                 - test_404_invalid_womens_product
 
         Returns JSON:
@@ -256,7 +256,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Success:
-                - Auth0 'GET /collections/holiday'
+                - Postman 'GET /collections/holiday'
                 - test_get_holiday_products
 
         Returns JSON:
@@ -294,7 +294,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Error:
-                - Auth0 'GET /collections/holiday/<int:id>'
+                - Postman 'GET /collections/holiday/<int:id>'
                 - test_404_invalid_holiday_products
 
         Returns JSON:
@@ -331,7 +331,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Success:
-                - Auth0 'GET /collections/misc'
+                - Postman 'GET /collections/misc'
                 - test_get_misc_products
 
         Returns JSON:
@@ -370,7 +370,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Error:
-                - Auth0 'GET /collections/misc/<int:id>'
+                - Postman 'GET /collections/misc/<int:id>'
                 - test_404_invalid_misc_products
 
         Returns JSON:
@@ -406,7 +406,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Success:
-                - Auth0 'GET /products'
+                - Postman 'GET /products'
                 - test_get_products
 
         Returns JSON:
@@ -437,7 +437,7 @@ def create_app(test_config=None):
         --------------------
         Tested with:
             Error:
-                - Auth0 'GET /products/<int:id>'
+                - Postman 'GET /products/<int:id>'
                 - test_404_invalid_misc_products
 
         Returns JSON:
@@ -462,13 +462,13 @@ def create_app(test_config=None):
     # TODO Add '/products' endpoint POST request
     @app.route('/products', methods=['POST'])
     # @requires_auth('post:products')
-    def post_products():
+    def post_products(payload):
         """
         POST request to add a new product to database.
         --------------------
         Tested with:
             Success:
-                - Auth0 'POST /products'
+                - Postman 'POST /products'
                 - test_post_products
             Error:
                 - test_400_post_products
@@ -523,7 +523,7 @@ def create_app(test_config=None):
 
             return jsonify({
                 'success': True,
-                'created': product.info(),
+                'product': product.info(),
             })
 
         except Exception as e:
@@ -532,15 +532,15 @@ def create_app(test_config=None):
             abort(422)
 
     # TODO Add '/products' endpoint PATCH request
-    @app.route('/products', methods=['PATCH'])
+    @app.route('/products/<int:id>', methods=['PATCH'])
     # @requires_auth('patch:products')
-    def patch_products():
+    def patch_products(payload, id):
         pass
 
     # TODO Add '/products' endpoint DELETE request
-    @app.route('/products', methods=['DELETE'])
+    @app.route('/products/<int:id>', methods=['DELETE'])
     # @requires_auth('delete:products')
-    def delete_products():
+    def delete_products(payload, id):
         pass
 
     # TODO Add '/search' for searching products
