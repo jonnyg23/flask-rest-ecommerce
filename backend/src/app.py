@@ -41,7 +41,6 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
-    # TODO Add '/collections' endpoint
     @app.route('/collections', methods=['GET'])
     def get_category_info():
         """
@@ -465,7 +464,6 @@ def create_app(test_config=None):
             abort(404, {'message':
                         f'Product ID: {product_id} does not exist.'})
 
-    # TODO Add '/products' endpoint POST request
     @app.route('/products', methods=['POST'])
     # @requires_auth('post:products')
     def post_products(payload):
@@ -539,7 +537,6 @@ def create_app(test_config=None):
             db.session.rollback()
             abort(422)
 
-    # TODO Add '/products' endpoint PATCH request
     @app.route('/products/<int:product_id>', methods=['PATCH'])
     # @requires_auth('patch:products')
     def patch_products(payload, product_id):

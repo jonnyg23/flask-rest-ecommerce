@@ -188,7 +188,6 @@ class EcommerceTestCase(unittest.TestCase):
     # Test if '/products' endpoint can handle GET, PATCH, POST, & DELETE
     # requests & sends corresponding errors if necessary
 # ----------------------------------------------------------------------------#
-    # TODO Update all error tests below
 
     # GET /products tests
 
@@ -345,6 +344,8 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(
             data['message'], f'Product ID: {9999999999999} does not exist.')
+
+    # TODO Add tests for '/search' endpoint
 
     # TODO Add tests for '/login' endpoint
 
