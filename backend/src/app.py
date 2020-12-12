@@ -32,8 +32,6 @@ def create_app(test_config=None):
             Success:
                 - Auth0 'GET /collections'
                 - test_get_category_info
-            Error:
-                - test_404_non_existing_collection
 
         Returns JSON:
             - success <boolean>
@@ -54,7 +52,6 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_category_info()')
             abort(500)
 
-    # TODO Add '/collections/mens-apparel' endpoint
     @app.route('/collections/mens-apparel', methods=['GET'])
     def get_mens_apparel():
         """
@@ -64,8 +61,6 @@ def create_app(test_config=None):
             Success:
                 - Auth0 'GET /collections/mens-apparel'
                 - test_get_mens_apparel
-            Error:
-                - test_404_invalid_mens_product
 
         Returns JSON:
             - success <boolean>
@@ -76,10 +71,12 @@ def create_app(test_config=None):
             mens_apparel_category_id = Categories.query.filter(
                 Categories.category_name == 'Mens-Apparel').one_or_none()
 
-            # Query database for mens apparel products
+            # Query database for only mens apparel products
             selection = Products.query.filter(
                 Products.category_id.any(
                     mens_apparel_category_id.id)).all()
+
+            # Create list with product info
             mens_apparel_data = [product.info() for product in selection]
 
             return jsonify({
@@ -92,17 +89,82 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_mens_apparel()')
             abort(500)
 
-            # TODO Add '/collections/womens-apparel' endpoint
     @app.route('/collections/womens-apparel', methods=['GET'])
     def get_womens_apparel():
+        """
+        GET request to retrieve all womens-apparel products from database.
+        --------------------
+        Tested with:
+            Success:
+                - Auth0 'GET /collections/womens-apparel'
+                - test_get_womens_apparel
 
-        pass
+        Returns JSON:
+            - success <boolean>
+            - womens_apparel_data <list>
+        """
+        try:
+            # Find id from Categories table where
+            # category_name == Womens-Apparel
+            womens_apparel_category_id = Categories.query.filter(
+                Categories.category_name == 'Womens-Apparel').one_or_none()
+
+            # Query database for only womens apparel products
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    womens_apparel_category_id.id)).all()
+
+            # Create list with product info
+            womens_apparel_data = [product.info() for product in selection]
+
+            return jsonify({
+                'success': True,
+                'womens_apparel_data': womens_apparel_data
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 500
+            print(f'Exception "{e}" in get_mens_apparel()')
+            abort(500)
 
     # TODO Add '/collections/holiday' endpoint
     @app.route('/collections/holiday', methods=['GET'])
     def get_holiday_products():
+        """
+        GET request to retrieve all holiday products from database.
+        --------------------
+        Tested with:
+            Success:
+                - Auth0 'GET /collections/holiday'
+                - test_get_holiday_products
 
-        pass
+        Returns JSON:
+            - success <boolean>
+            - holiday_products_data <list>
+        """
+        try:
+            # Find id from Categories table where
+            # category_name == Holiday
+            womens_apparel_category_id = Categories.query.filter(
+                Categories.category_name == 'Holiday').one_or_none()
+
+            # Query database for only holiday products
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    womens_apparel_category_id.id)).all()
+
+            # Create list with product info
+            holiday_products_data = [product.info() for product in selection]
+
+            return jsonify({
+                'success': True,
+                'holiday_products_data': holiday_products_data
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 500
+            print(f'Exception "{e}" in get_holiday_products()')
+            abort(500)
 
     # TODO Add '/collections/misc' endpoint
     @app.route('/collections/misc', methods=['GET'])
