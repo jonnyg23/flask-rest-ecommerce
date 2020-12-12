@@ -64,7 +64,7 @@ def create_app(test_config=None):
 
         Returns JSON:
             - success <boolean>
-            - category_info <list>
+            - category_info <dict>
         """
         try:
             # Query the database for a category with id given
@@ -130,7 +130,7 @@ def create_app(test_config=None):
 
         Returns JSON:
             - success <boolean>
-            - mens_apparel_data <list>
+            - mens_apparel_data <dict>
         """
         try:
             # Find id from Categories table where category_name == Mens-Apparel
@@ -205,7 +205,7 @@ def create_app(test_config=None):
 
         Returns JSON:
             - success <boolean>
-            - womens_apparel_data <list>
+            - womens_apparel_data <dict>
         """
         try:
             # Find id from Categories table where
@@ -280,7 +280,7 @@ def create_app(test_config=None):
 
         Returns JSON:
             - success <boolean>
-            - holiday_products_data <list>
+            - holiday_products_data <dict>
         """
         try:
             # Find id from Categories table where
@@ -356,7 +356,7 @@ def create_app(test_config=None):
 
         Returns JSON:
             - success <boolean>
-            - misc_products_data <list>
+            - misc_products_data <dict>
         """
         try:
             # Find id from Categories table where
@@ -380,7 +380,6 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_specific_misc_products()')
             abort(404)
 
-    # TODO Add '/products' endpoint GET request
     @app.route('/products', methods=['GET'])
     def get_products():
         """
@@ -411,6 +410,35 @@ def create_app(test_config=None):
             # Print exception error as well as abort 500
             print(f'Exception "{e}" in get_products()')
             abort(500)
+
+    @app.route('/products/<int:id>', methods=['GET'])
+    def get_specific_product(id):
+        """
+        GET request to retrieve a specific product from database.
+        --------------------
+        Tested with:
+            Error:
+                - Auth0 'GET /products/<int:id>'
+                - test_404_invalid_misc_products
+
+        Returns JSON:
+            - success <boolean>
+            - products <json>
+        """
+        try:
+            # Query database for all products
+            selection = Products.query.order_by(Products.id).filter(
+                Products.id == id).one_or_none()
+
+            return jsonify({
+                'success': True,
+                'products': selection.info()
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 404
+            print(f'Exception "{e}" in get_specific_product()')
+            abort(404)
 
     # TODO Add '/products' endpoint POST request
     @app.route('/products', methods=['POST'])
