@@ -208,7 +208,34 @@ def create_app(test_config=None):
     # TODO Add '/products' endpoint GET request
     @app.route('/products', methods=['GET'])
     def get_products():
-        pass
+        """
+        GET request to retrieve all products from database.
+        --------------------
+        Tested with:
+            Success:
+                - Auth0 'GET /products'
+                - test_get_products
+
+        Returns JSON:
+            - success <boolean>
+            - products <list>
+        """
+        try:
+            # Query database for all products
+            selection = Products.query.order_by(Products.id).all()
+
+            # Create list with product info
+            products = [product.info() for product in selection]
+
+            return jsonify({
+                'success': True,
+                'products': products
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 500
+            print(f'Exception "{e}" in get_products()')
+            abort(500)
 
     # TODO Add '/products' endpoint POST request
     @app.route('/products', methods=['POST'])
