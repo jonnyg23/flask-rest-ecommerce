@@ -220,7 +220,11 @@ class EcommerceTestCase(unittest.TestCase):
 
         # Create new product json
         new_product = {
-            # TODO Add new product in format 'name': 'ExampleName1', etc
+            'product_name': 'new_name',
+            'product_description': 'new_description',
+            'msrp': 50,
+            'picture': 'new_picture',
+            'category_id': [1, 2, 3]
         }
         # Count total products to compare after POST
         product_count_init = len(Products.query.all())
@@ -242,7 +246,10 @@ class EcommerceTestCase(unittest.TestCase):
 
         # Create new product with missing parameter -> 'product_name'
         new_product = {
-            # TODO Add new product with missing 'product_name' parameter
+            'product_description': 'new_description',
+            'msrp': 50,
+            'picture': 'new_picture',
+            'category_id': [1, 2, 3]
         }
         res = self.client().post('/products', json=new_product)
         data = json.loads(res.data)
