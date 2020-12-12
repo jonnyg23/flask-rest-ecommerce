@@ -145,13 +145,13 @@ def create_app(test_config=None):
         try:
             # Find id from Categories table where
             # category_name == Holiday
-            womens_apparel_category_id = Categories.query.filter(
+            holiday_category_id = Categories.query.filter(
                 Categories.category_name == 'Holiday').one_or_none()
 
             # Query database for only holiday products
             selection = Products.query.filter(
                 Products.category_id.any(
-                    womens_apparel_category_id.id)).all()
+                    holiday_category_id.id)).all()
 
             # Create list with product info
             holiday_products_data = [product.info() for product in selection]
@@ -169,8 +169,41 @@ def create_app(test_config=None):
     # TODO Add '/collections/misc' endpoint
     @app.route('/collections/misc', methods=['GET'])
     def get_misc_products():
+        """
+        GET request to retrieve all miscellaneous products from database.
+        --------------------
+        Tested with:
+            Success:
+                - Auth0 'GET /collections/misc'
+                - test_get_misc_products
 
-        pass
+        Returns JSON:
+            - success <boolean>
+            - misc_products_data <list>
+        """
+        try:
+            # Find id from Categories table where
+            # category_name == Misc
+            misc_category_id = Categories.query.filter(
+                Categories.category_name == 'Misc').one_or_none()
+
+            # Query database for only miscellaneous products
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    misc_category_id.id)).all()
+
+            # Create list with product info
+            misc_products_data = [product.info() for product in selection]
+
+            return jsonify({
+                'success': True,
+                'misc_products_data': misc_products_data
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 500
+            print(f'Exception "{e}" in get_misc_products()')
+            abort(500)
 
     # TODO Add '/products' endpoint GET request
     @app.route('/products', methods=['GET'])
