@@ -261,27 +261,55 @@ class EcommerceTestCase(unittest.TestCase):
     # PATCH /products tests
 
     def test_patch_products(self):
-        """Test for patch_products() PATCH /products"""
+        """Test for patch_products() PATCH /products/5"""
         # Test the following:
         #   - Product in database can be edited successfully
         #   - Response is 200
 
-        # TODO Add PATCH test self.client().patch('/products')
-        pass
+        product_before_patch = Products.query.filter(
+            Products.id == 5).one_or_none()
+
+        patched_product = {
+            'product_name': 'patched_name',
+            'product_description': 'patched_description',
+            'msrp': 50,
+            'picture': 'patched_picture',
+            'category_id': [1, 2, 3]
+        }
+
+        res = self.client().patch('/products/5', json=patched_product)
+        data = json.loads(res.data)
+
+        product_after_patch = Products.query.filter(
+            Products.id == 5).one_or_none()
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertNotEqual(product_before_patch, product_after_patch)
 
     def test_400_patch_products(self):
         """Test patch_products() for missing parameter -
         prompt error 400"""
         # Test the following:
-        #   - Incomplete patch entry (possibly a missing parameter)
+        #   - Incomplete patch entry (missing product_name parameter)
 
-        # TODO Add PATCH error test
-        pass
+        patched_product = {
+            'product_description': 'patched_description',
+            'msrp': 50,
+            'picture': 'patched_picture',
+            'category_id': [1, 2, 3]
+        }
+
+        res = self.client().patch('/products/5', json=patched_product)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], True)
 
     # DELETE /products tests
 
     def test_delete_products(self):
-        """Test for delete_products() POST /products"""
+        """Test for delete_products() POST /products/5"""
         # Test the following:
         #   - Products can be deleted from the database
         #   - Response is 200
@@ -291,7 +319,7 @@ class EcommerceTestCase(unittest.TestCase):
             product_description='test_description',
             msrp=35,
             picture='static/images/products/imageID',
-            category_id=1
+            category_id=[1, 2]
         )
         product.insert()
         product_id = product.id
