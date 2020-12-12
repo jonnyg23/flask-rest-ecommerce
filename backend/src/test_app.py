@@ -304,7 +304,8 @@ class EcommerceTestCase(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 400)
-        self.assertEqual(data['success'], True)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'JSON body is invalid.')
 
     # DELETE /products tests
 
@@ -314,26 +315,15 @@ class EcommerceTestCase(unittest.TestCase):
         #   - Products can be deleted from the database
         #   - Response is 200
 
-        product = Products(
-            product_name='test_product',
-            product_description='test_description',
-            msrp=35,
-            picture='static/images/products/imageID',
-            category_id=[1, 2]
-        )
-        product.insert()
-        product_id = product.id
-
-        # TODO Ensure client delete line has complete inputs
-        res = self.client().delete(f'/products/{product_id}')
+        res = self.client().delete(f'/products/5')
         data = json.loads(res.data)
 
         product_query = Products.query.filter(
-            Products.id == product_id).one_or_non()
+            Products.id == 5).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['deleted'], product_id)
+        self.assertEqual(data['deleted'], 5)
         self.assertEqual(product_query, None)
 
     def test_404_delete_products(self):
@@ -342,13 +332,13 @@ class EcommerceTestCase(unittest.TestCase):
         # Test the following:
         #   - Deleting a non-existing product id raises 404 error code
 
-        res = self.client().delete(f'/products/{123456789}')
+        res = self.client().delete(f'/products/{9999999999999}')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
         self.assertEqual(
-            data['message'], f'Product ID: {123456789} does not exist.')
+            data['message'], f'Product ID: {9999999999999} does not exist.')
 
     # TODO Add tests for '/login' endpoint
 
