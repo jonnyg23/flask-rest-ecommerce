@@ -58,12 +58,13 @@ class EcommerceTestCase(unittest.TestCase):
         prompt error 404"""
         # Test the following:
         #   - Invalid image id results in a respone of 404
-        res = self.client().get('/collections/invalid_category_id')
+        res = self.client().get(f'/collections/{9999999999999}')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'resource not found')
+        self.assertEqual(data['message'],
+                         f'Category ID: {9999999999999} does not exist.')
 
 # ----------------------------------------------------------------------------#
     # Test if '/collections/mens-apparel' endpoint can handle GET requests
@@ -87,12 +88,13 @@ class EcommerceTestCase(unittest.TestCase):
         # Test the following:
         #   - Invalid mens-apparel results in a respone of 404
         res = self.client().get(
-            '/collections/mens-apparel/invalid_products_id')
+            f'/collections/mens-apparel/{9999999999999}')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'resource not found')
+        self.assertEqual(data['message'],
+                         f'Product ID: {9999999999999} does not exist.')
 
 # ----------------------------------------------------------------------------#
     # Test if '/collections/womens-apparel' endpoint can handle GET requests
@@ -116,12 +118,13 @@ class EcommerceTestCase(unittest.TestCase):
         # Test the following:
         #   - Invalid womens-apparel results in a respone of 404
         res = self.client().get(
-            '/collections/womens-apparel/invalid_product_id')
+            f'/collections/womens-apparel/{9999999999999}')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'resource not found')
+        self.assertEqual(data['message'],
+                         f'Product ID: {9999999999999} does not exist.')
 
 # ----------------------------------------------------------------------------#
     # Test if '/collections/holiday' endpoint can handle GET requests
@@ -144,12 +147,13 @@ class EcommerceTestCase(unittest.TestCase):
         holiday products - prompt error 404"""
         # Test the following:
         #   - Invalid holiday product results in a respone of 404
-        res = self.client().get('/collections/holiday/invalid_product_id')
+        res = self.client().get(f'/collections/holiday/{9999999999999}')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'resource not found')
+        self.assertEqual(data['message'],
+                         f'Product ID: {9999999999999} does not exist.')
 
 # ----------------------------------------------------------------------------#
     # Test if '/collections/misc' endpoint can handle GET requests
@@ -172,12 +176,13 @@ class EcommerceTestCase(unittest.TestCase):
         prompt error 404"""
         # Test the following:
         #   - Invalid misc product results in a respone of 404
-        res = self.client().get('/collections/misc/invalid_product_id')
+        res = self.client().get(f'/collections/misc/{9999999999999}')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'resource not found')
+        self.assertEqual(data['message'],
+                         f'Product ID: {9999999999999} does not exist.')
 
 # ----------------------------------------------------------------------------#
     # Test if '/products' endpoint can handle GET, PATCH, POST, & DELETE
@@ -203,12 +208,13 @@ class EcommerceTestCase(unittest.TestCase):
         prompt error 404"""
         # Test the following:
         #   - Invalid product results in a respone of 404
-        res = self.client().get('/products/invalid_product_id')
+        res = self.client().get(f'/products/{9999999999999}')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'resource not found')
+        self.assertEqual(data['message'],
+                         f'Product ID: {9999999999999} does not exist.')
 
     # POST /products tests
 

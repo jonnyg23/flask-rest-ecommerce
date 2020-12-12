@@ -98,7 +98,8 @@ def create_app(test_config=None):
         except Exception as e:
             # Print exception error as well as abort 404
             print(f'Exception "{e}" in get_specific_category_info()')
-            abort(404)
+            abort(404, {'message':
+                        f'Category ID: {category_id} does not exist.'})
 
     @app.route('/collections/mens-apparel', methods=['GET'])
     def get_mens_apparel():
@@ -171,7 +172,8 @@ def create_app(test_config=None):
         except Exception as e:
             # Print exception error as well as abort 404
             print(f'Exception "{e}" in get_specific_mens_apparel()')
-            abort(404)
+            abort(404, {'message':
+                        f'Product ID: {product_id} does not exist.'})
 
     @app.route('/collections/womens-apparel', methods=['GET'])
     def get_womens_apparel():
@@ -247,7 +249,8 @@ def create_app(test_config=None):
         except Exception as e:
             # Print exception error as well as abort 404
             print(f'Exception "{e}" in get_specific_womens_apparel()')
-            abort(404)
+            abort(404, {'message':
+                        f'Product ID: {product_id} does not exist.'})
 
     @app.route('/collections/holiday', methods=['GET'])
     def get_holiday_products():
@@ -322,7 +325,8 @@ def create_app(test_config=None):
         except Exception as e:
             # Print exception error as well as abort 404
             print(f'Exception "{e}" in get_specific_holiday_products()')
-            abort(404)
+            abort(404, {'message':
+                        f'Product ID: {product_id} does not exist.'})
 
     @app.route('/collections/misc', methods=['GET'])
     def get_misc_products():
@@ -397,7 +401,8 @@ def create_app(test_config=None):
         except Exception as e:
             # Print exception error as well as abort 404
             print(f'Exception "{e}" in get_specific_misc_products()')
-            abort(404)
+            abort(404, {'message':
+                        f'Product ID: {product_id} does not exist.'})
 
     @app.route('/products', methods=['GET'])
     def get_products():
@@ -457,7 +462,8 @@ def create_app(test_config=None):
         except Exception as e:
             # Print exception error as well as abort 404
             print(f'Exception "{e}" in get_specific_product()')
-            abort(404)
+            abort(404, {'message':
+                        f'Product ID: {product_id} does not exist.'})
 
     # TODO Add '/products' endpoint POST request
     @app.route('/products', methods=['POST'])
