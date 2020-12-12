@@ -54,7 +54,7 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertTrue(len(data['category_info']))
 
     def test_404_non_existing_collection(self):
-        """Test get_category_info() for non-existing collection -
+        """Test get_specific_category_info() for non-existing collection -
         prompt error 404"""
         # Test the following:
         #   - Invalid image id results in a respone of 404
@@ -82,7 +82,7 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
 
     def test_404_invalid_mens_product(self):
-        """Test get_mens_apparel() for non-existing mens-apparel products -
+        """Test get_specific_mens_apparel() for non-existing mens-apparel products -
         prompt error 404"""
         # Test the following:
         #   - Invalid mens-apparel results in a respone of 404
@@ -110,7 +110,7 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
 
     def test_404_invalid_womens_product(self):
-        """Test get_womens_apparel() for non-existing womens-apparel products -
+        """Test get_specific_womens_apparel() for non-existing womens-apparel products -
         prompt error 404"""
         # Test the following:
         #   - Invalid womens-apparel results in a respone of 404
@@ -138,7 +138,7 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
 
     def test_404_invalid_holiday_products(self):
-        """Test get_holiday_products() for non-existing holiday products -
+        """Test get_specific_holiday_products() for non-existing holiday products -
         prompt error 404"""
         # Test the following:
         #   - Invalid holiday product results in a respone of 404
@@ -166,7 +166,7 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
 
     def test_404_invalid_misc_products(self):
-        """Test get_misc_products() for non-existing misc products -
+        """Test get_specific_misc_products() for non-existing misc products -
         prompt error 404"""
         # Test the following:
         #   - Invalid misc product results in a respone of 404
