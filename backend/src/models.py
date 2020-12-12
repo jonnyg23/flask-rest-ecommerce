@@ -81,7 +81,7 @@ class Products(db.Model):
     product_description = db.Column(db.String(255), nullable=False)
     msrp = db.Column(db.Float, nullable=False)
     picture = db.Column(db.String(50))
-    category_id = db.Column(db.Integer, db.ForeignKey(
+    category_id = db.Column(db.ARRAY(db.Integer), db.ForeignKey(
         'Categories.id'), nullable=False)
     # supplier_id = Column(Integer, ForeignKey('Supplier.id'), nullable=False)
     order_details = db.relationship('Order_Details',
