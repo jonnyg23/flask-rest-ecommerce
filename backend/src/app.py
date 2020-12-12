@@ -9,6 +9,25 @@ from models import db_drop_and_create_all, setup_db, db, Products, \
     Categories, Orders, Order_Details, Payment
 # from models import Shippers, Suppliers
 
+# ----------------------------------------------------------------------------#
+# Custom Methods
+# ----------------------------------------------------------------------------#
+
+
+def error_message(error, text):
+    """
+    Gives default or custom text for the error.
+    --------------------
+    Inputs <datatype>:
+        - error <Error Object>: The error code
+        - text <string>: Custom error text if error has no message
+    Returns <datatype>:
+        - error description <string>: The custom error description or default
+    """
+    try:
+        return error.description['message']
+    except TypeError:
+        return text
 
 # ----------------------------------------------------------------------------#
 # Setup Application & Create API Endpoints
@@ -444,7 +463,24 @@ def create_app(test_config=None):
     @app.route('/products', methods=['POST'])
     # @requires_auth('post:products')
     def post_products():
-        pass
+        """
+        POST request to add a new product to database.
+        --------------------
+        Tested with:
+            Success:
+                - Auth0 'POST /products'
+                - test_post_products
+            Error:
+                - test_400_post_products
+
+        Returns JSON:
+            - success <boolean>
+            - products <list>
+        """
+        body = request.get_json()
+
+        if not body:
+            abort(400, {'message': 'Invalid JSON body'})
 
     # TODO Add '/products' endpoint PATCH request
     @app.route('/products', methods=['PATCH'])
@@ -482,7 +518,7 @@ def create_app(test_config=None):
         return jsonify({
             "success": False,
             "error": 400,
-            "message": "bad request"
+            "message": error_message(error, "bad request")
         }), 400
 
     @app.errorhandler(401)
