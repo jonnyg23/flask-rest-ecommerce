@@ -71,14 +71,14 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_category_info()')
             abort(500)
 
-    @app.route('/collections/<int:id>', methods=['GET'])
-    def get_specific_category_info(id):
+    @app.route('/collections/<int:category_id>', methods=['GET'])
+    def get_specific_category_info(category_id):
         """
         GET request to retrieve category info and default images from database.
         --------------------
         Tested with:
             Error:
-                - Postman 'GET /collections/<int:id>'
+                - Postman 'GET /collections/<int:category_id>'
                 - test_404_non_existing_collection
 
         Returns JSON:
@@ -88,7 +88,7 @@ def create_app(test_config=None):
         try:
             # Query the database for a category with id given
             selection = Categories.query.filter(
-                Categories.id == id).one_or_none()
+                Categories.id == category_id).one_or_none()
 
             return jsonify({
                 'success': True,
@@ -137,14 +137,14 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_mens_apparel()')
             abort(500)
 
-    @app.route('/collections/mens-apparel/<int:id>', methods=['GET'])
-    def get_specific_mens_apparel(id):
+    @app.route('/collections/mens-apparel/<int:product_id>', methods=['GET'])
+    def get_specific_mens_apparel(product_id):
         """
         GET request to retrieve a specific mens-apparel products from database.
         --------------------
         Tested with:
             Error:
-                - Postman 'GET /collections/mens-apparel/<int:id>'
+                - Postman 'GET /collections/mens-apparel/<int:product_id>'
                 - test_404_invalid_mens_product
 
         Returns JSON:
@@ -161,7 +161,7 @@ def create_app(test_config=None):
             selection = Products.query.filter(
                 Products.category_id.any(
                     mens_apparel_category_id.id)).filter(
-                        Products.id == id).one_or_none()
+                        Products.id == product_id).one_or_none()
 
             return jsonify({
                 'success': True,
@@ -211,15 +211,15 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_mens_apparel()')
             abort(500)
 
-    @app.route('/collections/womens-apparel/<int:id>', methods=['GET'])
-    def get_specific_womens_apparel(id):
+    @app.route('/collections/womens-apparel/<int:product_id>', methods=['GET'])
+    def get_specific_womens_apparel(product_id):
         """
         GET request to retrieve a specific womens-apparel
         product from database.
         --------------------
         Tested with:
             Error:
-                - Postman 'GET /collections/womens-apparel/<int:id>'
+                - Postman 'GET /collections/womens-apparel/<int:product_id>'
                 - test_404_invalid_womens_product
 
         Returns JSON:
@@ -237,7 +237,7 @@ def create_app(test_config=None):
             selection = Products.query.filter(
                 Products.category_id.any(
                     womens_apparel_category_id.id)).filter(
-                        Products.id == id).one_or_none()
+                        Products.id == product_id).one_or_none()
 
             return jsonify({
                 'success': True,
@@ -287,14 +287,14 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_holiday_products()')
             abort(500)
 
-    @app.route('/collections/holiday/<int:id>', methods=['GET'])
-    def get_specific_holiday_products(id):
+    @app.route('/collections/holiday/<int:product_id>', methods=['GET'])
+    def get_specific_holiday_products(product_id):
         """
         GET request to retrieve a specific holiday product from database.
         --------------------
         Tested with:
             Error:
-                - Postman 'GET /collections/holiday/<int:id>'
+                - Postman 'GET /collections/holiday/<int:product_id>'
                 - test_404_invalid_holiday_products
 
         Returns JSON:
@@ -312,7 +312,7 @@ def create_app(test_config=None):
             selection = Products.query.filter(
                 Products.category_id.any(
                     holiday_category_id.id)).filter(
-                        Products.id == id).one_or_none()
+                        Products.id == product_id).one_or_none()
 
             return jsonify({
                 'success': True,
@@ -362,15 +362,15 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_misc_products()')
             abort(500)
 
-    @app.route('/collections/misc/<int:id>', methods=['GET'])
-    def get_specific_misc_products(id):
+    @app.route('/collections/misc/<int:product_id>', methods=['GET'])
+    def get_specific_misc_products(product_id):
         """
         GET request to retrieve a specific miscellaneous
         product from database.
         --------------------
         Tested with:
             Error:
-                - Postman 'GET /collections/misc/<int:id>'
+                - Postman 'GET /collections/misc/<int:product_id>'
                 - test_404_invalid_misc_products
 
         Returns JSON:
@@ -387,7 +387,7 @@ def create_app(test_config=None):
             selection = Products.query.filter(
                 Products.category_id.any(
                     misc_category_id.id)).filter(
-                        Products.id == id).one_or_none()
+                        Products.id == product_id).one_or_none()
 
             return jsonify({
                 'success': True,
@@ -430,14 +430,14 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_products()')
             abort(500)
 
-    @app.route('/products/<int:id>', methods=['GET'])
-    def get_specific_product(id):
+    @app.route('/products/<int:product_id>', methods=['GET'])
+    def get_specific_product(product_id):
         """
         GET request to retrieve a specific product from database.
         --------------------
         Tested with:
             Error:
-                - Postman 'GET /products/<int:id>'
+                - Postman 'GET /products/<int:product_id>'
                 - test_404_invalid_misc_products
 
         Returns JSON:
@@ -447,7 +447,7 @@ def create_app(test_config=None):
         try:
             # Query database for all products
             selection = Products.query.order_by(Products.id).filter(
-                Products.id == id).one_or_none()
+                Products.id == product_id).one_or_none()
 
             return jsonify({
                 'success': True,
@@ -475,7 +475,7 @@ def create_app(test_config=None):
 
         Returns JSON:
             - success <boolean>
-            - products <list>
+            - product <dict>
         """
         body = request.get_json()
 
@@ -527,36 +527,129 @@ def create_app(test_config=None):
             })
 
         except Exception as e:
-            # Print exception error as well as abort 404
+            # Print exception error, abort 422,
+            # and rollback database session
             print(f'Exception "{e}" in post_products()')
+            db.session.rollback()
             abort(422)
 
     # TODO Add '/products' endpoint PATCH request
-    @app.route('/products/<int:id>', methods=['PATCH'])
+    @app.route('/products/<int:product_id>', methods=['PATCH'])
     # @requires_auth('patch:products')
-    def patch_products(payload, id):
-        pass
+    def patch_products(payload, product_id):
+        """
+        PATCH request to edit a product from the database.
+        --------------------
+        Tested with:
+            Success:
+                - Postman 'PATCH /products/<int:product_id>'
+                - test_patch_products
+            Error:
+                - test_400_patch_products
 
-    # TODO Add '/products' endpoint DELETE request
-    @app.route('/products/<int:id>', methods=['DELETE'])
+        Returns JSON:
+            - success <boolean>
+            - product <list>
+        """
+        product_selected = Products.query.filter(
+            Products.id == product_id).one_or_none()
+
+        if not product_selected:
+            # If product not found in database with id, abort 404
+            abort(404, {'message':
+                        f'Product ID: {product_id} does not exist.'})
+
+        # Get parameters from JSON body
+        body = request.get_json()
+
+        # If invalid JSON body, abort(400)
+        if not body:
+            abort(400, {'message': 'JSON body is invalid.'})
+
+        product_name = body.get('product_name', None)
+        product_description = body.get('product_description', None)
+        msrp = body.get('msrp', None)
+        picture = body.get('picture', None)
+        category_id = body.get('category_id', None)
+
+        try:
+            # If any parameter is present then
+            # update each correspondingly
+            if product_name:
+                product_selected.product_name = product_name
+            if product_description:
+                product_selected.product_description = product_description
+            if msrp:
+                product_selected.msrp = msrp
+            if picture:
+                product_selected.picture = picture
+            if category_id:
+                product_selected.category_id = category_id
+
+            # Update database session (runs db.session.commit())
+            product_selected.update()
+
+            return jsonify({
+                'success': True,
+                'product': [product_selected.info()]
+            })
+
+        except Exception as e:
+            # Print exception error, abort 422,
+            # and rollback database session
+            print(f'Exception "{e}" in patch_products()')
+            db.session.rollback()
+            abort(422)
+
+    @app.route('/products/<int:product_id>', methods=['DELETE'])
     # @requires_auth('delete:products')
-    def delete_products(payload, id):
-        pass
+    def delete_products(payload, product_id):
+        """
+        DELETE request to remove a product from the database.
+        --------------------
+        Tested with:
+            Success:
+                - Postman 'DELETE /products/<int:product_id>'
+                - test_delete_products
+            Error:
+                - test_404_delete_products
 
-    # TODO Add '/search' for searching products
+        Returns JSON:
+            - success <boolean>
+            - product <list>
+        """
+        # Query database for product with given id
+        product_selected = Products.query.filter(
+            Products.id == product_id).one_or_none()
 
-    # Possible endpoint additions
+        # If product id is not found in database, abort 404
+        if not product_selected:
+            abort(404, {'message':
+                        f'Product ID: {product_id} does not exist.'})
 
-    # TODO Add '/login' for auth
+        try:
+            # Attempt to delete the product from the database
+            product_selected.delete()
 
-    # TODO Add '/<int:customerID>/checkouts/<int:orderID>'
+            return jsonify({
+                'success': True,
+                'delete': product_id
+            })
 
-    # When an item is clicked on, let's say in the '/collections/mens-apparel'
-    # endpoint, then there should be a tagged on '/products/<productID?variant'
-    # This can be seen below.
-    # collections/all/products/1776-stars-mens-apparel?variant=35092988559517
-    # This may be added on automatically when sending a particular query.
-    # Reference a past Udacity assignment for details.
+        except Exception as e:
+            # Print exception error, abort 422,
+            # and rollback database session
+            print(f'Exception "{e}" in delete_products()')
+            db.session.rollback()
+            abort(422)
+
+# TODO Add '/search' for searching products
+
+# Possible endpoint additions
+
+# TODO Add '/login' for auth
+
+# TODO Add '/<int:customerID>/checkouts/<int:orderID>'
 
 
 # ----------------------------------------------------------------------------#
@@ -578,7 +671,7 @@ def create_app(test_config=None):
         return jsonify({
             "success": False,
             "error": 401,
-            "message": "unauthorized"
+            "message": error_message(error, "unauthorized")
         }), 401
 
     @app.errorhandler(403)
@@ -587,7 +680,7 @@ def create_app(test_config=None):
         return jsonify({
             "success": False,
             "error": 403,
-            "message": "forbidden"
+            "message": error_message(error, "forbidden")
         }), 403
 
     @app.errorhandler(404)
@@ -596,7 +689,7 @@ def create_app(test_config=None):
         return jsonify({
             "success": False,
             "error": 404,
-            "message": "resource not found"
+            "message": error_message(error, "resource not found")
         }), 404
 
     @app.errorhandler(422)
@@ -605,7 +698,7 @@ def create_app(test_config=None):
         return jsonify({
             "success": False,
             "error": 422,
-            "message": "unprocessable"
+            "message": error_message(error, "unprocessable")
         }), 422
 
     @app.errorhandler(500)
