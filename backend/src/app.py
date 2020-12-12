@@ -35,7 +35,8 @@ def create_app(test_config=None):
             Error:
                 - test_404_non_existing_collection
 
-        Returns <datatype>:
+        Returns JSON:
+            - success <boolean>
             - category_info <list>
         """
         try:
@@ -56,10 +57,42 @@ def create_app(test_config=None):
     # TODO Add '/collections/mens-apparel' endpoint
     @app.route('/collections/mens-apparel', methods=['GET'])
     def get_mens_apparel():
+        """
+        GET request to retrieve all mens-apparel products from database.
+        --------------------
+        Tested with:
+            Success:
+                - Auth0 'GET /collections/mens-apparel'
+                - test_get_mens_apparel
+            Error:
+                - test_404_invalid_mens_product
 
-        pass
+        Returns JSON:
+            - success <boolean>
+            - mens_apparel_data <list>
+        """
+        try:
+            # Find id from Categories table where category_name == Mens-Apparel
+            mens_apparel_category_id = Categories.query.filter(
+                Categories.category_name == 'Mens-Apparel').one_or_none()
 
-    # TODO Add '/collections/womens-apparel' endpoint
+            # Query database for mens apparel products
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    mens_apparel_category_id.id)).all()
+            mens_apparel_data = [product.info() for product in selection]
+
+            return jsonify({
+                'success': True,
+                'mens_apparel_data': mens_apparel_data
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 500
+            print(f'Exception "{e}" in get_mens_apparel()')
+            abort(500)
+
+            # TODO Add '/collections/womens-apparel' endpoint
     @app.route('/collections/womens-apparel', methods=['GET'])
     def get_womens_apparel():
 
