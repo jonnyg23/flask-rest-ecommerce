@@ -52,6 +52,35 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_category_info()')
             abort(500)
 
+    @app.route('/collections/<int:id>', methods=['GET'])
+    def get_specific_category_info(id):
+        """
+        GET request to retrieve category info and default images from database.
+        --------------------
+        Tested with:
+            Error:
+                - Auth0 'GET /collections/<int:id>'
+                - test_404_non_existing_collection
+
+        Returns JSON:
+            - success <boolean>
+            - category_info <list>
+        """
+        try:
+            # Query the database for a category with id given
+            selection = Categories.query.filter(
+                Categories.id == id).one_or_none()
+
+            return jsonify({
+                'success': True,
+                'category_info': selection.info()
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 404
+            print(f'Exception "{e}" in get_specific_category_info()')
+            abort(404)
+
     @app.route('/collections/mens-apparel', methods=['GET'])
     def get_mens_apparel():
         """
@@ -88,6 +117,42 @@ def create_app(test_config=None):
             # Print exception error as well as abort 500
             print(f'Exception "{e}" in get_mens_apparel()')
             abort(500)
+
+    @app.route('/collections/mens-apparel/<int:id>', methods=['GET'])
+    def get_specific_mens_apparel(id):
+        """
+        GET request to retrieve a specific mens-apparel products from database.
+        --------------------
+        Tested with:
+            Error:
+                - Auth0 'GET /collections/mens-apparel/<int:id>'
+                - test_404_invalid_mens_product
+
+        Returns JSON:
+            - success <boolean>
+            - mens_apparel_data <list>
+        """
+        try:
+            # Find id from Categories table where category_name == Mens-Apparel
+            mens_apparel_category_id = Categories.query.filter(
+                Categories.category_name == 'Mens-Apparel').one_or_none()
+
+            # Query database for a specific mens apparel
+            # product with id specified
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    mens_apparel_category_id.id)).filter(
+                        Products.id == id).one_or_none()
+
+            return jsonify({
+                'success': True,
+                'mens_apparel_data': selection.info()
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 404
+            print(f'Exception "{e}" in get_specific_mens_apparel()')
+            abort(404)
 
     @app.route('/collections/womens-apparel', methods=['GET'])
     def get_womens_apparel():
@@ -127,7 +192,44 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_mens_apparel()')
             abort(500)
 
-    # TODO Add '/collections/holiday' endpoint
+    @app.route('/collections/womens-apparel/<int:id>', methods=['GET'])
+    def get_specific_womens_apparel(id):
+        """
+        GET request to retrieve a specific womens-apparel
+        product from database.
+        --------------------
+        Tested with:
+            Error:
+                - Auth0 'GET /collections/womens-apparel/<int:id>'
+                - test_404_invalid_womens_product
+
+        Returns JSON:
+            - success <boolean>
+            - womens_apparel_data <list>
+        """
+        try:
+            # Find id from Categories table where
+            # category_name == Womens-Apparel
+            womens_apparel_category_id = Categories.query.filter(
+                Categories.category_name == 'Womens-Apparel').one_or_none()
+
+            # Query database for a specific womens apparel
+            # product with id specified
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    womens_apparel_category_id.id)).filter(
+                        Products.id == id).one_or_none()
+
+            return jsonify({
+                'success': True,
+                'womens_apparel_data': selection.info
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 404
+            print(f'Exception "{e}" in get_specific_womens_apparel()')
+            abort(404)
+
     @app.route('/collections/holiday', methods=['GET'])
     def get_holiday_products():
         """
@@ -166,7 +268,43 @@ def create_app(test_config=None):
             print(f'Exception "{e}" in get_holiday_products()')
             abort(500)
 
-    # TODO Add '/collections/misc' endpoint
+    @app.route('/collections/holiday/<int:id>', methods=['GET'])
+    def get_specific_holiday_products(id):
+        """
+        GET request to retrieve a specific holiday product from database.
+        --------------------
+        Tested with:
+            Error:
+                - Auth0 'GET /collections/holiday/<int:id>'
+                - test_404_invalid_holiday_products
+
+        Returns JSON:
+            - success <boolean>
+            - holiday_products_data <list>
+        """
+        try:
+            # Find id from Categories table where
+            # category_name == Holiday
+            holiday_category_id = Categories.query.filter(
+                Categories.category_name == 'Holiday').one_or_none()
+
+            # Query database for a specific holiday
+            # product with id specified
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    holiday_category_id.id)).filter(
+                        Products.id == id).one_or_none()
+
+            return jsonify({
+                'success': True,
+                'holiday_products_data': selection.info()
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 404
+            print(f'Exception "{e}" in get_specific_holiday_products()')
+            abort(404)
+
     @app.route('/collections/misc', methods=['GET'])
     def get_misc_products():
         """
@@ -204,6 +342,43 @@ def create_app(test_config=None):
             # Print exception error as well as abort 500
             print(f'Exception "{e}" in get_misc_products()')
             abort(500)
+
+    @app.route('/collections/misc/<int:id>', methods=['GET'])
+    def get_specific_misc_products(id):
+        """
+        GET request to retrieve a specific miscellaneous
+        product from database.
+        --------------------
+        Tested with:
+            Error:
+                - Auth0 'GET /collections/misc/<int:id>'
+                - test_404_invalid_misc_products
+
+        Returns JSON:
+            - success <boolean>
+            - misc_products_data <list>
+        """
+        try:
+            # Find id from Categories table where
+            # category_name == Misc
+            misc_category_id = Categories.query.filter(
+                Categories.category_name == 'Misc').one_or_none()
+
+            # Query database for only miscellaneous products
+            selection = Products.query.filter(
+                Products.category_id.any(
+                    misc_category_id.id)).filter(
+                        Products.id == id).one_or_none()
+
+            return jsonify({
+                'success': True,
+                'misc_products_data': selection.info()
+            })
+
+        except Exception as e:
+            # Print exception error as well as abort 404
+            print(f'Exception "{e}" in get_specific_misc_products()')
+            abort(404)
 
     # TODO Add '/products' endpoint GET request
     @app.route('/products', methods=['GET'])
