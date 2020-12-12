@@ -345,7 +345,30 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(
             data['message'], f'Product ID: {9999999999999} does not exist.')
 
-    # TODO Add tests for '/search' endpoint
+    def test_get_search_results(self):
+        """Test get_search_results() GET /search?q=Mens+Summer+Blue+Tee"""
+        # Test the following:
+        #   - Search results are valid
+        #   - Response is 200
+
+        res = self.client().get(f'/search?q=Mens+Summer+Blue+Tee')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+    def test_404_search_results(self):
+        """Test get_search_results() GET /search?q=Invalid+Search+Term"""
+        # Test the following:
+        #   - Invalid search term response is 404
+        search_term = 'Invalid Search Term'
+        res = self.client().get(f'/search?q=Invalid+Search+Term')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'],
+                         f'No product with the search term: {search_term}')
 
     # TODO Add tests for '/login' endpoint
 

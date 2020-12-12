@@ -647,6 +647,50 @@ def create_app(test_config=None):
             abort(422)
 
 # TODO Add '/search' for searching products
+    @app.route('/search', methods=['GET'])
+    def get_search_results():
+        """
+        GET request to search for a product from the database.
+        --------------------
+        Tested with:
+            Success:
+                - Postman 'GET /search?q=Mens+Summer+Blue+Tee'
+                - test_get_search_results
+            Error:
+                - test_404_get_search_results
+
+        Returns JSON:
+            - success <boolean>
+            - search_results <list>
+        """
+        search_term = request.args.get('q')
+
+        if search_term:
+            search_results = Products.query.filter(
+                Products.product_name.ilike(f'%{search_term}%')).all()
+
+            if not search_results:
+                # If search term is not provided, abort 404
+                abort(404,
+                      {'message':
+                       f"No product with the search term: '{search_term}'"})
+
+            products = [product.info() for product in search_results]
+            selection = Products.query.order_by(Products.id).all()
+
+            return jsonify({
+                'success': True,
+                'search_term': search_term,
+                'search_results': products,
+                'total_search_results': len(products),
+                'total_products': len(selection)
+            })
+
+        else:
+            # Search term is None of <class 'NoneType'>
+            return jsonify({
+                'search_term': None
+            })
 
 # Possible endpoint additions
 
