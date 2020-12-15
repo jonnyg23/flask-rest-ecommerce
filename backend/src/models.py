@@ -2,10 +2,16 @@ from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, \
     create_engine, ForeignKey
+from dotenv import load_dotenv, find_dotenv
+import constants
 import json
 import os
 
-database_path = os.environ['DATABASE_URL']
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+database_path = os.environ.get(constants.DATABASE_URL)
 
 db = SQLAlchemy()
 

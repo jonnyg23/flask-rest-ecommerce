@@ -1,13 +1,33 @@
 import os
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, abort, session, redirect, url_for
+from urllib.parse import urlencode
 from sqlalchemy import exc
 import json
 from flask_cors import CORS
+from dotenv import load_dotenv, find_dotenv
+import constants
+from authlib.integrations.flask_client import OAuth
 
-# from .auth.auth import AuthError, requires_auth
+from .auth.auth import AuthError, requires_auth, get_token_auth_header,\
+    verify_decode_jwt
 from models import db_drop_and_create_all, setup_db, db, Products, \
     Categories, Orders, Order_Details, Payment
 # from models import Shippers, Suppliers
+
+# Import environment variables
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+database_path = os.environ.get(constants.DATABASE_URL)
+auth0_callback_url = os.environ.get(constants.AUTH0_CALLBACK_URL)
+auth0_client_id = os.environ.get(constants.AUTH0_CLIENT_ID)
+auth0_client_secret = os.environ.get(constants.AUTH0_CLIENT_SECRET)
+auth0_domain = os.environ.get(constants.AUTH0_DOMAIN)
+auth0_base_url = 'https://' + auth0_domain
+auth0_api_audience = os.environ.get(constants.AUTH0_API_AUDIENCE)
+algorithms = os.environ.get(constants.ALGORITHMS)
+flask_secret_key = os.environ.get(constants.SECRET_KEY)
 
 # ----------------------------------------------------------------------------#
 # Custom Methods
@@ -38,8 +58,65 @@ def create_app(test_config=None):
 
     # Create and configure the application
     app = Flask(__name__)
+    app.secret_key = flask_secret_key
     setup_db(app)
     CORS(app)
+
+    oauth = OAuth(app)
+    auth0 = oauth.register(
+        'auth0', client_id=auth0_client_id,
+        client_secret=auth0_client_secret,
+        api_base_url=auth0_base_url,
+        access_token_url=auth0_base_url + '/oauth/token',
+        authorize_url=auth0_base_url + '/authorize',
+        client_kwargs={'scope': 'openid profile email'}
+    )
+
+    # TODO Forward URL Segments from Client to server
+    @app.route('/', methods=['GET'])
+    def index():
+        if constants.PROFILE_KEY in session:
+            print(f'{json.dumps(session[constants.JWT_PAYLOAD])}')
+            print('--------SEPARATE---------')
+            print(f'{json.dumps(session[constants.PROFILE_KEY])}')
+
+            token = get_token_auth_header()
+            print(f'{token}')
+
+        print('-----THE REST-------')
+
+        return jsonify({
+            'success': True,
+            'message': 'Homepage'
+        })
+
+    @app.route('/callback', methods=['GET'])
+    def callback():
+        auth0.authorize_access_token()
+        response = auth0.get('userinfo')
+        user_data = response.json()
+
+        session[constants.JWT_PAYLOAD] = user_data
+        session[constants.PROFILE_KEY] = {
+            'user_id': user_data['sub'],
+            'name': user_data['name'],
+            'picture': user_data['picture']
+        }
+        return redirect('/')
+
+    @app.route('/login', methods=['GET'])
+    def login():
+        return auth0.authorize_redirect(
+            redirect_uri=auth0_callback_url,
+            audience=auth0_api_audience)
+
+    @app.route('/logout', methods=['GET'])
+    def logout():
+        session.clear()
+        return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(
+            {'returnTo': url_for('home', _external=True),
+             'client_id': auth0_client_id}
+        ))
 
     @app.route('/collections', methods=['GET'])
     def get_category_info():
@@ -465,7 +542,7 @@ def create_app(test_config=None):
                         f'Product ID: {product_id} does not exist.'})
 
     @app.route('/products', methods=['POST'])
-    # @requires_auth('post:products')
+    @requires_auth('post:products')
     def post_products(payload):
         """
         POST request to add a new product to database.
@@ -538,7 +615,7 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/products/<int:product_id>', methods=['PATCH'])
-    # @requires_auth('patch:products')
+    @requires_auth('patch:products')
     def patch_products(payload, product_id):
         """
         PATCH request to edit a product from the database.
@@ -605,7 +682,7 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/products/<int:product_id>', methods=['DELETE'])
-    # @requires_auth('delete:products')
+    @requires_auth('delete:products')
     def delete_products(payload, product_id):
         """
         DELETE request to remove a product from the database.
@@ -646,7 +723,6 @@ def create_app(test_config=None):
             db.session.rollback()
             abort(422)
 
-# TODO Add '/search' for searching products
     @app.route('/search', methods=['GET'])
     def get_search_results():
         """
@@ -693,8 +769,6 @@ def create_app(test_config=None):
             })
 
 # Possible endpoint additions
-
-# TODO Add '/login' for auth
 
 # TODO Add '/<int:customerID>/checkouts/<int:orderID>'
 

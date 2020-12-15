@@ -4,10 +4,21 @@ from flask import request, abort
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
+from dotenv import load_dotenv, find_dotenv
+import constants
 
-auth0_domain = os.environ['AUTH0_DOMAIN']
-algorithms = os.environ['ALGORITHMS']
-api_audience = os.environ['API_AUDIENCE']
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+database_path = os.environ.get(constants.DATABASE_URL)
+auth0_callback_url = os.environ.get(constants.AUTH0_CALLBACK_URL)
+auth0_client_id = os.environ.get(constants.AUTH0_CLIENT_ID)
+auth0_client_secret = os.environ.get(constants.AUTH0_CLIENT_SECRET)
+auth0_domain = os.environ.get(constants.AUTH0_DOMAIN)
+auth0_base_url = 'https://' + auth0_domain
+auth0_api_audience = os.environ.get(constants.AUTH0_API_AUDIENCE)
+algorithms = os.environ.get(constants.ALGORITHMS)
 
 # ----------------------------------------------------------------------------#
 # AuthError Exception
