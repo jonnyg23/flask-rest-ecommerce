@@ -1,10 +1,8 @@
-from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, \
     create_engine, ForeignKey
 from dotenv import load_dotenv, find_dotenv
 import constants
-import json
 import os
 
 ENV_FILE = find_dotenv()
