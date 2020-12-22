@@ -1,12 +1,12 @@
 import os
-from flask import Flask, request, jsonify, abort, session, redirect, url_for
+from flask import Flask, request, jsonify, abort, redirect, url_for, \
+    render_template
 from urllib.parse import urlencode
 from sqlalchemy import exc
 import json
 from flask_cors import CORS
 from dotenv import load_dotenv, find_dotenv
 import constants
-from authlib.integrations.flask_client import OAuth
 
 from .auth.auth import AuthError, requires_auth, get_token_auth_header,\
     verify_decode_jwt
@@ -20,14 +20,6 @@ if ENV_FILE:
     load_dotenv(ENV_FILE)
 
 database_path = os.environ.get(constants.DATABASE_URL)
-auth0_callback_url = os.environ.get(constants.AUTH0_CALLBACK_URL)
-auth0_client_id = os.environ.get(constants.AUTH0_CLIENT_ID)
-auth0_client_secret = os.environ.get(constants.AUTH0_CLIENT_SECRET)
-auth0_domain = os.environ.get(constants.AUTH0_DOMAIN)
-auth0_base_url = 'https://' + auth0_domain
-auth0_api_audience = os.environ.get(constants.AUTH0_API_AUDIENCE)
-algorithms = os.environ.get(constants.ALGORITHMS)
-flask_secret_key = os.environ.get(constants.SECRET_KEY)
 
 # ----------------------------------------------------------------------------#
 # Custom Methods
@@ -58,65 +50,16 @@ def create_app(test_config=None):
 
     # Create and configure the application
     app = Flask(__name__)
-    app.secret_key = flask_secret_key
     setup_db(app)
     CORS(app)
-
-    oauth = OAuth(app)
-    auth0 = oauth.register(
-        'auth0', client_id=auth0_client_id,
-        client_secret=auth0_client_secret,
-        api_base_url=auth0_base_url,
-        access_token_url=auth0_base_url + '/oauth/token',
-        authorize_url=auth0_base_url + '/authorize',
-        client_kwargs={'scope': 'openid profile email'}
-    )
 
     # TODO Forward URL Segments from Client to server
     @app.route('/', methods=['GET'])
     def index():
-        if constants.PROFILE_KEY in session:
-            print(f'{json.dumps(session[constants.JWT_PAYLOAD])}')
-            print('--------SEPARATE---------')
-            print(f'{json.dumps(session[constants.PROFILE_KEY])}')
-
-            token = get_token_auth_header()
-            print(f'{token}')
-
-        print('-----THE REST-------')
-
         return jsonify({
             'success': True,
             'message': 'Homepage'
         })
-
-    @app.route('/callback', methods=['GET'])
-    def callback():
-        auth0.authorize_access_token()
-        response = auth0.get('userinfo')
-        user_data = response.json()
-
-        session[constants.JWT_PAYLOAD] = user_data
-        session[constants.PROFILE_KEY] = {
-            'user_id': user_data['sub'],
-            'name': user_data['name'],
-            'picture': user_data['picture']
-        }
-        return redirect('/')
-
-    @app.route('/login', methods=['GET'])
-    def login():
-        return auth0.authorize_redirect(
-            redirect_uri=auth0_callback_url,
-            audience=auth0_api_audience)
-
-    @app.route('/logout', methods=['GET'])
-    def logout():
-        session.clear()
-        return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(
-            {'returnTo': url_for('home', _external=True),
-             'client_id': auth0_client_id}
-        ))
 
     @app.route('/collections', methods=['GET'])
     def get_category_info():
