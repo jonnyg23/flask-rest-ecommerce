@@ -8,7 +8,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv, find_dotenv
 import constants
 
-from .auth.auth import AuthError, requires_auth, get_token_auth_header,\
+from auth.auth import AuthError, requires_auth, get_token_auth_header,\
     verify_decode_jwt
 from models import db_drop_and_create_all, setup_db, db, Products, \
     Categories, Orders, Order_Details, Payment
@@ -229,7 +229,7 @@ def create_app(test_config=None):
 
         except Exception as e:
             # Print exception error as well as abort 500
-            print(f'Exception "{e}" in get_mens_apparel()')
+            print(f'Exception "{e}" in get_womens_apparel()')
             abort(500)
 
     @app.route('/collections/womens-apparel/<int:product_id>', methods=['GET'])
@@ -692,7 +692,7 @@ def create_app(test_config=None):
                 # If search term is not provided, abort 404
                 abort(404,
                       {'message':
-                       f"No product with the search term: '{search_term}'"})
+                       f"No product with the search term: {search_term}"})
 
             products = [product.info() for product in search_results]
             selection = Products.query.order_by(Products.id).all()
