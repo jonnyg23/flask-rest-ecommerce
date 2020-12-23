@@ -161,7 +161,7 @@ def verify_decode_jwt(token):
                 token,
                 rsa_key,
                 algorithms=algorithms,
-                audience=api_audience,
+                audience=auth0_api_audience,
                 issuer='https://' + auth0_domain + '/'
             )
 
