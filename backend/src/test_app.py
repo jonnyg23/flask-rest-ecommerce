@@ -368,7 +368,7 @@ class EcommerceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'],
-                         f'No product with the search term: {search_term}')
+                         (f"No product with the search term: {search_term}"))
 
     # TODO Add tests for '/login' endpoint
 
