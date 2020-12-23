@@ -33,3 +33,15 @@
 .result-block-container .result-block {
   opacity: 1;
 }
+
+.fixed {
+  position: relative;
+  width: 15%;
+  float: left;
+  background: #c8cace;
+}
+
+.flex-item {
+  flex-grow: 1;
+  float: right;
+}
