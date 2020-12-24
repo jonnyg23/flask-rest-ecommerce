@@ -49,17 +49,14 @@ def error_message(error, text):
 def create_app(test_config=None):
 
     # Create and configure the application
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='../../build', static_url_path='/')
     setup_db(app)
     CORS(app)
 
     # TODO Forward URL Segments from Client to server
     @app.route('/', methods=['GET'])
     def index():
-        return jsonify({
-            'success': True,
-            'message': 'Homepage'
-        })
+        return app.send_static_file('index.html')
 
     @app.route('/collections', methods=['GET'])
     def get_category_info():
@@ -780,4 +777,4 @@ def create_app(test_config=None):
 app = create_app()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
