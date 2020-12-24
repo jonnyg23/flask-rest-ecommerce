@@ -11,11 +11,13 @@
 
   <h2 align="center">Flask E-commerce REST API</h2>
 
+  <h4 align="center">The project is hosted through Heroku at this link:</h4>
+    <h4 align="center"><a href="https://flask-ecommerce-rest-api.herokuapp.com/">https://flask-ecommerce-rest-api.herokuapp.com/</a></h4>
+
   <p align="center">
     A structured E-commerce REST API built to be the foundational backbone of a production-grade web app.
     <br />
-    <p>The project is hosted through Heroku at this link: 
-    <a href="https://flask-ecommerce-rest-api.herokuapp.com/">https://flask-ecommerce-rest-api.herokuapp.com/</a>
+    <p>
     <br />
     <!--
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce"><strong>Explore the docs »</strong></a>
@@ -164,8 +166,8 @@ To set up Auth0 for this project, refer to the following steps:
    enabled in the API settings.
 5. In the API's `Permissions` tab, add the following permissions:  
 
-| post:products   | Adds new products | 
-|-----------------|-------------------|
+| post:products   | Adds new products |
+| --------------- | ----------------- |
 | patch:products  | Edits products    |
 | delete:products | Deletes products  |
 
@@ -258,22 +260,22 @@ The API will return the five error type default responses when requests fail (un
 
 Below is a table of the methods allowed for each of the 3 endpoints.
 
-| Endpoints                     |     | Methods |       |        |
-| ----------------------------- | --- | ------- | ----- | ------ |
-|                               | GET | POST    | PATCH | DELETE |
-| /                             | X   |         |       |        |
-| /collections                  | X   |         |       |        |
-| /collections/category_id      | X   |         |       |        |
-| /collections/mens-apparel     | X   |         |       |        |
-| /collections/mens-apparel/product_id     | X   |         |       |        |
-| /collections/womens-apparel   | X   |         |       |        |
-| /collections/womens-apparel/product_id     | X   |         |       |        |
-| /collections/holiday          | X   |         |       |        |
-| /collections/holiday/product_id       | X   |         |       |        |
-| /collections/misc             | X   |         |       |        |
-| /collections/misc/product_id  | X   |         |       |        |
-| /products                     | X   | X       | X     | X      |
-| /products/product_id          | X   |         |       |        |
+| Endpoints                              |     | Methods |       |        |
+| -------------------------------------- | --- | ------- | ----- | ------ |
+|                                        | GET | POST    | PATCH | DELETE |
+| /                                      | X   |         |       |        |
+| /collections                           | X   |         |       |        |
+| /collections/category_id               | X   |         |       |        |
+| /collections/mens-apparel              | X   |         |       |        |
+| /collections/mens-apparel/product_id   | X   |         |       |        |
+| /collections/womens-apparel            | X   |         |       |        |
+| /collections/womens-apparel/product_id | X   |         |       |        |
+| /collections/holiday                   | X   |         |       |        |
+| /collections/holiday/product_id        | X   |         |       |        |
+| /collections/misc                      | X   |         |       |        |
+| /collections/misc/product_id           | X   |         |       |        |
+| /products                              | X   | X       | X     | X      |
+| /products/product_id                   | X   |         |       |        |
 
 ## Roadmap
 
