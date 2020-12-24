@@ -14,6 +14,9 @@
   <p align="center">
     A structured E-commerce REST API built to be the foundational backbone of a production-grade web app.
     <br />
+    <p>The project is hosted through Heroku at this link: 
+    <a href="https://flask-ecommerce-rest-api.herokuapp.com/">https://flask-ecommerce-rest-api.herokuapp.com/</a>
+    <br />
     <!--
     <a href="https://github.com/jonnyg23/flask-rest-ecommerce"><strong>Explore the docs »</strong></a>
     <br />
@@ -42,8 +45,8 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installing-backend-dependencies">Installing Backend Dependencies</a></li>
+        <li><a href="#installing-frontend-dependencies">Installing Frontend Dependencies</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -70,7 +73,8 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)-->
 
 This project is the Capstone Project for the Udacity Full-Stack Web
-Developer Nanodegree program. The purpose of this REST API is to develop a template for the creation of custom modern E-commerce websites.
+Developer Nanodegree program. The purpose of this REST API is to develop a
+template for the creation of custom modern E-commerce websites.
 
 
 A list of helpful resources are listed in the acknowledgements.
@@ -78,49 +82,97 @@ A list of helpful resources are listed in the acknowledgements.
 
 ### Built With
 
-* [Python-3.7](https://www.python.org/)
+* [Python-3.7.9](https://www.python.org/)
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
 * [Auth0](https://auth0.com/)
-* [Docker](https://www.docker.com/)
 * [Heroku](https://www.heroku.com/)
 * [Postman](https://www.postman.com/)
+* [React.js](https://reactjs.org/)
 
 ## Getting Started
-<!--
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
--->
 
-TODO add getting started
-### Prerequisites
-<!--
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
--->
-TODO add prerequisites
-### Installation
-<!--
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
--->
-TODO add installation
+### Installing Backend Dependencies
 
+#### Python 3.7
+
+Follow the instructions to install **Python 3.7.9** for your platform in the
+[python docs](https://www.python.org/downloads/release/python-379/)
+
+#### PostgreSQL
+
+Follow the instructions to install **PostgreSQL** locally for your platform on
+the [PostgreSQL website](https://www.postgresql.org/download/)
+
+#### Virtual Environment
+
+It is recommended to work within a virtual environment using venv for this
+project. This keeps dependencies organized for each project. Instructions for
+setting this up can be found
+[here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+#### PIP Dependencies
+
+Once the virtual environment is setup and running, install the pip dependencies
+by navigating to the root directory of the project and running:  
+
+```bash
+pip install -r requirements.txt
+```
+This will install all required packages that are used for the Flask backend.
+
+##### Key Dependencies
+
+* [Flask](http://flask.pocoo.org/) 
+* [SQLAlchemy](https://www.sqlalchemy.org/)
+* [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#)
+
+### Installing Frontend Dependencies
+
+#### Setup NPM
+
+Follow the instructions to install `npm` at the following
+[link](https://www.npmjs.com/get-npm)
+
+#### Node Modules
+
+While in the root directory of the project, run the following:  
+
+```bash
+npm install
+```
+This will install the `node-modules` needed by referencing the `package.json`
+file.
+
+### Setting up Auth0
+
+To set up Auth0 for this project, refer to the following steps:  
+
+1. Sign up for a free account on the [Auth0 website](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22docs%22%7D).
+2. Next, create a new **single-page application** with the name
+   **Flask-Ecommerce**. 
+3. In Application settings, input your root URL to **Allowed Callback URLs**,
+   **Allowed Logout URLs**, and **Allowed 
+   Web Origins**. For example:  
+   a. `http://localhost:3000` on all of the above for
+   local hosting, or  
+   b. `https://HEROKU_APP_NAME.herokuapp.com` for your
+   Heroku deployment.
+4. Create an API in Auth0 with `RBAC` and `Add Permissions in the Access Token`
+   enabled in the API settings.
+5. In the API's `Permissions` tab, add the following permissions:  
+
+| post:products   | Adds new products | 
+|-----------------|-------------------|
+| patch:products  | Edits products    |
+| delete:products | Deletes products  |
+
+6. Finally, add the `Role` of **Admin** to the API that has all of the above
+   permissions. Add `Users` with the **Admin** role in order for them to be
+   authenticated to use the above HTTP requests.
+
+   
 ## Usage
 <!--
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
