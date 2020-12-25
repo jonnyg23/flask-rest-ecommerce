@@ -1,4 +1,5 @@
-export DATABASE_URL='postgres://ecowttjwpvooaj:b9ec2a42d8172128a0441c670184c902782422b46001236b41f01f150ce1d54a@ec2-100-25-231-126.compute-1.amazonaws.com:5432/d61tie8n7tgefg'
+export DATABASE_URL='postgres://THEJAGSTER@localhost:5432/flask-ecommerce'
+# The postgres database URL for heroku deployment instead if not locally hosted
 export AUTH0_DOMAIN='jg23-dev.us.auth0.com'
 export ALGORITHMS=['RS256']
 export AUTH0_API_AUDIENCE='ecommerce'
