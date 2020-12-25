@@ -293,7 +293,7 @@ Below is a table of the methods allowed for each of the 3 endpoints.
 | /products/product_id                   | X   |         |       |        |
 
 ### Endpoint Table of Contents
-TODO Fix hyperlinks
+
 1. Collections:
     * [GET /collections](#get-collections)
     * [GET /collections/category_id](#get-collections-id)
