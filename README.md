@@ -61,6 +61,7 @@
         <li><a href="#getting-started-api">Getting Started API</a></li>
         <li><a href="#error-handling">Error Handling</a></li>
         <li><a href="#table-of-endpoints">Table of Endpoints</a></li>
+        <li><a href="#endpoint-table-of-contents">Endpoint Table of Contents</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -226,6 +227,8 @@ Run the tests following these steps:
 
    ```bash
    # This will run the flask app on port 5000
+   # On Linux: use `export`
+   # On Windows: use `set`
    export FLASK_APP=app.py
    export FLASK_ENV=development
    flask run
@@ -288,6 +291,504 @@ Below is a table of the methods allowed for each of the 3 endpoints.
 | /collections/misc/product_id           | X   |         |       |        |
 | /products                              | X   | X       | X     | X      |
 | /products/product_id                   | X   |         |       |        |
+
+### Endpoint Table of Contents
+TODO Fix hyperlinks
+1. Collections:
+    * [GET /collections](#get-collections)
+    * [GET /collections/category_id](#get-collections-id)
+    * [GET /collections/mens-apparel](#get-collections-mens-apparel)
+    * [GET /collections/mens-apparel/product_id](#get-collections-mens-apparel-id)
+    * [GET /collections/womens-apparel](#get-collections-womens-apparel)
+    * [GET /collections/womens-apparel/product_id](#get-collections-womens-apparel-id)
+    * [GET /collections/holiday](#get-collections-holiday)
+    * [GET /collections/holiday/product_id](#get-collections-holiday-id)
+    * [GET /collections/misc](#get-collections-misc)
+    * [GET /collections/misc/product_id](#get-collections-misc-id)
+2. Products:
+    * [GET /products](#get-products)
+    * [GET /products/product_id](#get-products-id)
+3. Index:
+    * [GET /](#get-index)
+
+# <a name="get-collections"></a>
+### GET /collections
+
+Retrieves category collections from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections
+```
+
+#### Example Response
+
+```js
+{
+  "category_info": [
+    {
+      "active": true, 
+      "category_name": "Mens-Apparel", 
+      "description": "This category is for mens apparel", 
+      "id": 1, 
+      "picture": "static/images/categories/mens_apparel"
+    }, 
+    {
+      "active": true, 
+      "category_name": "Womens-Apparel", 
+      "description": "This category is for womens apparel", 
+      "id": 2, 
+      "picture": "static/images/categories/womens_apparel"
+    }, 
+    {
+      "active": true, 
+      "category_name": "Holiday", 
+      "description": "This category is for holiday items", 
+      "id": 3, 
+      "picture": "static/images/categories/holiday"
+    }, 
+    {
+      "active": true, 
+      "category_name": "Misc", 
+      "description": "This category is for miscellaneous items", 
+      "id": 4, 
+      "picture": "static/images/categories/misc"
+    }
+  ], 
+  "success": true
+}
+```
+
+# <a name="get-collections-id"></a>
+### GET /collections/category_id
+
+Retrieves specific category collection from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/1
+```
+
+#### Example Response
+
+```js
+{
+  "category_info": {
+    "active": true, 
+    "category_name": "Mens-Apparel", 
+    "description": "This category is for mens apparel", 
+    "id": 1, 
+    "picture": "static/images/categories/mens_apparel"
+  }, 
+  "success": true
+}
+```
+
+# <a name="get-collections-mens-apparel"></a>
+### GET /collections/mens-apparel
+
+Retrieves mens-apparel collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/mens-apparel
+```
+
+#### Example Response
+
+```js
+{{
+  "mens_apparel_data": [
+    {
+      "category_id": [
+        1
+      ], 
+      "id": 1, 
+      "msrp": 25.0, 
+      "picture": "static/images/products/1", 
+      "product_description": "This is a tapered mens summer blue t-shirt.", 
+      "product_name": "Mens Summer Blue Tee"
+    }, 
+    {
+      "category_id": [
+        1, 
+        3
+      ], 
+      "id": 3, 
+      "msrp": 40.0, 
+      "picture": "static/images/products/3", 
+      "product_description": "This is a husky red mens holiday sweater.", 
+      "product_name": "Mens Holiday Sweater"
+    }, 
+    {
+      "category_id": [
+        1, 
+        2, 
+        3, 
+        4
+      ], 
+      "id": 4, 
+      "msrp": 12.0, 
+      "picture": "static/images/products/4", 
+      "product_description": "This is a pair of black holiday unisex socks.", 
+      "product_name": "Holiday Unisex Socks"
+    }
+  ], 
+  "success": true
+}
+```
+
+# <a name="get-collections-mens-apparel-id"></a>
+### GET /collections/mens-apparel/product_id
+
+Retrieves specific mens-apparel collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/mens-apparel/1
+```
+
+#### Example Response
+
+```js
+{
+  "mens_apparel_data": {
+    "category_id": [
+      1
+    ], 
+    "id": 1, 
+    "msrp": 25.0, 
+    "picture": "static/images/products/1", 
+    "product_description": "This is a tapered mens summer blue t-shirt.", 
+    "product_name": "Mens Summer Blue Tee"
+  }, 
+  "success": true
+}
+```
+
+# <a name="get-collections-womens-apparel"></a>
+### GET /collections/womens-apparel
+
+Retrieves womens-apparel collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/womens-apparel
+```
+
+#### Example Response
+
+```js
+{
+  "success": true, 
+  "womens_apparel_data": [
+    {
+      "category_id": [
+        2
+      ], 
+      "id": 2, 
+      "msrp": 40.0, 
+      "picture": "static/images/products/2", 
+      "product_description": "This is a white wool womens sweater", 
+      "product_name": "Womens Sweater"
+    }, 
+    {
+      "category_id": [
+        1, 
+        2, 
+        3, 
+        4
+      ], 
+      "id": 4, 
+      "msrp": 12.0, 
+      "picture": "static/images/products/4", 
+      "product_description": "This is a pair of black holiday unisex socks.", 
+      "product_name": "Holiday Unisex Socks"
+    }, 
+    {
+      "category_id": [
+        2, 
+        4
+      ], 
+      "id": 5, 
+      "msrp": 120.0, 
+      "picture": "static/images/products/5", 
+      "product_description": "This is a womens watch in gold.", 
+      "product_name": "Womens Watch"
+    }
+  ]
+}
+```
+
+# <a name="get-collections-womens-apparel-id"></a>
+### GET /collections/womens-apparel/product_id
+
+Retrieves specific womens-apparel collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/womens-apparel/2
+```
+
+#### Example Response
+
+```js
+{
+  "success": true, 
+  "womens_apparel_data": {
+    "category_id": [
+      2
+    ], 
+    "id": 2, 
+    "msrp": 40.0, 
+    "picture": "static/images/products/2", 
+    "product_description": "This is a white wool womens sweater", 
+    "product_name": "Womens Sweater"
+  }
+}
+```
+
+# <a name="get-collections-holiday"></a>
+### GET /collections/holiday
+
+Retrieves holiday collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/holiday
+```
+
+#### Example Response
+
+```js
+{
+  "holiday_products_data": [
+    {
+      "category_id": [
+        1, 
+        3
+      ], 
+      "id": 3, 
+      "msrp": 40.0, 
+      "picture": "static/images/products/3", 
+      "product_description": "This is a husky red mens holiday sweater.", 
+      "product_name": "Mens Holiday Sweater"
+    }, 
+    {
+      "category_id": [
+        1, 
+        2, 
+        3, 
+        4
+      ], 
+      "id": 4, 
+      "msrp": 12.0, 
+      "picture": "static/images/products/4", 
+      "product_description": "This is a pair of black holiday unisex socks.", 
+      "product_name": "Holiday Unisex Socks"
+    }
+  ], 
+  "success": true
+}
+```
+
+# <a name="get-collections-holiday-id"></a>
+### GET /collections/holiday/product_id
+
+Retrieves specific holiday collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/holiday/3
+```
+
+#### Example Response
+
+```js
+{
+  "holiday_products_data": {
+    "category_id": [
+      1, 
+      3
+    ], 
+    "id": 3, 
+    "msrp": 40.0, 
+    "picture": "static/images/products/3", 
+    "product_description": "This is a husky red mens holiday sweater.", 
+    "product_name": "Mens Holiday Sweater"
+  }, 
+  "success": true
+}
+```
+
+# <a name="get-collections-misc"></a>
+### GET /collections/misc
+
+Retrieves miscellaneous collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/misc
+```
+
+#### Example Response
+
+```js
+{
+  "misc_products_data": [
+    {
+      "category_id": [
+        1, 
+        2, 
+        3, 
+        4
+      ], 
+      "id": 4, 
+      "msrp": 12.0, 
+      "picture": "static/images/products/4", 
+      "product_description": "This is a pair of black holiday unisex socks.", 
+      "product_name": "Holiday Unisex Socks"
+    }, 
+    {
+      "category_id": [
+        2, 
+        4
+      ], 
+      "id": 5, 
+      "msrp": 120.0, 
+      "picture": "static/images/products/5", 
+      "product_description": "This is a womens watch in gold.", 
+      "product_name": "Womens Watch"
+    }
+  ], 
+  "success": true
+}
+
+```
+
+# <a name="get-collections-misc-id"></a>
+### GET /collections/misc/product_id
+
+Retrieves specific miscellaneous collection of products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/collections/misc/4
+```
+
+#### Example Response
+
+```js
+{
+  "misc_products_data": {
+    "category_id": [
+      1, 
+      2, 
+      3, 
+      4
+    ], 
+    "id": 4, 
+    "msrp": 12.0, 
+    "picture": "static/images/products/4", 
+    "product_description": "This is a pair of black holiday unisex socks.", 
+    "product_name": "Holiday Unisex Socks"
+  }, 
+  "success": true
+}
+```
+
+# <a name="get-products"></a>
+### GET /products
+
+Retrieves all products from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/products
+```
+
+#### Example Response
+
+```js
+{
+  "products": [
+    {
+      "category_id": [
+        1
+      ], 
+      "id": 1, 
+      "msrp": 25.0, 
+      "picture": "static/images/products/1", 
+      "product_description": "This is a tapered mens summer blue t-shirt.", 
+      "product_name": "Mens Summer Blue Tee"
+    }, 
+    {
+      "category_id": [
+        2
+      ], 
+      "id": 2, 
+      "msrp": 40.0, 
+      "picture": "static/images/products/2", 
+      "product_description": "This is a white wool womens sweater", 
+      "product_name": "Womens Sweater"
+    }, 
+    {
+      "category_id": [
+        1, 
+        3
+      ], 
+      "id": 3, 
+      "msrp": 40.0, 
+      "picture": "static/images/products/3", 
+      "product_description": "This is a husky red mens holiday sweater.", 
+      "product_name": "Mens Holiday Sweater"
+    }, 
+    {
+      "category_id": [
+        1, 
+        2, 
+        3, 
+        4
+      ], 
+      "id": 4, 
+      "msrp": 12.0, 
+      "picture": "static/images/products/4", 
+      "product_description": "This is a pair of black holiday unisex socks.", 
+      "product_name": "Holiday Unisex Socks"
+    }, 
+    {
+      "category_id": [
+        2, 
+        4
+      ], 
+      "id": 5, 
+      "msrp": 120.0, 
+      "picture": "static/images/products/5", 
+      "product_description": "This is a womens watch in gold.", 
+      "product_name": "Womens Watch"
+    }
+  ], 
+  "success": true
+}
+```
+
+# <a name="get-products-id"></a>
+### GET /products/product_id
+
+Retrieves specific product from database:
+```bash
+$ curl -X GET http://127.0.0.1:5000/products/2
+```
+
+#### Example Response
+
+```js
+{
+  "products": {
+    "category_id": [
+      2
+    ], 
+    "id": 2, 
+    "msrp": 40.0, 
+    "picture": "static/images/products/2", 
+    "product_description": "This is a white wool womens sweater", 
+    "product_name": "Womens Sweater"
+  }, 
+  "success": true
+}
+```
+
+# <a name="get-index"></a>
+### GET /
+
+Redirects you to the `index.html` file for the frontend:
+```bash
+$ curl -X GET http://127.0.0.1:5000/
+```
+
+#### Example Response
+
+```
+This will return the `index.html` file.
+```
 
 ## Roadmap
 
