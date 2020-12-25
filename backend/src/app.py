@@ -259,7 +259,7 @@ def create_app(test_config=None):
 
             return jsonify({
                 'success': True,
-                'womens_apparel_data': selection.info
+                'womens_apparel_data': selection.info()
             })
 
         except Exception as e:
