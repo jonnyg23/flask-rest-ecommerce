@@ -121,7 +121,7 @@ Once the virtual environment is setup and running, install the pip dependencies
 by navigating to the root directory of the project and running:  
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 This will install all required packages that are used for the Flask backend.
 
@@ -174,6 +174,18 @@ To set up Auth0 for this project, refer to the following steps:
 6. Finally, add the `Role` of **Admin** to the API that has all of the above
    permissions. Add `Users` with the **Admin** role in order for them to be
    authenticated to use the above HTTP requests.
+
+#### Roles (Admin & Public)
+
+- **Admin**: This role includes permissions for all endpoints in the **Table of
+  Endpoints**, as well as the `POST`, `PATCH`, & `DELETE` requests shown above in
+  `Step 5`.
+- **Public**: This role includes only `GET` request permissions, as this will be
+  for the users of the world to use. This role excludes any rights to
+  manipulating the PostgreSQL database.
+
+These Roles with their corresponding JWT tokens are given in the root
+directory file called `setup.sh`.
 
 ### Setting up Environment Variables
 
