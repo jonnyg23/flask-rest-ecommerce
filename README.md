@@ -167,8 +167,9 @@ To set up Auth0 for this project, refer to the following steps:
    enabled in the API settings.
 5. In the API's `Permissions` tab, add the following permissions:  
 
-| post:products   | Adds new products |
+| Permission      | Description       |
 | --------------- | ----------------- |
+| post:products   | Adds new products |
 | patch:products  | Edits products    |
 | delete:products | Deletes products  |
 
@@ -184,9 +185,6 @@ To set up Auth0 for this project, refer to the following steps:
 - **Public**: This role includes only `GET` request permissions, as this will be
   for the users of the world to use. This role excludes any rights to
   manipulating the PostgreSQL database.
-
-These Roles with their corresponding JWT tokens are given in the root
-directory file called `setup.sh`.
 
 ### Setting up Environment Variables
 
