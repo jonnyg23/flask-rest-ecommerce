@@ -5,6 +5,9 @@ const Welcome = () => (
         <h2>
             Welcome to Flask-Ecommerce!
         </h2>
+        <h4>
+            Frontend UI is currently under development. However, the backend API is functional.
+        </h4>
         <p>
             This is the Flask-Ecommerce REST Website template.
         </p>
