@@ -16,7 +16,6 @@ const Products = () => {
         const response = await fetch(requestUrl);
         const json = await response.json();
         updateData(json);
-        console.log(json);
       }
       fetchData();
     }, [requestUrl]);
