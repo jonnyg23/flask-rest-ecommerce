@@ -16,10 +16,10 @@ const NavBar = () => {
               <Grid item xs={1}>
                 <StorefrontIcon fontSize="large" />
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={7}>
                 <MainNav />
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={3}>
                 <AuthNav />
               </Grid>
               <Grid item xs={1}>

@@ -8,22 +8,34 @@ const MainNav = () => {
       <Grid
         container
         direction="row"
-        justify="center"
+        justify="flex-start"
         alignItems="center"
         spacing={4}
       >
         <Grid item>
-          <NavLink to="/" exact>
+          <NavLink
+            to="/"
+            exact
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Typography>Home</Typography>
           </NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/collections" exact>
+          <NavLink
+            to="/collections"
+            exact
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Typography>Products</Typography>
           </NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/contact" exact>
+          <NavLink
+            to="/contact"
+            exact
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Typography>Contact Us</Typography>
           </NavLink>
         </Grid>
