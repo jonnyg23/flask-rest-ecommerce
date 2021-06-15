@@ -1,33 +1,35 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
+import { Box, Grid, Typography } from "@material-ui/core";
 
-const MainNav = () => (
-  <div className="navbar-nav mr-auto">
-    <NavLink
-      to="/"
-      exact
-      className="nav-link"
-      activeClassName="router-link-exact-active"
-    >
-      Home
-    </NavLink>
-    <NavLink
-      to="/collections"
-      exact
-      className="nav-link"
-      activeClassName="router-link-exact-active"
-    >
-      Products
-    </NavLink>
-    <NavLink
-      to="/contact"
-      exact
-      className="nav-link"
-      activeClassName="router-link-exact-active"
-    >
-      Contact Us
-    </NavLink>
-  </div>
-);
+const MainNav = () => {
+  return (
+    <Box display="flex">
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        spacing={4}
+      >
+        <Grid item>
+          <NavLink to="/" exact>
+            <Typography>Home</Typography>
+          </NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/collections" exact>
+            <Typography>Products</Typography>
+          </NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/contact" exact>
+            <Typography>Contact Us</Typography>
+          </NavLink>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
 
 export default MainNav;

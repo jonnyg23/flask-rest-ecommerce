@@ -1,32 +1,39 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Box, Container } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
+import defaultTheme from "./themes/default";
+import darkTheme from "./themes/dark";
 import { NavBar, Loading } from "./components";
+import ThemeModeContext from "./context/ThemeModeContext";
 import { Home, Contact, Products, Profile } from "./views";
 import ProtectedRoute from "./auth/protected-route";
 
-import "./app.css";
-
 const App = () => {
   const { isLoading } = useAuth0();
+  const context = useContext(ThemeModeContext);
+  const theme = context.darkMode ? darkTheme : defaultTheme;
 
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    <div id="app" className="d-flex flex-column h-100">
-      <NavBar />
-      <div className="container flex-grow-1">
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/collections" exact component={Products} />
-          <Route path="/contact" exact component={Contact} />
-          <ProtectedRoute path="/profile" component={Profile} />
-        </Switch>
+    <ThemeProvider theme={theme}>
+      <div id="app">
+        <NavBar />
+        <Container>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/collections" exact component={Products} />
+            <Route path="/contact" exact component={Contact} />
+            <ProtectedRoute path="/profile" component={Profile} />
+          </Switch>
+        </Container>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
