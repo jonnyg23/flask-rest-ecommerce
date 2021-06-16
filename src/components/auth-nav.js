@@ -5,7 +5,7 @@ import AuthenticationButton from "./authentication-button";
 import ProfileNav from "./profile-nav";
 
 const AuthNav = () => (
-  <Grid container justify="flex-end" spacing={3}>
+  <Grid container justify="flex-end" alignItems="center" spacing={3}>
     <Grid item>
       <ProfileNav />
     </Grid>
