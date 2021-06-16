@@ -7,6 +7,7 @@ import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import defaultTheme from "./themes/default";
 import darkTheme from "./themes/dark";
 import { NavBar, Loading } from "./components";
+import Footer from "./components/Footer";
 import ThemeModeContext from "./context/ThemeModeContext";
 import { Home, Contact, Products, Profile } from "./views";
 import ProtectedRoute from "./auth/protected-route";
@@ -36,11 +37,16 @@ const App = () => {
   //   )
   // };
 
+  // TODO: Force the parent "Box" to grow to the entire size of the screen so
+  // that the screen will completely turn grey when using dark mode.
+
   return (
     <ThemeProvider theme={theme}>
       <Box
         id="app"
         className={context.darkMode ? classes.lightBox : classes.darkBox}
+        pb={6}
+        flexGrow={1}
       >
         <NavBar />
         <Container>
@@ -52,6 +58,7 @@ const App = () => {
           </Switch>
         </Container>
       </Box>
+      <Footer />
     </ThemeProvider>
   );
 };
