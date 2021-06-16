@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     color: "orange",
   },
   dark: {
-    color: "blue",
+    color: theme.palette.secondary.main,
   },
 }));
 
