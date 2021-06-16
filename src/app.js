@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Box, Container } from "@material-ui/core";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { Container, Box } from "@material-ui/core";
+import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 
 import defaultTheme from "./themes/default";
 import darkTheme from "./themes/dark";
@@ -11,7 +11,17 @@ import ThemeModeContext from "./context/ThemeModeContext";
 import { Home, Contact, Products, Profile } from "./views";
 import ProtectedRoute from "./auth/protected-route";
 
+const useStyles = makeStyles((theme) => ({
+  lightBox: {
+    backgroundColor: theme.palette.grey["A200"],
+  },
+  darkBox: {
+    backgroundColor: "white",
+  },
+}));
+
 const App = () => {
+  const classes = useStyles();
   const { isLoading } = useAuth0();
   const context = useContext(ThemeModeContext);
   const theme = context.darkMode ? darkTheme : defaultTheme;
@@ -20,9 +30,18 @@ const App = () => {
     return <Loading />;
   }
 
+  // const isDarkMode = (contextTheme) => {
+  //   return (
+  //     {contextTheme.darkMode !== true ? }
+  //   )
+  // };
+
   return (
     <ThemeProvider theme={theme}>
-      <div id="app">
+      <Box
+        id="app"
+        className={context.darkMode ? classes.lightBox : classes.darkBox}
+      >
         <NavBar />
         <Container>
           <Switch>
@@ -32,7 +51,7 @@ const App = () => {
             <ProtectedRoute path="/profile" component={Profile} />
           </Switch>
         </Container>
-      </div>
+      </Box>
     </ThemeProvider>
   );
 };
