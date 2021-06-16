@@ -1,8 +1,27 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  activeLink: {
+    textTransform: "none",
+    color: theme.palette.secondary,
+
+    // "&.active": {
+    //   color: theme.palette.secondary,
+    // },
+  },
+  inactiveLink: {
+    textTransform: "none",
+    textDecoration: "none",
+    color: theme.palette.primary.contrastText,
+  },
+}));
 
 const MainNav = () => {
+  const classes = useStyles();
+
   return (
     <Box display="flex">
       <Grid
@@ -16,7 +35,8 @@ const MainNav = () => {
           <NavLink
             to="/"
             exact
-            style={{ textDecoration: "none", color: "inherit" }}
+            className={classes.inactiveLink}
+            activeClassName={classes.activeLink}
           >
             <Typography>Home</Typography>
           </NavLink>
@@ -25,7 +45,8 @@ const MainNav = () => {
           <NavLink
             to="/collections"
             exact
-            style={{ textDecoration: "none", color: "inherit" }}
+            className={classes.inactiveLink}
+            activeClassName={classes.activeLink}
           >
             <Typography>Products</Typography>
           </NavLink>
@@ -34,9 +55,10 @@ const MainNav = () => {
           <NavLink
             to="/contact"
             exact
-            style={{ textDecoration: "none", color: "inherit" }}
+            className={classes.inactiveLink}
+            activeClassName={classes.activeLink}
           >
-            <Typography>Contact Us</Typography>
+            <Typography>Contact</Typography>
           </NavLink>
         </Grid>
       </Grid>

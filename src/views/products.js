@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JSONPretty from "react-json-pretty";
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 //import Loading from "../components/loading";
@@ -29,7 +29,7 @@ const Products = () => {
   const miscUrl = requestUrl + "/misc";
 
   return (
-    <div className="container">
+    <Box mt={4}>
       <div
         className="btn-group mt-5 fixed"
         role="group"
@@ -81,7 +81,7 @@ const Products = () => {
           </div>
         </div>
       )}
-    </div>
+    </Box>
   );
 };
 //<JSONPretty id="json-pretty" data={data}></JSONPretty>

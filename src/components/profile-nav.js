@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 const ProfileNav = () => {
   const { isAuthenticated } = useAuth0();
@@ -9,10 +10,9 @@ const ProfileNav = () => {
     <NavLink
       to="/profile"
       exact
-      className="nav-link"
-      activeClassName="router-link-exact-active"
+      style={{ textDecoration: "none", color: "inherit" }}
     >
-      Profile
+      <Typography>Profile</Typography>
     </NavLink>
   ) : null;
 };

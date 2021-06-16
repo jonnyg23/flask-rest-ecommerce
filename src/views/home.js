@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Paper, Box } from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
@@ -25,7 +25,7 @@ const Home = () => {
   }, [response]);
 
   return (
-    <Fragment>
+    <Box mt={4}>
       <Welcome />
       <Button
         variant="contained"
@@ -38,10 +38,10 @@ const Home = () => {
       </Button>
 
       {/* <Box>{JSON.stringify(data)}</Box> */}
-      <Paper>
+      <Paper elevation={3}>
         <JSONPretty id="json-pretty" data={data}></JSONPretty>
       </Paper>
-    </Fragment>
+    </Box>
   );
 };
 

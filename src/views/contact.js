@@ -1,12 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { Box, Typography } from "@material-ui/core";
 
-const Contact = () => (
-  <Fragment>
-    <div className="col-md">
-      <h2>Contact me!</h2>
-      <p>Email: jonguti23@outlook.com</p>
-    </div>
-  </Fragment>
-);
+const Contact = () => {
+  return (
+    <Box mt={4}>
+      <Typography variant="h4" gutterBottom>
+        Contact me!
+      </Typography>
+      <Typography variant="body1">Email: jonguti23@outlook.com</Typography>
+    </Box>
+  );
+};
 
 export default Contact;
