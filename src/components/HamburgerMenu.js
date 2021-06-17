@@ -14,8 +14,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import MailIcon from "@material-ui/icons/Mail";
+import PersonIcon from "@material-ui/icons/Person";
 import { teal } from "@material-ui/core/colors";
-import LoginButton from "./login-button";
+import AuthenticationButton from "./authentication-button";
 import ThemeModeToggle from "./ThemeModeToggle";
 
 // This StyledMenu is the style for the menu content box
@@ -163,7 +164,7 @@ export default function HamburgerMenu() {
           <NavLink exact className={classes.link} to="/profile">
             <StyledMenuItem onClick={handleClose}>
               <ListItemIcon>
-                <MailIcon fontSize="medium" />
+                <PersonIcon fontSize="medium" />
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </StyledMenuItem>
@@ -179,7 +180,7 @@ export default function HamburgerMenu() {
         >
           <Grid item xs={6}>
             <BottomMenuItem onClick={handleClose}>
-              <LoginButton />
+              <AuthenticationButton />
             </BottomMenuItem>
           </Grid>
           <Grid item xs={6}>

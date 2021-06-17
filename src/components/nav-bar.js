@@ -44,10 +44,7 @@ const NavBar = () => {
                 <Grid item xs={2}>
                   <StorefrontIcon fontSize="medium" />
                 </Grid>
-                <Grid container item xs={8} justify="flex-end">
-                  <AuthNav />
-                </Grid>
-                <Grid container item xs={2} justify="flex-end">
+                <Grid container item xs={10} justify="flex-end">
                   <HamburgerMenu />
                 </Grid>
               </SmallScreen>
