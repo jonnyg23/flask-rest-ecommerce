@@ -12,6 +12,7 @@ const Products = () => {
   return (
     <Box mt={4}>
       <Typography variant="h3">Products</Typography>
+      <Typography variant="body1">Dev in Progress!</Typography>
     </Box>
   );
 };
