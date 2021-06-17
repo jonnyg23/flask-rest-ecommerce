@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Paper, Box } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  Box,
+  Typography,
+  ListItem,
+  List,
+} from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
@@ -60,8 +67,13 @@ const Home = () => {
           />
         </Grid>
       </Grid>
+      <Box mt={2}>
+        <Typography variant="h5">Example JSON Data Output:</Typography>
+      </Box>
       <Paper elevation={3}>
-        <JSONPretty id="json-pretty" data={data}></JSONPretty>
+        <Box padding={2}>
+          <JSONPretty id="json-pretty" data={data} style={{ overflow: 'auto' }}></JSONPretty>
+        </Box>
       </Paper>
     </Box>
   );

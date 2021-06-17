@@ -37,9 +37,6 @@ const App = () => {
   //   )
   // };
 
-  // TODO: Force the parent "Box" to grow to the entire size of the screen so
-  // that the screen will completely turn grey when using dark mode.
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -47,6 +44,7 @@ const App = () => {
         className={context.darkMode ? classes.lightBox : classes.darkBox}
         pb={6}
         flexGrow={1}
+        minHeight="100vh"
       >
         <NavBar />
         <Container>

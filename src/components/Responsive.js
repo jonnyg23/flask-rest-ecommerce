@@ -20,8 +20,8 @@ export const SmallScreen = ({ children }) => {
   return isSmallScreen ? children : null;
 };
 
-export const isPortrait = () =>
-  useMediaQuery({ query: "(orientation: portrait)" });
+// export const isPortrait = () =>
+//   useMediaQuery({ query: "(orientation: portrait)" });
 
-export const isRetina = () =>
-  useMediaQuery({ query: "(min-resolution: 2dppx)" });
+// export const isRetina = () =>
+//   useMediaQuery({ query: "(min-resolution: 2dppx)" });

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import ProfileNav from "./profile-nav";
 
 const useStyles = makeStyles((theme) => ({
   activeLink: {
@@ -60,6 +61,9 @@ const MainNav = () => {
           >
             <Typography>Contact</Typography>
           </NavLink>
+        </Grid>
+        <Grid item>
+          <ProfileNav />
         </Grid>
       </Grid>
     </Box>
