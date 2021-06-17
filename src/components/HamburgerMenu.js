@@ -1,0 +1,194 @@
+import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+  Button,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+  Grid,
+} from "@material-ui/core";
+import { NavLink } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@material-ui/icons/Home";
+import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import MailIcon from "@material-ui/icons/Mail";
+import { teal } from "@material-ui/core/colors";
+import LoginButton from "./login-button";
+import ThemeModeToggle from "./ThemeModeToggle";
+
+// This StyledMenu is the style for the menu content box
+const StyledMenu = withStyles({
+  paper: {
+    border: "0px solid #FCF0F0",
+    borderRadius: 10,
+  },
+})((props) => (
+  <Menu
+    elevation={2}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: "top",
+      horizontal: "center",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "center",
+    }}
+    {...props}
+  />
+));
+
+// This StyledMenuItem is the style for the menu's items
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    display: "flex",
+    width: "100%",
+    color: theme.palette.primary.contrastText,
+    "&:hover": {
+      display: "flex",
+      width: "100%",
+      backgroundColor: teal[400],
+      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
+
+// Bottom Menu Items styling
+const BottomMenuItem = withStyles((theme) => ({
+  root: {
+    display: "flex",
+    width: "100%",
+    "&:hover": {
+      display: "flex",
+      width: "100%",
+      backgroundColor: "transparent",
+    },
+  },
+}))(MenuItem);
+
+// This 'useStyles' is for the style of the hamburger menu button
+// This style is triggered with 'classes.root'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    color: "#ffff",
+    backgroundColor: "transparent",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.3)",
+    },
+    borderRadius: 30,
+    boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.3)",
+  },
+  link: {
+    display: "flex",
+    flexGrow: 1,
+    width: "100%",
+    textTransform: "none",
+    textDecoration: "none",
+    color: theme.palette.secondary.main,
+  },
+  menuIcon: {
+    color: theme.palette.primary.contrastText,
+  },
+}));
+
+export default function HamburgerMenu() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const { isAuthenticated } = useAuth0();
+
+  const classes = useStyles();
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        aria-controls="customized-menu"
+        aria-haspopup="true"
+        variant="contained"
+        className={classes.root}
+        onClick={handleClick}
+      >
+        <MenuIcon className={classes.menuIcon} />
+      </Button>
+      <StyledMenu
+        id="customized-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {/* Home Link */}
+        <NavLink exact className={classes.link} to="/">
+          <StyledMenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <HomeIcon fontSize="medium" />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </StyledMenuItem>
+        </NavLink>
+
+        {/* Products Link */}
+        <NavLink exact className={classes.link} to="/collections">
+          <StyledMenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <ShoppingBasketIcon fontSize="medium" />
+            </ListItemIcon>
+            <ListItemText primary="Products" />
+          </StyledMenuItem>
+        </NavLink>
+
+        {/* Contact Link */}
+        <NavLink exact className={classes.link} to="/contact">
+          <StyledMenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <MailIcon fontSize="medium" />
+            </ListItemIcon>
+            <ListItemText primary="Contact" />
+          </StyledMenuItem>
+        </NavLink>
+
+        {/* Profile Link (If Authenticated) */}
+        {isAuthenticated ? (
+          <NavLink exact className={classes.link} to="/profile">
+            <StyledMenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <MailIcon fontSize="medium" />
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+            </StyledMenuItem>
+          </NavLink>
+        ) : null}
+
+        {/* Login & Theme Toggle */}
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          <Grid item xs={6}>
+            <BottomMenuItem onClick={handleClose}>
+              <LoginButton />
+            </BottomMenuItem>
+          </Grid>
+          <Grid item xs={6}>
+            <BottomMenuItem onClick={handleClose}>
+              <ThemeModeToggle fontSize="large" />
+            </BottomMenuItem>
+          </Grid>
+        </Grid>
+      </StyledMenu>
+    </div>
+  );
+}
