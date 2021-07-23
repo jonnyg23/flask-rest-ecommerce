@@ -9,7 +9,7 @@ import {
   ListItemText,
   Grid,
 } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "../components/NavLink";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
@@ -130,7 +130,7 @@ export default function HamburgerMenu() {
         onClose={handleClose}
       >
         {/* Home Link */}
-        <NavLink exact className={classes.link} to="/">
+        <NavLink exact className={classes.link} href="/">
           <StyledMenuItem onClick={handleClose}>
             <ListItemIcon>
               <HomeIcon fontSize="medium" />
@@ -140,7 +140,7 @@ export default function HamburgerMenu() {
         </NavLink>
 
         {/* Products Link */}
-        <NavLink exact className={classes.link} to="/collections">
+        <NavLink exact className={classes.link} href="/products">
           <StyledMenuItem onClick={handleClose}>
             <ListItemIcon>
               <ShoppingBasketIcon fontSize="medium" />
@@ -150,7 +150,7 @@ export default function HamburgerMenu() {
         </NavLink>
 
         {/* Contact Link */}
-        <NavLink exact className={classes.link} to="/contact">
+        <NavLink exact className={classes.link} href="/contact">
           <StyledMenuItem onClick={handleClose}>
             <ListItemIcon>
               <MailIcon fontSize="medium" />
@@ -161,7 +161,7 @@ export default function HamburgerMenu() {
 
         {/* Profile Link (If Authenticated) */}
         {isAuthenticated ? (
-          <NavLink exact className={classes.link} to="/profile">
+          <NavLink exact className={classes.link} href="/profile">
             <StyledMenuItem onClick={handleClose}>
               <ListItemIcon>
                 <PersonIcon fontSize="medium" />

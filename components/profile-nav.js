@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "../components/NavLink";
 import { Typography } from "@material-ui/core";
 
 const ProfileNav = () => {
@@ -8,7 +8,7 @@ const ProfileNav = () => {
 
   return isAuthenticated ? (
     <NavLink
-      to="/profile"
+      href="/profile"
       exact
       style={{ textDecoration: "none", color: "inherit" }}
     >

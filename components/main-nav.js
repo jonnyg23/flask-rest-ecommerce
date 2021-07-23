@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import React from "react";
+import { NavLink } from "../components/NavLink";
 import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ProfileNav from "./profile-nav";
@@ -34,7 +34,7 @@ const MainNav = () => {
       >
         <Grid item>
           <NavLink
-            to="/"
+            href="/"
             exact
             className={classes.inactiveLink}
             activeClassName={classes.activeLink}
@@ -44,7 +44,7 @@ const MainNav = () => {
         </Grid>
         <Grid item>
           <NavLink
-            to="/collections"
+            href="/products"
             exact
             className={classes.inactiveLink}
             activeClassName={classes.activeLink}
@@ -54,7 +54,7 @@ const MainNav = () => {
         </Grid>
         <Grid item>
           <NavLink
-            to="/contact"
+            href="/contact"
             exact
             className={classes.inactiveLink}
             activeClassName={classes.activeLink}
