@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ThemeModeContext from "./ThemeModeContext";
 
-const storage = {
-  getItem(key) {
-    if (localStorage) {
-      return localStorage.getItem(key);
-    }
-  },
-  setItem(key, value) {
-    if (localStorage) {
-      return localStorage.setItem(key, value);
-    }
-  }
-};
-
 const ThemeModeProvider = props => {
-  const [darkMode, setDarkMode] = useState(
-    storage.getItem("darkMode") === "true"
-  );
+  const [darkMode, setDarkMode] = useState("true");
+
+  useEffect(() => {
+    if (localStorage.getItem("darkMode") === null) {
+      localStorage.setItem("darkMode", true)
+    }
+    else {
+      localStorage.setItem("darkMode", darkMode)
+    }
+  }, [darkMode]);
+
+  // const [darkMode, setDarkMode] = useState(
+  //   storage.getItem("darkMode") === "true"
+  // );
+
   const onSetDarkMode = darkMode => {
     setDarkMode(darkMode);
-    storage.setItem("darkMode", darkMode);
   };
+
   return (
     <ThemeModeContext.Provider
       value={{
