@@ -4,6 +4,7 @@ import { Box, Button, Typography, Paper, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { teal } from "@material-ui/core/colors";
 import JSONPretty from "react-json-pretty";
+import { Loading } from "../components/index";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -100,4 +101,6 @@ const Profile = () => {
   );
 };
 
-export default withAuthenticationRequired(Profile);
+export default withAuthenticationRequired(Profile, {
+  onRedirecting: () => <Loading />,
+});

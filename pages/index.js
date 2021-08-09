@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  Grid,
-  Paper,
-  Box,
-  Typography,
-  ListItem,
-  List,
-} from "@material-ui/core";
+import Head from "next/head";
+import { Grid, Paper, Box, Typography } from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
@@ -34,6 +28,14 @@ const Home = () => {
 
   return (
     <Box mt={4}>
+      <Head>
+        <title>Welcome to Flask-Ecommerce</title>
+        <meta
+          name="description"
+          content="Flask REST ecommerce website template"
+        />
+        <link rel="icon" href="/public/favicon.ico" />
+      </Head>
       <Welcome />
       <Grid container spacing={1}>
         <Grid item>
@@ -72,7 +74,11 @@ const Home = () => {
       </Box>
       <Paper elevation={3}>
         <Box padding={2}>
-          <JSONPretty id="json-pretty" data={data} style={{ overflow: 'auto' }}></JSONPretty>
+          <JSONPretty
+            id="json-pretty"
+            data={data}
+            style={{ overflow: "auto" }}
+          ></JSONPretty>
         </Box>
       </Paper>
     </Box>
