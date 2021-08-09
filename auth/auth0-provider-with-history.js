@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Router from "next/router";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-// TODO: Fix redirectUri instead of {window.location.origin} and 
-// Log In button doesn't navigate to domain, but to Undefined
+const onRedirectCallback = (appState) => {
+  Router.replace(appState?.returnTo || '/');
+};
 
 const Auth0ProviderWithHistory = ({ children }) => {
-  
-  useEffect(() => {
-    const windowPath = window.location.pathname
-  }, [])
 
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
-  const serverUrl = process.env.REACT_APP_SERVER_URL;
-
-  
-  const onRedirectCallback = (appState) => {
-    Router.push(appState?.returnTo || windowPath);
-  };
 
   return (
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri={serverUrl}
+      redirectUri={typeof window !== 'undefined' && window.location.origin}
       onRedirectCallback={onRedirectCallback}
       audience={audience}
     >
