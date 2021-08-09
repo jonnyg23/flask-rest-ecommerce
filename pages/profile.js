@@ -1,7 +1,33 @@
 import React, { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { Box, Button, Typography, Paper, Avatar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { teal } from "@material-ui/core/colors";
+import JSONPretty from "react-json-pretty";
+
+const useStyles = makeStyles((theme) => ({
+  image: {
+    display: "flex",
+    "& > *": {
+      margin: theme.spacing(0),
+    },
+  },
+  large: {
+    width: theme.spacing(17),
+    height: theme.spacing(17),
+  },
+  button: {
+    backgroundColor: teal[400],
+    color: "white",
+  },
+  result: {
+    display: "block",
+    wordBreak: "break-all",
+  },
+}));
 
 const Profile = () => {
+  const classes = useStyles();
   const { user } = useAuth0();
   const { name, picture, email } = user;
 
@@ -19,52 +45,59 @@ const Profile = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row align-items-center profile-header">
-        <div className="col-md-2 mb-3">
-          <img
-            src={picture}
-            alt="Profile"
-            className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
-          />
-        </div>
-        <div className="col-md text-center text-md-left">
-          <h2>{name}</h2>
-          <p className="lead text-muted">{email}</p>
-        </div>
+    <Box mt={3}>
+      <div className={classes.image}>
+        <Avatar
+          variant="circle"
+          alt="Profile"
+          src={picture}
+          className={classes.large}
+        />
       </div>
-      <div className="row">
-        <pre className="col-12 text-light bg-dark p-4">
-          {JSON.stringify(user, null, 2)}
-        </pre>
-      </div>
-      <p>
-        Click below to view your unique Bearer JWT Access Token:
-      </p>
-      <div
-        className="btn-group mt-5"
-        role="group"
-      >
-        <button
-          type="button"
-          className="btn btn-primary"
+      <Box mb={3}>
+        <Typography variant="h2">{name}</Typography>
+        <Typography variant="body1">{email}</Typography>
+      </Box>
+
+      <Paper elevation={3}>
+        <Box padding={2}>
+          <JSONPretty
+            id="user-bearer-token"
+            data={user}
+            style={{
+              overflow: "auto",
+            }}
+          ></JSONPretty>
+        </Box>
+      </Paper>
+
+      <Box mt={3} mb={1}>
+        <Typography variant="body1">
+          Click below to view your unique Bearer JWT Access Token:
+        </Typography>
+      </Box>
+      <Box mb={2}>
+        <Button
+          variant="contained"
+          className={classes.button}
           onClick={callSecureApi}
         >
           View Bearer Token
-        </button>
-      </div>
+        </Button>
+      </Box>
+
       {accessToken && (
-        <div className="mt-5">
-          <h6 className="muted">Result</h6>
-          <div className="container-fluid">
-            <div className="row">
-              <code className="col-12 text-light bg-dark p-4">{accessToken}</code>
-            </div>
-          </div>
-        </div>
+        <Box className={classes.result}>
+          <Typography variant="h6" className="muted">
+            Result
+          </Typography>
+          <Typography nowrap variant="body1">
+            {accessToken}
+          </Typography>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 
-export default Profile;
+export default withAuthenticationRequired(Profile);

@@ -14,11 +14,6 @@ import useAxios from "../hooks/useAxios";
 import { backendApi } from "../apis/axiosRequests";
 import ProductsButton from "../components/ProductsButton";
 
-// TODO: Fix JSON Data Output, Possibly change REST API url to be
-// /api/v1/products so that way the frontend and backend don't get confused
-// when making API calls.
-
-
 const Home = () => {
   const [url, setUrl] = useState("/products");
 
