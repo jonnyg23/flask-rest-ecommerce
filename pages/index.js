@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { Grid, Paper, Box, Typography } from "@material-ui/core";
+import { Grid, Paper, Box, Typography, Container } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
 import useAxios from "../hooks/useAxios";
 import { backendApi } from "../apis/axiosRequests";
 import ProductsButton from "../components/ProductsButton";
+import Layout from "../components/Layout";
 
 const Home = () => {
   const [url, setUrl] = useState("/products");
+  const theme = useTheme();
 
   const { response, isLoading } = useAxios({
     api: backendApi,
@@ -27,14 +30,13 @@ const Home = () => {
   }, [response]);
 
   return (
-    <Box mt={4}>
+    <Box>
       <Head>
         <title>Welcome to Flask-Ecommerce</title>
         <meta
           name="description"
           content="Flask REST ecommerce website template"
         />
-        <link rel="icon" href="/public/favicon.ico" />
       </Head>
       <Welcome />
       <Grid container spacing={1}>
@@ -86,3 +88,20 @@ const Home = () => {
 };
 
 export default Home;
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <Layout>
+      {/* You can add a NestedLayout component here as such: <NestedLayout>{page}</NestedLayout> */}
+      {page}
+    </Layout>
+  );
+};
+
+export function getServerSideProps({ req }) {
+  return {
+    props: {
+      initialAppTheme: req.cookies.appTheme || "light",
+    },
+  };
+}

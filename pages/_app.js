@@ -1,64 +1,50 @@
 import "../styles/globals.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useAuth0 } from "@auth0/auth0-react";
+import Head from "next/head";
 import { Provider as NextAuthProvider } from "next-auth/client";
-import { Container, Box } from "@material-ui/core";
-import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-import defaultTheme from "../themes/default";
-import darkTheme from "../themes/dark";
-import { NavBar, Loading } from "../components";
 import ThemeModeContext from "../context/ThemeModeContext";
-import ThemeModeProvider from "../context/ThemeModeProvider";
 import Auth0ProviderWithHistory from "../auth/auth0-provider-with-history";
+import CustomThemeProvider from "../context/CustomThemeProvider";
 
-const useStyles = makeStyles((theme) => ({
-  lightBox: {
-    backgroundColor: theme.palette.grey["A200"],
-  },
-  darkBox: {
-    backgroundColor: "white",
-  },
-}));
-
-const App = ({ Component, pageProps }) => {
-  const classes = useStyles();
+export default function App({ Component, pageProps, initialAppTheme }) {
+  const getLayout = Component.getLayout || ((page) => page);
   // const { isLoading } = useAuth0();
   const context = useContext(ThemeModeContext);
-  const theme = context.darkMode ? darkTheme : defaultTheme;
 
-  // const isDarkMode = (contextTheme) => {
-  //   return (
-  //     {contextTheme.darkMode !== true ? }
-  //   )
-  // };
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
 
   return (
-    <ThemeModeProvider>
-      <Auth0ProviderWithHistory>
-        <NextAuthProvider session={pageProps.session}>
-          <ThemeProvider theme={theme}>
-            {typeof window === "undefined" ? null : (
-              <Box
-                id="app"
-                className={
-                  context.darkMode ? classes.lightBox : classes.darkBox
-                }
-                pb={6}
-                flexGrow={1}
-                minHeight="100vh"
-              >
-                <NavBar />
-                <Container>
-                  <Component {...pageProps} />
-                </Container>
-              </Box>
-            )}
-          </ThemeProvider>
-        </NextAuthProvider>
-      </Auth0ProviderWithHistory>
-    </ThemeModeProvider>
+    <React.Fragment>
+      <Head>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <CustomThemeProvider>
+        <Auth0ProviderWithHistory>
+          <NextAuthProvider session={pageProps.session}>
+            <CssBaseline />
+            {getLayout(<Component {...pageProps} />)}
+          </NextAuthProvider>
+        </Auth0ProviderWithHistory>
+      </CustomThemeProvider>
+    </React.Fragment>
   );
-};
+}
 
-export default App;
+App.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};

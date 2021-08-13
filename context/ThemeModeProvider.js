@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from "react";
 import ThemeModeContext from "./ThemeModeContext";
+import Cookie from "js-cookie";
+import { parseCookies } from "../components/parseCookies";
 
-const ThemeModeProvider = props => {
-  const [darkMode, setDarkMode] = useState("true");
+const ThemeModeProvider = ({ initialDark = false, children }) => {
+  console.log("value", initialDark);
+  const [darkMode, setDarkMode] = useState(() => initialDark);
 
   useEffect(() => {
-    if (localStorage.getItem("darkMode") === null) {
-      localStorage.setItem("darkMode", true)
-    }
-    else {
-      localStorage.setItem("darkMode", darkMode)
-    }
+    Cookie.set("darkMode", darkMode);
+    console.log("useEffect", "ran");
   }, [darkMode]);
-
-  // const [darkMode, setDarkMode] = useState(
-  //   storage.getItem("darkMode") === "true"
-  // );
-
-  const onSetDarkMode = darkMode => {
-    setDarkMode(darkMode);
-  };
 
   return (
     <ThemeModeContext.Provider
       value={{
         darkMode,
-        onSetDarkMode
+        setDarkMode,
       }}
     >
-      {props.children}
+      {children}
     </ThemeModeContext.Provider>
   );
+};
+
+ThemeModeProvider.getInitialProps = ({ req }) => {
+  const cookies = parseCookies(req);
+  console.log("getInitialProps", cookies.darkMode);
+
+  return {
+    initialDark: cookies.darkMode,
+  };
 };
 
 export default ThemeModeProvider;

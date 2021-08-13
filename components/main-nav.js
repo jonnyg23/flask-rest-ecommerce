@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "../components/NavLink";
 import { Box, Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ProfileNav from "./profile-nav";
+import { NoSsr } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   activeLink: {
@@ -22,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 const MainNav = () => {
   const classes = useStyles();
+  const theme = useTheme();
+  console.log("main-nav----", theme.palette.primary.main);
 
   return (
     <Box display="flex">
@@ -37,7 +40,7 @@ const MainNav = () => {
             href="/"
             exact
             className={classes.inactiveLink}
-            activeClassName={classes.activeLink}
+            // activeClassName={classes.activeLink}
           >
             <Typography>Home</Typography>
           </NavLink>
@@ -47,7 +50,7 @@ const MainNav = () => {
             href="/products"
             exact
             className={classes.inactiveLink}
-            activeClassName={classes.activeLink}
+            // activeClassName={classes.activeLink}
           >
             <Typography>Products</Typography>
           </NavLink>
@@ -57,7 +60,7 @@ const MainNav = () => {
             href="/contact"
             exact
             className={classes.inactiveLink}
-            activeClassName={classes.activeLink}
+            // activeClassName={classes.activeLink}
           >
             <Typography>Contact</Typography>
           </NavLink>
