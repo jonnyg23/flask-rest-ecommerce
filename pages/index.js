@@ -50,7 +50,7 @@ const Home = ({ initialAppTheme }) => {
   console.log("RESPONSE", response);
 
   return (
-    <div>
+    <>
       <NavBar></NavBar>
       <Container style={{ marginTop: theme.spacing(4) }}>
         <Box>
@@ -108,7 +108,7 @@ const Home = ({ initialAppTheme }) => {
           </Paper>
         </Box>
       </Container>
-    </div>
+    </>
   );
 };
 
