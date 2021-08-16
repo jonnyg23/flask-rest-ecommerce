@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { teal } from "@material-ui/core/colors";
 import JSONPretty from "react-json-pretty";
 import { Loading } from "../components/index";
-import Layout from "../components/Layout";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -105,12 +104,3 @@ const Profile = () => {
 export default withAuthenticationRequired(Profile, {
   onRedirecting: () => <Loading />,
 });
-
-Profile.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      {/* You can add a NestedLayout component here as such: <NestedLayout>{page}</NestedLayout> */}
-      {page}
-    </Layout>
-  );
-};

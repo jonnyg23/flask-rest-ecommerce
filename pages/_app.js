@@ -7,14 +7,14 @@ import { Provider as NextAuthProvider } from "next-auth/client";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import ThemeModeContext from "../context/ThemeModeContext";
 import Auth0ProviderWithHistory from "../auth/auth0-provider-with-history";
-import CustomThemeProvider from "../context/CustomThemeProvider";
+import CustomThemeProvider, {
+  CustomThemeContext,
+} from "../context/CustomThemeProvider";
 
-export default function App({ Component, pageProps, initialAppTheme }) {
-  const getLayout = Component.getLayout || ((page) => page);
+export default function App({ Component, pageProps }) {
   // const { isLoading } = useAuth0();
-  const context = useContext(ThemeModeContext);
+  const ThemeContext = useContext(CustomThemeContext);
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -32,11 +32,11 @@ export default function App({ Component, pageProps, initialAppTheme }) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <CustomThemeProvider>
+      <CustomThemeProvider initialAppTheme={ThemeContext.appTheme}>
         <Auth0ProviderWithHistory>
           <NextAuthProvider session={pageProps.session}>
             <CssBaseline />
-            {getLayout(<Component {...pageProps} />)}
+            <Component {...pageProps} />
           </NextAuthProvider>
         </Auth0ProviderWithHistory>
       </CustomThemeProvider>

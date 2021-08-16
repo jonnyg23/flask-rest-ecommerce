@@ -15,11 +15,3 @@ const Contact = () => {
 
 export default Contact;
 
-Contact.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      {/* You can add a NestedLayout component here as such: <NestedLayout>{page}</NestedLayout> */}
-      {page}
-    </Layout>
-  );
-};

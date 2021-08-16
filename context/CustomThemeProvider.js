@@ -1,24 +1,24 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import getTheme from "../themes";
 import Cookie from "js-cookie";
-import { parseCookies } from "../components/parseCookies";
 
 export const CustomThemeContext = createContext({
+  // Set the default theme and setter.
   appTheme: "light",
   setTheme: null,
 });
 
 const CustomThemeProvider = ({ children, initialAppTheme }) => {
   // State to hold selected theme
-  const [themeName, _setThemeName] = useState(() => initialAppTheme);
+  const [themeName, _setThemeName] = useState(initialAppTheme);
 
   // Retrieve theme object by theme name
   const theme = getTheme(themeName);
 
   // Wrap setThemeName to store new theme names as cookie.
   const setThemeName = (name) => {
-    console.log("SetThemeName", name);
+    console.log("CustomThemeProvider, SetThemeName", name);
     Cookie.set("appTheme", name);
     _setThemeName(name);
   };
@@ -29,16 +29,10 @@ const CustomThemeProvider = ({ children, initialAppTheme }) => {
   };
 
   return (
-    <CustomThemeContext.Provider value={contextValue}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </CustomThemeContext.Provider>
+      <CustomThemeContext.Provider value={contextValue}>
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      </CustomThemeContext.Provider>
   );
 };
 
 export default CustomThemeProvider;
-
-export function getServerSideProps({ req }) {
-  return {
-    props: { intialAppTheme: req.cookies.appTheme || "light" },
-  };
-}

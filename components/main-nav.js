@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "../components/NavLink";
 import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ProfileNav from "./profile-nav";
-import { NoSsr } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   activeLink: {
@@ -24,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const MainNav = () => {
   const classes = useStyles();
   const theme = useTheme();
+
   console.log("main-nav----", theme.palette.primary.main);
 
   return (

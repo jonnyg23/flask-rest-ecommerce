@@ -9,7 +9,7 @@ const ThemeModeProvider = ({ initialDark = false, children }) => {
 
   useEffect(() => {
     Cookie.set("darkMode", darkMode);
-    console.log("useEffect", "ran");
+    console.log("ThemeModeProvider","useEffect", "ran");
   }, [darkMode]);
 
   return (

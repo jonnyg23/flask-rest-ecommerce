@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import JSONPretty from "react-json-pretty";
 import { Typography, Button, Box, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Layout from "../components/Layout";
 
 //import Loading from "../components/loading";
 
@@ -19,12 +18,3 @@ const Products = () => {
 };
 //<JSONPretty id="json-pretty" data={data}></JSONPretty>
 export default Products;
-
-Products.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      {/* You can add a NestedLayout component here as such: <NestedLayout>{page}</NestedLayout> */}
-      {page}
-    </Layout>
-  );
-};
