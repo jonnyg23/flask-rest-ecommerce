@@ -18,7 +18,6 @@ const LogoutButton = () => {
   return (
     <Button
       variant="contained"
-      // color="secondary"
       className={classes.root}
       onClick={() =>
         logout({

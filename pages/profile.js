@@ -6,6 +6,7 @@ import { teal } from "@material-ui/core/colors";
 import JSONPretty from "react-json-pretty";
 import { Loading } from "../components/index";
 import Layout from "../components/Layout";
+import NavBar from "../components/nav-bar";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -48,6 +49,7 @@ const Profile = () => {
 
   return (
     <>
+    <NavBar></NavBar>
       <Layout>
         <Box>
           <div className={classes.image}>

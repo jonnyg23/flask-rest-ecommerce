@@ -18,8 +18,6 @@ const LoginButton = () => {
   return (
     <Button
       variant="contained"
-      // color="secondary"
-      // disableElevation
       className={classes.root}
       onClick={() => loginWithRedirect()}
     >

@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
-import { Grid, Paper, Box, Typography, Container } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  Box,
+  Typography,
+  Container,
+  makeStyles,
+} from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
@@ -11,7 +18,14 @@ import ProductsButton from "../components/ProductsButton";
 import { CustomThemeContext } from "../context/CustomThemeProvider";
 import Layout from "../components/Layout";
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
 const Home = ({ initialAppTheme }) => {
+  const classes = useStyles();
   const [url, setUrl] = useState("/products");
   const ThemeContext = useContext(CustomThemeContext);
 
@@ -83,7 +97,7 @@ const Home = ({ initialAppTheme }) => {
           <Box mt={2}>
             <Typography variant="h5">Example JSON Data Output:</Typography>
           </Box>
-          <Paper elevation={3}>
+          <Paper elevation={4} className={classes.paper}>
             <Box padding={2}>
               <JSONPretty
                 id="json-pretty"

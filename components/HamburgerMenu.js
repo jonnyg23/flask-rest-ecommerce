@@ -18,14 +18,16 @@ import PersonIcon from "@material-ui/icons/Person";
 import { teal } from "@material-ui/core/colors";
 import AuthenticationButton from "./authentication-button";
 import ThemeModeToggle from "./ThemeModeToggle";
+import useThemeTernary from "../hooks/useThemeTernary";
 
 // This StyledMenu is the style for the menu content box
-const StyledMenu = withStyles({
+const StyledMenu = withStyles((theme) => ({
   paper: {
+    backgroundColor: theme.palette.primary.light,
     border: "0px solid #FCF0F0",
     borderRadius: 10,
   },
-})((props) => (
+}))((props) => (
   <Menu
     elevation={2}
     getContentAnchorEl={null}
@@ -95,6 +97,9 @@ const useStyles = makeStyles((theme) => ({
   menuIcon: {
     color: theme.palette.primary.contrastText,
   },
+  subIcons: {
+    color: theme.palette.grey[500],
+  },
 }));
 
 export default function HamburgerMenu() {
@@ -112,7 +117,7 @@ export default function HamburgerMenu() {
   };
 
   return (
-    <div>
+    <>
       <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
@@ -133,7 +138,7 @@ export default function HamburgerMenu() {
         <NavLink exact className={classes.link} href="/">
           <StyledMenuItem onClick={handleClose}>
             <ListItemIcon>
-              <HomeIcon fontSize="medium" />
+              <HomeIcon fontSize="medium" className={classes.subIcons} />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </StyledMenuItem>
@@ -143,7 +148,10 @@ export default function HamburgerMenu() {
         <NavLink exact className={classes.link} href="/products">
           <StyledMenuItem onClick={handleClose}>
             <ListItemIcon>
-              <ShoppingBasketIcon fontSize="medium" />
+              <ShoppingBasketIcon
+                fontSize="medium"
+                className={classes.subIcons}
+              />
             </ListItemIcon>
             <ListItemText primary="Products" />
           </StyledMenuItem>
@@ -153,7 +161,7 @@ export default function HamburgerMenu() {
         <NavLink exact className={classes.link} href="/contact">
           <StyledMenuItem onClick={handleClose}>
             <ListItemIcon>
-              <MailIcon fontSize="medium" />
+              <MailIcon fontSize="medium" className={classes.subIcons} />
             </ListItemIcon>
             <ListItemText primary="Contact" />
           </StyledMenuItem>
@@ -190,6 +198,6 @@ export default function HamburgerMenu() {
           </Grid>
         </Grid>
       </StyledMenu>
-    </div>
+    </>
   );
 }

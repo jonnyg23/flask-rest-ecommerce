@@ -47,7 +47,7 @@ const NavBar = () => {
             </Desktop>
             <SmallScreen>
               <Grid item xs={2}>
-                <StorefrontIcon fontSize="medium" />
+                <StorefrontIcon fontSize="medium" className={classes.icon} />
               </Grid>
               <Grid container item xs={10} justify="flex-end">
                 <HamburgerMenu />
