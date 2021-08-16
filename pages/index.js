@@ -1,13 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
-import {
-  Grid,
-  Paper,
-  Box,
-  Typography,
-  Container,
-} from "@material-ui/core";
-import { useTheme } from "@material-ui/core/styles";
+import { Grid, Paper, Box, Typography, Container } from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
@@ -16,16 +9,11 @@ import useAxios from "../hooks/useAxios";
 import { backendApi } from "../apis/axiosRequests";
 import ProductsButton from "../components/ProductsButton";
 import { CustomThemeContext } from "../context/CustomThemeProvider";
+import Layout from "../components/Layout";
 
 const Home = ({ initialAppTheme }) => {
   const [url, setUrl] = useState("/products");
-  const theme = useTheme();
   const ThemeContext = useContext(CustomThemeContext);
-  console.log(
-    "HOME HAS RUN",
-    "Home's initialAppTheme fetched",
-    initialAppTheme
-  );
 
   useEffect(() => {
     ThemeContext.setTheme(initialAppTheme);
@@ -47,12 +35,10 @@ const Home = ({ initialAppTheme }) => {
     }
   }, [response]);
 
-  console.log("RESPONSE", response);
-
   return (
     <>
       <NavBar></NavBar>
-      <Container style={{ marginTop: theme.spacing(4) }}>
+      <Layout>
         <Box>
           <Head>
             <title>Welcome to Flask-Ecommerce</title>
@@ -107,7 +93,7 @@ const Home = ({ initialAppTheme }) => {
             </Box>
           </Paper>
         </Box>
-      </Container>
+      </Layout>
     </>
   );
 };

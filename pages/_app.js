@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <React.Fragment>
+    <React.Fragment id="-app">
       <Head>
         <meta
           name="viewport"

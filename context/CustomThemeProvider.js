@@ -18,7 +18,6 @@ const CustomThemeProvider = ({ children, initialAppTheme }) => {
 
   // Wrap setThemeName to store new theme names as cookie.
   const setThemeName = (name) => {
-    console.log("CustomThemeProvider, SetThemeName", name);
     Cookie.set("appTheme", name);
     _setThemeName(name);
   };

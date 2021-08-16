@@ -15,44 +15,48 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
     },
   },
+  appBar: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  icon: {
+    color: theme.palette.primary.contrastText,
+  },
 }));
 
 const NavBar = () => {
   const classes = useStyles();
-  const theme = useTheme();
-  console.log("NavBar", theme.palette.primary.main);
 
   return (
-      <AppBar id="AppBar" position="static" elevation={3}>
-        <Toolbar>
-          <Container className={classes.root}>
-            <Grid container justify="center" alignItems="center" spacing={2}>
-              <Desktop>
-                <Grid item xs={1}>
-                  <StorefrontIcon fontSize="large" />
-                </Grid>
-                <Grid item xs={7}>
-                  <MainNav />
-                </Grid>
-                <Grid item xs={3}>
-                  <AuthNav />
-                </Grid>
-                <Grid item xs={1}>
-                  <ThemeModeToggle fontSize="large" />
-                </Grid>
-              </Desktop>
-              <SmallScreen>
-                <Grid item xs={2}>
-                  <StorefrontIcon fontSize="medium" />
-                </Grid>
-                <Grid container item xs={10} justify="flex-end">
-                  <HamburgerMenu />
-                </Grid>
-              </SmallScreen>
-            </Grid>
-          </Container>
-        </Toolbar>
-      </AppBar>
+    <AppBar position="static" elevation={3} className={classes.appBar}>
+      <Toolbar>
+        <Container className={classes.root}>
+          <Grid container justify="center" alignItems="center" spacing={2}>
+            <Desktop>
+              <Grid item xs={1}>
+                <StorefrontIcon fontSize="large" className={classes.icon} />
+              </Grid>
+              <Grid item xs={7}>
+                <MainNav />
+              </Grid>
+              <Grid item xs={3}>
+                <AuthNav />
+              </Grid>
+              <Grid item xs={1}>
+                <ThemeModeToggle fontSize="large" />
+              </Grid>
+            </Desktop>
+            <SmallScreen>
+              <Grid item xs={2}>
+                <StorefrontIcon fontSize="medium" />
+              </Grid>
+              <Grid container item xs={10} justify="flex-end">
+                <HamburgerMenu />
+              </Grid>
+            </SmallScreen>
+          </Grid>
+        </Container>
+      </Toolbar>
+    </AppBar>
   );
 };
 

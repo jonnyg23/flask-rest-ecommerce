@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 const MainNav = () => {
   const classes = useStyles();
-  const theme = useTheme();
-
-  console.log("main-nav----", theme.palette.primary.main);
 
   return (
     <Box display="flex">

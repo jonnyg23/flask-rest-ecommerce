@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 const ThemeModeToggle = ({ fontSize }) => {
   const classes = useStyles();
   const { appTheme, setTheme } = useContext(CustomThemeContext);
-  console.log("ThemeModeToggle", appTheme);
 
   const handleThemeChange = (appTheme, setTheme) => {
     if (appTheme === "light") {

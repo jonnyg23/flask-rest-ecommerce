@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { teal } from "@material-ui/core/colors";
 import JSONPretty from "react-json-pretty";
 import { Loading } from "../components/index";
+import Layout from "../components/Layout";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -46,58 +47,62 @@ const Profile = () => {
   };
 
   return (
-    <Box>
-      <div className={classes.image}>
-        <Avatar
-          variant="circle"
-          alt="Profile"
-          src={picture}
-          className={classes.large}
-        />
-      </div>
-      <Box mb={3}>
-        <Typography variant="h2">{name}</Typography>
-        <Typography variant="body1">{email}</Typography>
-      </Box>
+    <>
+      <Layout>
+        <Box>
+          <div className={classes.image}>
+            <Avatar
+              variant="circle"
+              alt="Profile"
+              src={picture}
+              className={classes.large}
+            />
+          </div>
+          <Box mb={3}>
+            <Typography variant="h2">{name}</Typography>
+            <Typography variant="body1">{email}</Typography>
+          </Box>
 
-      <Paper elevation={3}>
-        <Box padding={2}>
-          <JSONPretty
-            id="user-bearer-token"
-            data={user}
-            style={{
-              overflow: "auto",
-            }}
-          ></JSONPretty>
+          <Paper elevation={3}>
+            <Box padding={2}>
+              <JSONPretty
+                id="user-bearer-token"
+                data={user}
+                style={{
+                  overflow: "auto",
+                }}
+              ></JSONPretty>
+            </Box>
+          </Paper>
+
+          <Box mt={3} mb={1}>
+            <Typography variant="body1">
+              Click below to view your unique Bearer JWT Access Token:
+            </Typography>
+          </Box>
+          <Box mb={2}>
+            <Button
+              variant="contained"
+              className={classes.button}
+              onClick={callSecureApi}
+            >
+              View Bearer Token
+            </Button>
+          </Box>
+
+          {accessToken && (
+            <Box className={classes.result}>
+              <Typography variant="h6" className="muted">
+                Result
+              </Typography>
+              <Typography nowrap variant="body1">
+                {accessToken}
+              </Typography>
+            </Box>
+          )}
         </Box>
-      </Paper>
-
-      <Box mt={3} mb={1}>
-        <Typography variant="body1">
-          Click below to view your unique Bearer JWT Access Token:
-        </Typography>
-      </Box>
-      <Box mb={2}>
-        <Button
-          variant="contained"
-          className={classes.button}
-          onClick={callSecureApi}
-        >
-          View Bearer Token
-        </Button>
-      </Box>
-
-      {accessToken && (
-        <Box className={classes.result}>
-          <Typography variant="h6" className="muted">
-            Result
-          </Typography>
-          <Typography nowrap variant="body1">
-            {accessToken}
-          </Typography>
-        </Box>
-      )}
-    </Box>
+      </Layout>
+    </>
   );
 };
 
