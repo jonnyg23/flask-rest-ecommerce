@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Container, NoSsr } from "@material-ui/core";
 import { CustomThemeContext } from "../context/CustomThemeProvider";
+import NavBar from "./nav-bar";
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -21,18 +22,21 @@ const setBackgroundColor = (theme, contextTheme) => {
     return theme.palette.grey["A200"];
   }
 };
-
+// TODO: Find out if NoSsr is really needed wrapping pages that need global theme.
 const Layout = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
   const ThemeContext = useContext(CustomThemeContext);
 
   return (
+    <>
     <NoSsr>
+      <NavBar></NavBar>
       <div style={{ backgroundColor: setBackgroundColor(theme, ThemeContext), minHeight: '100vh' }}>
         <Container className={classes.container}>{children}</Container>
       </div>
     </NoSsr>
+    </>
   );
 };
 

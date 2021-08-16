@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useFetchUser } from "../hooks/user";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -18,7 +18,6 @@ import PersonIcon from "@material-ui/icons/Person";
 import { teal } from "@material-ui/core/colors";
 import AuthenticationButton from "./authentication-button";
 import ThemeModeToggle from "./ThemeModeToggle";
-import useThemeTernary from "../hooks/useThemeTernary";
 
 // This StyledMenu is the style for the menu content box
 const StyledMenu = withStyles((theme) => ({
@@ -104,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HamburgerMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { isAuthenticated } = useAuth0();
+  const { user, loading } = useFetchUser();
 
   const classes = useStyles();
 
@@ -168,7 +167,7 @@ export default function HamburgerMenu() {
         </NavLink>
 
         {/* Profile Link (If Authenticated) */}
-        {isAuthenticated ? (
+        {user ? (
           <NavLink exact className={classes.link} href="/profile">
             <StyledMenuItem onClick={handleClose}>
               <ListItemIcon>

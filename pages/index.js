@@ -5,13 +5,11 @@ import {
   Paper,
   Box,
   Typography,
-  Container,
   makeStyles,
 } from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
-import NavBar from "../components/nav-bar";
 import useAxios from "../hooks/useAxios";
 import { backendApi } from "../apis/axiosRequests";
 import ProductsButton from "../components/ProductsButton";
@@ -51,7 +49,6 @@ const Home = ({ initialAppTheme }) => {
 
   return (
     <>
-      <NavBar></NavBar>
       <Layout>
         <Box>
           <Head>

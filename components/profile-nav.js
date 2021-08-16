@@ -1,12 +1,12 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "../components/NavLink";
 import { Typography } from "@material-ui/core";
+import { useFetchUser } from "../hooks/user";
 
 const ProfileNav = () => {
-  const { isAuthenticated } = useAuth0();
+  const { user, loading } = useFetchUser();
 
-  return isAuthenticated ? (
+  return user ? (
     <NavLink
       href="/profile"
       exact

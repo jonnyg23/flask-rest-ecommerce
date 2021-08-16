@@ -1,7 +1,7 @@
 import React from "react";
+import Link from "next/link";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useAuth0 } from "@auth0/auth0-react";
 import { pink } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,17 +13,12 @@ const useStyles = makeStyles((theme) => ({
 
 const LogoutButton = () => {
   const classes = useStyles();
-  const { logout } = useAuth0();
 
   return (
     <Button
       variant="contained"
       className={classes.root}
-      onClick={() =>
-        logout({
-          returnTo: window.location.origin,
-        })
-      }
+      onClick={() => <Link href="/api/logout" />}
     >
       Log Out
     </Button>
