@@ -1,20 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import {
-  Grid,
-  Paper,
-  Box,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
+import { Grid, Paper, Box, Typography, makeStyles } from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
 import useAxios from "../hooks/useAxios";
 import { backendApi } from "../apis/axiosRequests";
 import ProductsButton from "../components/ProductsButton";
-import { CustomThemeContext } from "../context/CustomThemeProvider";
 import Layout from "../components/Layout";
+import setInitTheme from "../hooks/setInitTheme";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,11 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = ({ initialAppTheme }) => {
   const classes = useStyles();
   const [url, setUrl] = useState("/products");
-  const ThemeContext = useContext(CustomThemeContext);
-
-  useEffect(() => {
-    ThemeContext.setTheme(initialAppTheme);
-  }, []);
+  setInitTheme(initialAppTheme);
 
   // Fetches data from backend Async
   const { response, isLoading } = useAxios({

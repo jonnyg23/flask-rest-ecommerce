@@ -1,8 +1,10 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import Layout from "../components/Layout";
+import setInitTheme from "../hooks/setInitTheme";
 
-const Contact = () => {
+const Contact = ({ initialAppTheme }) => {
+  setInitTheme(initialAppTheme);
 
   return (
     <>
@@ -19,3 +21,11 @@ const Contact = () => {
 };
 
 export default Contact;
+
+export function getServerSideProps({ req }) {
+  return {
+    props: {
+      initialAppTheme: req.cookies.appTheme || "light",
+    },
+  };
+}

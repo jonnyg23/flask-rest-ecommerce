@@ -30,12 +30,18 @@ const Layout = ({ children }) => {
 
   return (
     <>
-    <NoSsr>
-      <NavBar></NavBar>
-      <div style={{ backgroundColor: setBackgroundColor(theme, ThemeContext), minHeight: '100vh' }}>
+      {/* NoSsr is added to prevent an initial flicker of theme change - it prevents the component wrapped in NoSsr from server side rendering */}
+      <NoSsr>
+        <NavBar></NavBar>
+      </NoSsr>
+      <div
+        style={{
+          backgroundColor: setBackgroundColor(theme, ThemeContext),
+          minHeight: "100vh",
+        }}
+      >
         <Container className={classes.container}>{children}</Container>
       </div>
-    </NoSsr>
     </>
   );
 };
