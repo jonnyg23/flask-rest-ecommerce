@@ -1,5 +1,12 @@
 import React from "react";
-import { AppBar, Grid, Container, Toolbar } from "@material-ui/core";
+import { NavLink } from "../components/NavLink";
+import {
+  AppBar,
+  Grid,
+  Container,
+  Toolbar,
+  IconButton,
+} from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 
@@ -21,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: theme.palette.primary.contrastText,
   },
+  inactiveLink: {
+    textTransform: "none",
+    textDecoration: "none",
+    color: theme.palette.primary.contrastText,
+  },
 }));
 
 const NavBar = () => {
@@ -33,7 +45,9 @@ const NavBar = () => {
           <Grid container justify="center" alignItems="center" spacing={2}>
             <Desktop>
               <Grid item xs={1}>
-                <StorefrontIcon fontSize="large" className={classes.icon} />
+                <NavLink href="/" exact className={classes.inactiveLink}>
+                  <StorefrontIcon fontSize="large" className={classes.icon} />
+                </NavLink>
               </Grid>
               <Grid item xs={7}>
                 <MainNav />
