@@ -9,7 +9,7 @@ export default initAuth0({
   routes: {
     callback:
       process.env.NEXT_PUBLIC_REDIRECT_URI ||
-      "http://localhost:3000/api/callback",
+      "http://localhost:3000/api/auth/callback",
     postLogoutRedirect:
       process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI ||
       "http://localhost:3000",

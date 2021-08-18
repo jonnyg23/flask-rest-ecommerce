@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Grid, IconButton } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { FaEtsy, FaInstagram, FaGithub } from "react-icons/fa";
+import { makeStyles } from "@material-ui/core/styles";
+import { FaInstagram, FaGithub } from "react-icons/fa";
 import { FiFacebook } from "react-icons/fi";
 import { teal } from "@material-ui/core/colors";
 

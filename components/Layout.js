@@ -5,9 +5,6 @@ import { CustomThemeContext } from "../context/CustomThemeProvider";
 import NavBar from "./nav-bar";
 
 const useStyles = makeStyles((theme) => ({
-  background: {
-    backgroundColor: theme.palette.grey["A200"],
-  },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -31,16 +28,18 @@ const Layout = ({ children }) => {
   return (
     <>
       {/* NoSsr is added to prevent an initial flicker of theme change - it prevents the component wrapped in NoSsr from server side rendering */}
-      <NoSsr>
-        <NavBar></NavBar>
-      </NoSsr>
+      {/* <NoSsr> */}
+      <NavBar></NavBar>
+      {/* </NoSsr> */}
       <div
         style={{
           backgroundColor: setBackgroundColor(theme, ThemeContext),
           minHeight: "100vh",
         }}
       >
-        <Container className={classes.container}>{children}</Container>
+        <Container className={classes.container}>
+          {children}
+        </Container>
       </div>
     </>
   );

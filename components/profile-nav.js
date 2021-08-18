@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "../components/NavLink";
 import { Typography } from "@material-ui/core";
-import { useFetchUser } from "../hooks/user";
+import { useUser } from "@auth0/nextjs-auth0";
 
 const ProfileNav = () => {
-  const { user, loading } = useFetchUser();
+  const { user, error, isLoading } = useUser();
 
   return user ? (
     <NavLink

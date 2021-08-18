@@ -5,7 +5,6 @@ export async function fetchUser(cookie = "") {
     return window.__user;
   }
 
-// TODO: Maybe don't error 404 on initial page if cookie doesn't exist
   const res = await fetch(
     "/api/me",
     cookie
@@ -54,7 +53,7 @@ export function useFetchUser({ required } = {}) {
         if (isMounted) {
           // When the user is not logged in but login is required
           if (required && !user) {
-            window.location.href = "/api/login";
+            window.location.href = "/api/auth/login";
             return;
           }
           setUser(user);

@@ -1,23 +1,17 @@
 import React from "react";
-import { useFetchUser } from "../hooks/user";
+import { useUser } from "@auth0/nextjs-auth0";
 
 import LoginButton from "./login-button";
 import LogoutButton from "./logout-button";
 
 const AuthenticationButton = () => {
-  const { user, loading } = useFetchUser();
+  const { user, error, isLoading } = useUser();
 
   return user ? (
-    <LogoutButton user={user} loading={loading} />
+    <LogoutButton user={user} loading={isLoading} />
   ) : (
-    <LoginButton user={user} loading={loading} />
+    <LoginButton user={user} loading={isLoading} />
   );
-  // return (
-  //   <main>
-  //     {!session && <h1>SIGNED IN</h1>}
-  //     {session && <h1>SIGNED OUT</h1>}
-  //   </main>
-  // );
 };
 
 export default AuthenticationButton;

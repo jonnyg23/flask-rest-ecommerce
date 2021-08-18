@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import { UserProvider } from "@auth0/nextjs-auth0";
 import CustomThemeProvider, {
   CustomThemeContext,
 } from "../context/CustomThemeProvider";
@@ -28,10 +29,12 @@ export default function App({ Component, pageProps }) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <CustomThemeProvider initialAppTheme={ThemeContext.appTheme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </CustomThemeProvider>
+      <UserProvider>
+        <CustomThemeProvider initialAppTheme={ThemeContext.appTheme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </CustomThemeProvider>
+      </UserProvider>
     </React.Fragment>
   );
 }
