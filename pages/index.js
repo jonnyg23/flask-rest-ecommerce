@@ -38,7 +38,6 @@ const Home = ({ initialAppTheme }) => {
   }, [response]);
 
   return (
-    <>
       <Layout>
         <Box>
           <Head>
@@ -95,7 +94,6 @@ const Home = ({ initialAppTheme }) => {
           </Paper>
         </Box>
       </Layout>
-    </>
   );
 };
 

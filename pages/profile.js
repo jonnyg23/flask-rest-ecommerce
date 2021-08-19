@@ -43,10 +43,9 @@ const Profile = ({ initialAppTheme }) => {
 
   if (isLoading)
     return (
-      <>
-        <Layout></Layout>
+      <Layout>
         <CircularProgress color="primary" />
-      </>
+      </Layout>
     );
 
   if (error) return <div>{error.message}</div>;
@@ -59,25 +58,24 @@ const Profile = ({ initialAppTheme }) => {
     );
 
   return (
-    <>
-      <Layout>
-        <Box>
-          {user.picture ? (
-            <div className={classes.image}>
-              <Avatar
-                variant="circle"
-                alt="Profile"
-                src={user.picture}
-                className={classes.large}
-              />
-            </div>
-          ) : null}
-          <Box mb={3}>
-            <Typography variant="h2">{user.name}</Typography>
-            <Typography variant="body1">Nickname: {user.nickname}</Typography>
-          </Box>
+    <Layout>
+      <Box>
+        {user.picture ? (
+          <div className={classes.image}>
+            <Avatar
+              variant="circle"
+              alt="Profile"
+              src={user.picture}
+              className={classes.large}
+            />
+          </div>
+        ) : null}
+        <Box mb={3}>
+          <Typography variant="h2">{user.name}</Typography>
+          <Typography variant="body1">Nickname: {user.nickname}</Typography>
+        </Box>
 
-          {/* <Paper elevation={3}>
+        {/* <Paper elevation={3}>
             <Box padding={2}>
               <JSONPretty
                   id="user-bearer-token"
@@ -113,9 +111,8 @@ const Profile = ({ initialAppTheme }) => {
                 </Typography>
               </Box>
             )} */}
-        </Box>
-      </Layout>
-    </>
+      </Box>
+    </Layout>
   );
 };
 

@@ -7,14 +7,12 @@ const Products = ({ initialAppTheme }) => {
   setInitTheme(initialAppTheme);
 
   return (
-    <>
       <Layout>
         <Box>
           <Typography variant="h3">Products</Typography>
           <Typography variant="body1">Dev in Progress!</Typography>
         </Box>
       </Layout>
-    </>
   );
 };
 

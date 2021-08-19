@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Head>
         <meta
           name="viewport"
@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} />
         </CustomThemeProvider>
       </UserProvider>
-    </React.Fragment>
+    </>
   );
 }
 

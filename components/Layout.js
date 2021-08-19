@@ -19,7 +19,7 @@ const setBackgroundColor = (theme, contextTheme) => {
     return theme.palette.grey["A200"];
   }
 };
-// TODO: Find out if NoSsr is really needed wrapping pages that need global theme.
+
 const Layout = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -27,19 +27,14 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/* NoSsr is added to prevent an initial flicker of theme change - it prevents the component wrapped in NoSsr from server side rendering */}
-      {/* <NoSsr> */}
       <NavBar></NavBar>
-      {/* </NoSsr> */}
       <div
         style={{
           backgroundColor: setBackgroundColor(theme, ThemeContext),
           minHeight: "100vh",
         }}
       >
-        <Container className={classes.container}>
-          {children}
-        </Container>
+        <Container className={classes.container}>{children}</Container>
       </div>
     </>
   );
