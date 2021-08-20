@@ -16,7 +16,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import MailIcon from "@material-ui/icons/Mail";
 import PersonIcon from "@material-ui/icons/Person";
 import { teal } from "@material-ui/core/colors";
-import AuthenticationButton from "./authentication-button";
+import AuthButton from "./AuthButton";
 import ThemeModeToggle from "./ThemeModeToggle";
 
 // This StyledMenu is the style for the menu content box
@@ -187,7 +187,7 @@ export default function HamburgerMenu() {
         >
           <Grid item xs={6}>
             <BottomMenuItem onClick={handleClose}>
-              <AuthenticationButton />
+              <AuthButton />
             </BottomMenuItem>
           </Grid>
           <Grid item xs={6}>

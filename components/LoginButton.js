@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// TODO: Figure out how to implement handleLogin() else use router.push(href)
 const LoginButton = ({ user, loading }) => {
   const classes = useStyles();
   const router = useRouter();

@@ -1,10 +1,10 @@
 import React from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 
-import LoginButton from "./login-button";
-import LogoutButton from "./logout-button";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 
-const AuthenticationButton = () => {
+const AuthButton = () => {
   const { user, error, isLoading } = useUser();
 
   return user ? (
@@ -14,4 +14,4 @@ const AuthenticationButton = () => {
   );
 };
 
-export default AuthenticationButton;
+export default AuthButton;

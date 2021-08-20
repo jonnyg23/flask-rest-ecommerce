@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "../components/NavLink";
+import { NavLink } from "./NavLink";
 import {
   AppBar,
   Grid,
@@ -9,8 +9,8 @@ import {
 import { makeStyles } from "@material-ui/styles";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 
-import MainNav from "./main-nav";
-import AuthNav from "./auth-nav";
+import MainNav from "./MainNav";
+import AuthNav from "./AuthNav";
 import ThemeModeToggle from "./ThemeModeToggle";
 import { Desktop, SmallScreen } from "./Responsive";
 import HamburgerMenu from "./HamburgerMenu";

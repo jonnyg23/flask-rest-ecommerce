@@ -4,7 +4,6 @@ import { Grid, Paper, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import JSONPretty from "react-json-pretty";
 
-import Welcome from "../components/welcome";
 import useAxios from "../hooks/useAxios";
 import { backendApi } from "../apis/axiosRequests";
 import ProductsButton from "../components/ProductsButton";
@@ -48,7 +47,14 @@ const Home = ({ initialAppTheme }) => {
             content="Flask REST ecommerce website template"
           />
         </Head>
-        <Welcome />
+        <Box>
+          <Typography variant="h3" color="textSecondary" gutterBottom>
+            Welcome to Flask-Ecommerce!
+          </Typography>
+          <Typography variant="h5" gutterBottom>
+            This is the Flask+Nextjs Ecommerce REST Website template.
+          </Typography>
+        </Box>
         <Grid container spacing={1}>
           <Grid item>
             <ProductsButton
@@ -82,7 +88,9 @@ const Home = ({ initialAppTheme }) => {
           </Grid>
         </Grid>
         <Box mt={2}>
-          <Typography variant="h5" gutterBottom>Example JSON Data Output:</Typography>
+          <Typography variant="h5" gutterBottom>
+            Example JSON Data Output:
+          </Typography>
         </Box>
         <Paper elevation={4} className={classes.paper}>
           <Box padding={2}>

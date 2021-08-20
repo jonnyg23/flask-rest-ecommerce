@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "../components/NavLink";
+import { NavLink } from "./NavLink";
 import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import ProfileNav from "./profile-nav";
+import ProfileNav from "./ProfileNav";
 
 const useStyles = makeStyles((theme) => ({
   activeLink: {
