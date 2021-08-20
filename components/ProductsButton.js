@@ -7,7 +7,7 @@ const ProductsButton = ({ text, onClick }) => {
     <Button
       variant="contained"
       onClick={onClick}
-      style={{ backgroundColor: teal[400], color: "white" }}
+      style={{ backgroundColor: teal["A700"], color: "white" }}
     >
       {text}
     </Button>

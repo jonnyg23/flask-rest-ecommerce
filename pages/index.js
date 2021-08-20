@@ -42,7 +42,7 @@ const Home = ({ initialAppTheme }) => {
     <Layout>
       <Box>
         <Head>
-          <title>Welcome to Flask-Ecommerce</title>
+          <title>Welcome to Flask+NextJS Ecommerce Template</title>
           <meta
             name="description"
             content="Flask REST ecommerce website template"
@@ -82,7 +82,7 @@ const Home = ({ initialAppTheme }) => {
           </Grid>
         </Grid>
         <Box mt={2}>
-          <Typography variant="h5">Example JSON Data Output:</Typography>
+          <Typography variant="h5" gutterBottom>Example JSON Data Output:</Typography>
         </Box>
         <Paper elevation={4} className={classes.paper}>
           <Box padding={2}>

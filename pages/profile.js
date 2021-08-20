@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(17),
   },
   button: {
-    backgroundColor: teal[400],
+    backgroundColor: teal["A700"],
     color: "white",
   },
   result: {
@@ -59,6 +59,9 @@ const Profile = ({ initialAppTheme }) => {
 
   return (
     <Layout>
+      <Typography variant="h3" color="textSecondary" gutterBottom>
+        Profile
+      </Typography>
       <Box>
         {user.picture ? (
           <div className={classes.image}>

@@ -51,7 +51,7 @@ const StyledMenuItem = withStyles((theme) => ({
     "&:hover": {
       display: "flex",
       width: "100%",
-      backgroundColor: teal[400],
+      backgroundColor: teal["A700"],
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         color: theme.palette.common.white,
       },

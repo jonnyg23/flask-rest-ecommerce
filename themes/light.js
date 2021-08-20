@@ -1,5 +1,5 @@
 import { createTheme } from "@material-ui/core/styles";
-import { orange } from "@material-ui/core/colors";
+import { orange, teal, grey } from "@material-ui/core/colors";
 
 const theme = createTheme({
   typography: {
@@ -21,8 +21,12 @@ const theme = createTheme({
       main: orange[400],
       light: orange[300],
     },
+    text: {
+      primary: "#000",
+      secondary: teal["A700"],
+    },
     background: {
-      paper: "#fff",
+      paper: grey["A200"],
     },
   },
 });

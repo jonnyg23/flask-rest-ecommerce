@@ -39,7 +39,7 @@ const Contact = ({ initialAppTheme }) => {
   return (
     <Layout>
       <Box>
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h3" color="textSecondary" gutterBottom>
           Contact me!
         </Typography>
         <Grid container direction="column" justifyContent="center" spacing={2}>

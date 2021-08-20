@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.primary.contrastText,
   },
   copyrightName: {
-    color: teal[400],
+    color: teal["A700"],
     marginRight: 6,
   },
   copyrightYear: {

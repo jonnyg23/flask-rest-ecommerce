@@ -16,7 +16,7 @@ const setBackgroundColor = (theme, contextTheme) => {
   if (appTheme === "light") {
     return "white";
   } else {
-    return theme.palette.grey["A200"];
+    return theme.palette.grey["A700"];
   }
 };
 
