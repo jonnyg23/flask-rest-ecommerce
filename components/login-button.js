@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import { indigo } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({

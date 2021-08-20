@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { Grid, Paper, Box, Typography, makeStyles } from "@material-ui/core";
+import { Grid, Paper, Box, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import JSONPretty from "react-json-pretty";
 
 import Welcome from "../components/welcome";
@@ -38,62 +39,62 @@ const Home = ({ initialAppTheme }) => {
   }, [response]);
 
   return (
-      <Layout>
-        <Box>
-          <Head>
-            <title>Welcome to Flask-Ecommerce</title>
-            <meta
-              name="description"
-              content="Flask REST ecommerce website template"
+    <Layout>
+      <Box>
+        <Head>
+          <title>Welcome to Flask-Ecommerce</title>
+          <meta
+            name="description"
+            content="Flask REST ecommerce website template"
+          />
+        </Head>
+        <Welcome />
+        <Grid container spacing={1}>
+          <Grid item>
+            <ProductsButton
+              text="All Products"
+              onClick={() => setUrl("/products")}
             />
-          </Head>
-          <Welcome />
-          <Grid container spacing={1}>
-            <Grid item>
-              <ProductsButton
-                text="All Products"
-                onClick={() => setUrl("/products")}
-              />
-            </Grid>
-            <Grid item>
-              <ProductsButton
-                text="Mens Apparel"
-                onClick={() => setUrl("/collections/mens-apparel")}
-              />
-            </Grid>
-            <Grid item>
-              <ProductsButton
-                text="Womens Apparel"
-                onClick={() => setUrl("/collections/womens-apparel")}
-              />
-            </Grid>
-            <Grid item>
-              <ProductsButton
-                text="Holiday"
-                onClick={() => setUrl("/collections/holiday")}
-              />
-            </Grid>
-            <Grid item>
-              <ProductsButton
-                text="Misc"
-                onClick={() => setUrl("/collections/misc")}
-              />
-            </Grid>
           </Grid>
-          <Box mt={2}>
-            <Typography variant="h5">Example JSON Data Output:</Typography>
-          </Box>
-          <Paper elevation={4} className={classes.paper}>
-            <Box padding={2}>
-              <JSONPretty
-                id="json-pretty"
-                data={data}
-                style={{ overflow: "auto" }}
-              ></JSONPretty>
-            </Box>
-          </Paper>
+          <Grid item>
+            <ProductsButton
+              text="Mens Apparel"
+              onClick={() => setUrl("/collections/mens-apparel")}
+            />
+          </Grid>
+          <Grid item>
+            <ProductsButton
+              text="Womens Apparel"
+              onClick={() => setUrl("/collections/womens-apparel")}
+            />
+          </Grid>
+          <Grid item>
+            <ProductsButton
+              text="Holiday"
+              onClick={() => setUrl("/collections/holiday")}
+            />
+          </Grid>
+          <Grid item>
+            <ProductsButton
+              text="Misc"
+              onClick={() => setUrl("/collections/misc")}
+            />
+          </Grid>
+        </Grid>
+        <Box mt={2}>
+          <Typography variant="h5">Example JSON Data Output:</Typography>
         </Box>
-      </Layout>
+        <Paper elevation={4} className={classes.paper}>
+          <Box padding={2}>
+            <JSONPretty
+              id="json-pretty"
+              data={data}
+              style={{ overflow: "auto" }}
+            ></JSONPretty>
+          </Box>
+        </Paper>
+      </Box>
+    </Layout>
   );
 };
 

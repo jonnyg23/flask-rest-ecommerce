@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { Container, NoSsr } from "@material-ui/core";
 import { CustomThemeContext } from "../context/CustomThemeProvider";
 import NavBar from "./nav-bar";

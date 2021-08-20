@@ -9,7 +9,7 @@ import {
   Avatar,
   CircularProgress,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import { teal } from "@material-ui/core/colors";
 import JSONPretty from "react-json-pretty";
 import Layout from "../components/Layout";

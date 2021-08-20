@@ -1,9 +1,12 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     useNextVariants: true,
+    button: {
+      textTransform: "none",
+    },
   },
   palette: {
     // type: "dark",
@@ -11,6 +14,7 @@ const theme = createMuiTheme({
       dark: "#00242C",
       main: "#002A32",
       light: "#004654",
+      contrastText: "#fff",
     },
     secondary: {
       dark: "#9BAEEE",

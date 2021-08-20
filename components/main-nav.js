@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "../components/NavLink";
 import { Box, Grid, Typography } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import ProfileNav from "./profile-nav";
 
 const useStyles = makeStyles((theme) => ({

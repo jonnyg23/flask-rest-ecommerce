@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { IconButton } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import Brightness5TwoToneIcon from "@material-ui/icons/Brightness5TwoTone";
 import Brightness2TwoToneIcon from "@material-ui/icons/Brightness2TwoTone";
 import { CustomThemeContext } from "../context/CustomThemeProvider";

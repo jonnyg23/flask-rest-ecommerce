@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFetchUser } from "../hooks/user";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/styles";
 import {
   Button,
   Menu,

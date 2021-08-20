@@ -5,9 +5,8 @@ import {
   Grid,
   Container,
   Toolbar,
-  IconButton,
 } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 
 import MainNav from "./main-nav";
@@ -63,7 +62,7 @@ const NavBar = () => {
               <Grid item xs={2}>
                 <StorefrontIcon fontSize="medium" className={classes.icon} />
               </Grid>
-              <Grid container item xs={10} justify="flex-end">
+              <Grid container item xs={10} justifyContent="flex-end">
                 <HamburgerMenu />
               </Grid>
             </SmallScreen>
