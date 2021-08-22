@@ -1,5 +1,5 @@
 {
-  "name": "flask-rest-ecommerce-1",
+  "name": "flask-rest-ecommerce",
   "version": "0.1.0",
   "private": true,
   "engines": {
