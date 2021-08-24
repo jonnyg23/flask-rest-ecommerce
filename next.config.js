@@ -40,5 +40,6 @@ module.exports = {
     AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
     SESSION_COOKIE_SECRET: process.env.SESSION_COOKIE_SECRET,
     SESSION_COOKIE_LIFETIME: process.env.SESSION_COOKIE_LIFETIME,
+    PORT: process.env.PORT,
   },
 };
