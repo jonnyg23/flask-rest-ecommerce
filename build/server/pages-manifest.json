@@ -1,0 +1,15 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/api/auth/[...auth0]": "pages/api/auth/[...auth0].js",
+  "/api/auth/callback": "pages/api/auth/callback.js",
+  "/api/auth/login": "pages/api/auth/login.js",
+  "/api/auth/logout": "pages/api/auth/logout.js",
+  "/api/auth/me": "pages/api/auth/me.js",
+  "/contact": "pages/contact.js",
+  "/": "pages/index.js",
+  "/products": "pages/products.js",
+  "/profile": "pages/profile.js",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+}
