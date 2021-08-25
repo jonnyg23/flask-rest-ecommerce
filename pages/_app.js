@@ -1,8 +1,10 @@
 import "../styles/globals.css";
 import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import * as gtag from "../hooks/gtag";
 
 import { UserProvider } from "@auth0/nextjs-auth0";
 import CustomThemeProvider, {
@@ -10,7 +12,19 @@ import CustomThemeProvider, {
 } from "../context/CustomThemeProvider";
 
 export default function App({ Component, pageProps }) {
-  // const { isLoading } = useAuth0();
+  // Add Google analytics functionality
+  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routerChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
+  // Use CustomThemeContext for initialAppTheme prop
   const ThemeContext = useContext(CustomThemeContext);
 
   useEffect(() => {
