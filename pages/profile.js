@@ -2,17 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import setInitTheme from "../hooks/setInitTheme";
-import {
-  Box,
-  Typography,
-  Paper,
-  Avatar,
-  CircularProgress,
-} from "@material-ui/core";
+import { Box, Typography, Avatar, CircularProgress } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { teal } from "@material-ui/core/colors";
-import JSONPretty from "react-json-pretty";
 import Layout from "../components/Layout";
+import { FRONTEND_URL } from "../components/types";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -58,7 +52,11 @@ const Profile = ({ initialAppTheme }) => {
     );
 
   return (
-    <Layout>
+    <Layout
+      title="Profile | Ecommerce Website Template - Nextjs, Flask, & Material-ui"
+      description="My Account - About Me"
+      url={`${FRONTEND_URL}` + "/profile"}
+    >
       <Typography variant="h3" color="textSecondary" gutterBottom>
         Profile
       </Typography>
@@ -77,43 +75,6 @@ const Profile = ({ initialAppTheme }) => {
           <Typography variant="h2">{user.name}</Typography>
           <Typography variant="body1">Nickname: {user.nickname}</Typography>
         </Box>
-
-        {/* <Paper elevation={3}>
-            <Box padding={2}>
-              <JSONPretty
-                  id="user-bearer-token"
-                  data={bearer_token}
-                  style={{
-                    overflow: "auto",
-                  }}
-                ></JSONPretty>
-            </Box>
-          </Paper>
-
-          <Box mt={3} mb={1}>
-            <Typography variant="body1">
-              Click below to view your unique Bearer JWT Access Token:
-            </Typography>
-          </Box>
-           <Box mb={2}>
-              <Button
-                variant="contained"
-                className={classes.button}
-                onClick={showToken}
-              >
-                View Bearer Token
-              </Button>
-            </Box>
-          {bearer_token && (
-              <Box className={classes.result}>
-                <Typography variant="h6" className="muted">
-                  Result
-                </Typography>
-                <Typography nowrap variant="body1">
-                  {bearer_token}
-                </Typography>
-              </Box>
-            )} */}
       </Box>
     </Layout>
   );

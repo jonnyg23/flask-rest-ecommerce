@@ -1,9 +1,9 @@
 import React from "react";
-import { Grid, Typography, Button, IconButton } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/styles";
+import { Grid, Typography, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import Layout from "../components/Layout";
 import setInitTheme from "../hooks/setInitTheme";
-import { GITHUB_URL, LINKEDIN_URL, EMAIL_ADDRESS } from "../components/types";
+import { GITHUB_URL, LINKEDIN_URL, EMAIL_MAILTO, FRONTEND_URL } from "../components/types";
 import { AiOutlineMail, AiOutlineGithub, AiFillLinkedin } from "react-icons/ai";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,11 @@ const Contact = ({ initialAppTheme }) => {
   setInitTheme(initialAppTheme);
 
   return (
-    <Layout>
+    <Layout
+      title="Contact me!"
+      description="Contact Me! | Ecommerce Website Template - Nextjs, Flask, & Material-ui"
+      url={`${FRONTEND_URL}` + '/contact'}
+    >
       <Typography variant="h3" color="textSecondary" gutterBottom>
         Contact me!
       </Typography>
@@ -37,7 +41,7 @@ const Contact = ({ initialAppTheme }) => {
         <Grid item>
           <Button
             variant="contained"
-            href="https://www.linkedin.com/in/jonathan-gutierrez-b9412357/"
+            href={LINKEDIN_URL}
             className={classes.linkedIn}
             startIcon={<AiFillLinkedin size={30} />}
           >
@@ -49,7 +53,7 @@ const Contact = ({ initialAppTheme }) => {
         <Grid item>
           <Button
             variant="contained"
-            href="https://www.github.com/jonnyg23"
+            href={GITHUB_URL}
             className={classes.github}
             startIcon={<AiOutlineGithub size={30} />}
           >
@@ -61,7 +65,7 @@ const Contact = ({ initialAppTheme }) => {
         <Grid item>
           <Button
             variant="contained"
-            href="mailto:jonguti23@outlook.com?subject=Inquiry for Jonathan"
+            href={EMAIL_MAILTO}
             className={classes.email}
             startIcon={<AiOutlineMail size={30} />}
           >

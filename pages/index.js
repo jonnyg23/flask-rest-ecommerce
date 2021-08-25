@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import { Grid, Paper, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import JSONPretty from "react-json-pretty";
@@ -9,6 +8,7 @@ import { backendApi } from "../apis/axiosRequests";
 import ProductsButton from "../components/ProductsButton";
 import Layout from "../components/Layout";
 import setInitTheme from "../hooks/setInitTheme";
+import { FRONTEND_URL } from "../components/types";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,21 +38,20 @@ const Home = ({ initialAppTheme }) => {
   }, [response]);
 
   return (
-    <Layout>
+    <Layout
+      title="Ecommerce Website Template - Nextjs, Flask, & Material-ui"
+      description="A killer Flask + Nextjs + Material-UI E-commerce Website template
+    in the making!"
+      url={FRONTEND_URL}
+    >
       <Box>
-        <Head>
-          <title>Welcome to Flask+NextJS Ecommerce Template</title>
-          <meta
-            name="description"
-            content="Flask REST ecommerce website template"
-          />
-        </Head>
         <Box>
           <Typography variant="h3" color="textSecondary" gutterBottom>
-            Welcome to Flask-Ecommerce!
+            Welcome to my E-commerce website template!
           </Typography>
           <Typography variant="h5" gutterBottom>
-            This is the Flask+Nextjs Ecommerce REST Website template.
+            This is a Flask + Nextjs + Material-UI E-commerce Website template
+            in the making.
           </Typography>
         </Box>
         <Grid container spacing={1}>

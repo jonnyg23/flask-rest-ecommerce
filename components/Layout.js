@@ -28,7 +28,7 @@ const Layout = ({ children, title, description, ogImage, url }) => {
         <title>
           {title
             ? title
-            : "Template - Next.js and Material-UI with Header & Footer"}
+            : "Ecommerce Website Template - Nextjs, Flask, & Material-ui"}
         </title>
         <meta
           name="description"
@@ -36,7 +36,7 @@ const Layout = ({ children, title, description, ogImage, url }) => {
           content={
             description
               ? description
-              : "This is a Template using Next.js and Material-UI with Header and Footer."
+              : "This is an e-commerce template website using Flask + Next.js + Material-ui."
           }
         />
         <meta
@@ -44,7 +44,7 @@ const Layout = ({ children, title, description, ogImage, url }) => {
           content={
             title
               ? title
-              : "Template - Next.js and Material-UI with Header and Footer"
+              : "Ecommerce Website Template - Nextjs, Flask, & Material-ui - GoJonnyGo"
           }
           key="og:title"
         />
@@ -59,7 +59,7 @@ const Layout = ({ children, title, description, ogImage, url }) => {
           content={
             description
               ? description
-              : "This is a Template using Next.js and Material-UI with Header and Footer."
+              : "This is an e-commerce template website using Flask + Next.js + Material-ui."
           }
           key="og:description"
         />
