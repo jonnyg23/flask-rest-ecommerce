@@ -9,13 +9,16 @@
 <!-- PROJECT LOGO -->
 <p align="center">
 
-  <h2 align="center">Flask E-commerce REST API</h2>
+  <h2 align="center">Flask Nextjs E-commerce Web Template</h2>
 
-  <h4 align="center">The project is hosted through Heroku at this link:</h4>
+  <h4 align="center">Frontend is hosted through Netlify at this link:</h4>
+    <h4 align="center"><a href="https://flask-next-ecommerce.netlify.app/">https://flask-next-ecommerce.netlify.app/</a></h4>
+    
+  <h4 align="center">Backend is hosted through Heroku at this link:</h4>
     <h4 align="center"><a href="https://flask-ecommerce-rest-api.herokuapp.com/">https://flask-ecommerce-rest-api.herokuapp.com/</a></h4>
 
   <p align="center">
-    A structured E-commerce REST API built to be the foundational backbone of a production-grade web app.
+    A structured E-commerce REST API built to be the foundational backbone of a production-grade web app. Dev for new features such as a cart & payment is still ongoing.
     <br />
     <p>
     <br />
@@ -91,9 +94,10 @@ A list of helpful resources are listed in the acknowledgements.
 * [PostgreSQL](https://www.postgresql.org/)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
 * [Auth0](https://auth0.com/)
-* [Heroku](https://www.heroku.com/)
+* [Heroku](https://www.heroku.com/) Backend Deployment
+* [Netlify](https://www.netlify.com/) Frontend Deployment
 * [Postman](https://www.postman.com/)
-* [React.js](https://reactjs.org/)
+* [Next.js](https://nextjs.org/)
 
 ## Getting Started
 
@@ -242,7 +246,7 @@ Run the tests following these steps:
 
 ### Getting Started API
 
-* Base URL: This app can only be run locally and viewed at the URL:
+* Base URL: The backend can only be run locally or viewed at the URL:
   **https://flask-ecommerce-rest-api.herokuapp.com/**. When running locally, the backend app is
   hosted at the default URL, **http://127.0.0.1:5000/**, which is set as a proxy in
   the frontend configuration. This is the domain which must be used when making
