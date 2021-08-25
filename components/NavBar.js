@@ -1,11 +1,6 @@
 import React from "react";
 import { NavLink } from "./NavLink";
-import {
-  AppBar,
-  Grid,
-  Container,
-  Toolbar,
-} from "@material-ui/core";
+import { AppBar, Grid, Container, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 
@@ -20,9 +15,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       padding: 0,
     },
+    
   },
   appBar: {
     backgroundColor: theme.palette.primary.main,
+    justifyContent: 'center',
+    height: "4em",
   },
   icon: {
     color: theme.palette.primary.contrastText,
@@ -38,7 +36,7 @@ const NavBar = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="static" elevation={3} className={classes.appBar}>
+    <AppBar position="static" elevation={2} className={classes.appBar}>
       <Toolbar>
         <Container className={classes.root}>
           <Grid container justify="center" alignItems="center" spacing={2}>
@@ -60,7 +58,9 @@ const NavBar = () => {
             </Desktop>
             <SmallScreen>
               <Grid item xs={2}>
-                <StorefrontIcon fontSize="medium" className={classes.icon} />
+                <NavLink href="/" exact className={classes.inactiveLink}>
+                  <StorefrontIcon fontSize="large" className={classes.icon} />
+                </NavLink>
               </Grid>
               <Grid container item xs={10} justifyContent="flex-end">
                 <HamburgerMenu />

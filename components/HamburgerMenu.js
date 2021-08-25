@@ -124,7 +124,7 @@ export default function HamburgerMenu() {
         className={classes.root}
         onClick={handleClick}
       >
-        <MenuIcon className={classes.menuIcon} />
+        <MenuIcon fontSize="large" className={classes.menuIcon} />
       </Button>
       <StyledMenu
         id="customized-menu"

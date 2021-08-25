@@ -3,7 +3,7 @@ import { Box, Typography, Grid, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { FaInstagram, FaGithub } from "react-icons/fa";
 import { teal } from "@material-ui/core/colors";
-import { GITHUB_URL, LINKEDIN_URL, EMAIL_ADDRESS } from "./types";
+import { GITHUB_URL, INSTAGRAM_URL, LINKEDIN_URL } from "./types";
 import { FiLinkedin } from "react-icons/fi";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +37,7 @@ const Footer = () => {
           </IconButton>
         </Grid>
         <Grid item>
-          <IconButton href="https://instagram.com/jonnyg_23" color="inherit">
+          <IconButton href={INSTAGRAM_URL} color="inherit">
             <Box display="flex" border={2} borderRadius={50} p={0.5}>
               <FaInstagram size={30} />
             </Box>
