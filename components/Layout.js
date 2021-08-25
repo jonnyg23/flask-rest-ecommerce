@@ -5,7 +5,7 @@ import { Container } from "@material-ui/core";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { NoSsr } from "@material-ui/unstyled";
-import ogImage from "../public/site_logo_large";
+import { FRONTEND_URL } from "./types";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Layout = ({ children, title, description, ogImage, url }) => {
   // Website URL
-  const pageUrl = "http://localhost:3000";
+  const pageUrl = FRONTEND_URL;
   // When you share this page on Facebook, you will see this image
-  const ogImg = ogImage;
+  const ogImg = FRONTEND_URL + '/site_logo.png';
 
   const classes = useStyles();
 
