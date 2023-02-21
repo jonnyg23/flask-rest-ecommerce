@@ -10,15 +10,11 @@
 <p align="center">
 
   <h2 align="center">Flask Nextjs E-commerce Web Template</h2>
-
-  <h4 align="center">Frontend is hosted through Netlify at this link:</h4>
-    <h4 align="center"><a href="https://flask-next-ecommerce.netlify.app/">https://flask-next-ecommerce.netlify.app/</a></h4>
-    
-  <h4 align="center">Backend is hosted through Heroku at this link:</h4>
-    <h4 align="center"><a href="https://flask-ecommerce-rest-api.herokuapp.com/">https://flask-ecommerce-rest-api.herokuapp.com/</a></h4>
+  <h4 align="center">Frontend was hosted through Netlify</h4>
+  <h4 align="center">Backend was once hosted through Heroku for project when it was free</h4>
 
   <p align="center">
-    A structured E-commerce REST API built to be the foundational backbone of a production-grade web app. Dev for new features such as a cart & payment is still ongoing.
+    A structured E-commerce REST API built to be the foundational backbone of a production-grade web app. Dev for hosting & new features such as a cart & payment is still ongoing.
     <br />
     <p>
     <br />
